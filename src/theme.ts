@@ -8,6 +8,12 @@ const theme = createTheme({
       light: "#E3E6EB59",
       contrastText: "#FFF",
     },
+    secondary: {
+      main: "#3AB70014",
+      dark: "#C8F5B3",
+      light: "#CECFD1",
+      contrastText: "#c2c2c21f",
+    },
   },
   spacing: 10,
   typography: {
@@ -32,7 +38,7 @@ const theme = createTheme({
     h3: {
       fontStyle: "normal",
       fontWeight: "normal",
-      fontSize: 15,
+      fontSize: 16,
       lineHeight: "20px",
     },
     h4: {
@@ -40,6 +46,15 @@ const theme = createTheme({
       fontWeight: "normal",
       fontSize: 12,
       lineHeight: "20px",
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });

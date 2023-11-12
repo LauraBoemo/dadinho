@@ -1,10 +1,46 @@
 import { Outlet } from "react-router-dom";
-import { DadinhoBox } from "../../components";
+import { DadinhoBox, DadinhoStack } from "../../components";
+import { useTheme } from "../../theme";
 
 export const AppLayout = () => {
+  const theme = useTheme();
+
   return (
-    <DadinhoBox sx={{ backgroundColor: "grey.50", overflowY: "auto" }} height="100vh">
-      <Outlet />
+    // TODO Need to find better ways to declare these styles
+    <DadinhoBox 
+      height="97vh"
+      borderRadius="10px"
+      border={`2px solid ${theme.palette.primary.main}`}
+      sx={{
+        overflowY: "hidden",
+        overflowX: "hidden", 
+      }}
+    >
+      <DadinhoBox
+        width="50%"
+        height="100vh"
+        maxWidth="500px"
+        
+        margin="auto"
+        display="grid"
+
+        alignItems="center"
+      
+        sx={{
+          [theme.breakpoints.down('md')]: {
+            width: "80%",
+          }
+        }}
+      >
+        <DadinhoStack 
+            height="80%"
+            maxHeight="600px"
+            direction="column"
+            justifyContent="space-between"
+        >
+          <Outlet />
+        </DadinhoStack>
+      </DadinhoBox>
     </DadinhoBox>
   );
 };
