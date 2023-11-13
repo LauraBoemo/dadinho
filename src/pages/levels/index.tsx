@@ -73,7 +73,7 @@ export const LevelsPage = () => {
                 <DadinhoStack 
                     sx={{
                         display: "grid",
-                        gridGap: "10px",
+                        gridGap: "5px",
                         gridTemplateColumns: "1fr 1fr 1fr",
                     }}
                 >

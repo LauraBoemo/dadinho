@@ -1,4 +1,4 @@
-import { DadinhoTypography, DadinhoBox, DadinhoStack } from "../../../components";
+import { DadinhoBox, DadinhoStack, DadinhoTypography } from "../..";
 import { useTheme } from "../../../theme";
 
 interface BasketProps {

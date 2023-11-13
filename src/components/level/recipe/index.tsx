@@ -1,5 +1,5 @@
-import { DadinhoTypography, DadinhoBox, DadinhoStack } from "../../../components";
 import { useTheme } from "../../../theme";
+import { DadinhoBox, DadinhoStack, DadinhoTypography } from "../..";
 
 interface RecipeProps {
     title: string;

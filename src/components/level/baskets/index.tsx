@@ -1,6 +1,6 @@
-import { DadinhoStack } from "../../../components";
+import { Basket } from "..";
+import { DadinhoStack } from "../..";
 import { useTheme } from "../../../theme";
-import Basket from "../basket";
 
 interface BasketsProps {
     products: string[][];

@@ -9,6 +9,7 @@ export const DadinhoIconButton = styled(Button)(({ theme, variant, size, disable
     textTransform: "none",
     border: `2px solid !important`,
     borderColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.contrastText,
 
     ...(disabled === true && {
         color: theme.palette.secondary.light,
