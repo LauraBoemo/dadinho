@@ -13,6 +13,7 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<LoginPage />} />c
+          <Route path={PATHS.LOGIN} element={<LoginPage />} />
           <Route path={PATHS.REGISTER} element={<RegisterPage />} />
           <Route path={PATHS.LEVELS} element={<LevelsPage />} />
           <Route path={`${PATHS.LEVELS}/:id`} element={<LevelPage />} />
