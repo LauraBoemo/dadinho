@@ -1,8 +1,10 @@
-import { Dado } from "../icons";
-import { useTheme } from "../theme"
-import DadinhoBox from "./DadinhoBox"
+import { Dado } from "../../icons";
+import { useTheme } from "../../theme";
+
+import DadinhoBox from "./DadinhoBox";
 import DadinhoStack from "./DadinhoStack";
 import DadinhoTypography from "./DadinhoTypography";
+
 interface DadinhoLogoProps {
     displayName?: boolean,
 }

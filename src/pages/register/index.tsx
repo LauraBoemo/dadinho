@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { DadinhoLogo, DadinhoButton, DadinhoTypography, DadinhoStack } from "../../components";
-import { PATHS } from "../../constants/Path";
-import DadinhoDivider from "../../components/DadinhoDivider";
+
 import { useTheme } from "../../theme";
+import { PATHS } from "../../constants/Path";
+
 import Register from "../../components/register";
+import { DadinhoLogo, DadinhoStack, DadinhoDivider, DadinhoTypography, DadinhoButton } from "../../components";
 
 export const RegisterPage = () => {
     const theme = useTheme();

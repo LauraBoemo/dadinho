@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Form as FormikForm, useFormikContext } from "formik";
-import { FormFieldType } from "./FormConfig";
+
 import Fields from "./FormFields";
-import DadinhoButton from "../DadinhoButton";
-import DadinhoStack from "../DadinhoStack";
-import DadinhoTypography from "../DadinhoTypography";
+import { FormFieldType } from "./FormConfig";
+import { DadinhoStack, DadinhoTypography, DadinhoButton } from "../common";
 
 interface FormProps {
   error?: Error;

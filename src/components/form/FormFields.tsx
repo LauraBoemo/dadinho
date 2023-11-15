@@ -1,9 +1,7 @@
 import React from "react";
 import { Field } from "formik";
 import { FormFieldType } from "./FormConfig";
-import DadinhoGrid from "../DadinhoGrid";
-import DadinhoInput from "../DadinhoInput";
-import DadinhoStack from "../DadinhoStack";
+import { DadinhoStack, DadinhoInput, DadinhoGrid } from "../common";
 
 export interface FormFieldsProps extends Record<string, any> {
   fields: FormFieldType[];
