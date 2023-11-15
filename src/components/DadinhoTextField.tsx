@@ -8,10 +8,10 @@ export interface DadinhoTextFieldProps extends StandardTextFieldProps {
 export const DadinhoTextField = styled(({ valid, ...props }: DadinhoTextFieldProps) => <TextField {...props} />)(
   ({ theme }) => ({
     ...theme.typography.body1,
-    margin: `${theme.spacing(1)} 0`,
+    margin: `${theme.spacing(0.5)} 0`,
 
     "& .MuiInputLabel-root": {
-      ...theme.typography.h4,
+      ...theme.typography.h3,
       transform: "none",
       position: "relative",
       color: theme.palette.primary.main,
@@ -39,7 +39,7 @@ export const DadinhoTextField = styled(({ valid, ...props }: DadinhoTextFieldPro
         backgroundColor: theme.palette.primary.light,
       },
       
-      "> input": { ...theme.typography.h4 },
+      "> input": { ...theme.typography.h3 },
     },
     
     "& .MuiInput-input": {

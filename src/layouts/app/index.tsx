@@ -33,8 +33,8 @@ export const AppLayout = () => {
         }}
       >
         <DadinhoStack 
-            height="80%"
-            maxHeight="600px"
+            height="90%"
+            maxHeight="630px"
             direction="column"
             justifyContent="space-between"
         >

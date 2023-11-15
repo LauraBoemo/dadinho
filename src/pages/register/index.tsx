@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { DadinhoLogo, DadinhoButton, DadinhoTypography, DadinhoStack } from "../../components";
 import { PATHS } from "../../constants/Path";
-import Login from "../../components/login";
 import DadinhoDivider from "../../components/DadinhoDivider";
 import { useTheme } from "../../theme";
+import Register from "../../components/register";
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
     const theme = useTheme();
     const navigate = useNavigate();
 
@@ -13,25 +13,25 @@ export const LoginPage = () => {
         navigate(`${PATHS.LEVELS}`);
     };
 
-    const goToRegister = () => {
-        navigate(`${PATHS.REGISTER}`);
+    const goToLogin = () => {
+        navigate(`${PATHS.LOGIN}`);
     };
 
     return (
         <>
             <DadinhoLogo displayName={true} />
             <DadinhoStack direction="column" spacing={2}>
-                <Login onLoginSuccess={goToLevels} />
+                <Register onRegisterSuccess={goToLevels} />
                 <DadinhoDivider>
                     <DadinhoTypography variant="h3">
-                        É novo por aqui?
+                        Já tem uma conta?
                     </DadinhoTypography>
                 </DadinhoDivider>
-                <DadinhoButton variant="contained" size="medium" onClick={goToRegister}>Crie sua conta</DadinhoButton>
+                <DadinhoButton variant="contained" size="medium" onClick={goToLogin}>Faça seu login</DadinhoButton>
             </DadinhoStack>
             <DadinhoTypography variant="h4" textAlign="center" color={theme.palette.secondary.light}>dadinho© 2023, Brasil</DadinhoTypography>
         </>
     );
 }
 
-export default LoginPage;
+export default RegisterPage;

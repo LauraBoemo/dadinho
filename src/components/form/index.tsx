@@ -29,7 +29,7 @@ const Form: React.FC<FormProps> = ({ error, formFields, formSpacing = 1.5, submi
         <Fields fields={formFields} />
         <DadinhoStack direction="column" spacing={1} alignItems="center">
           {error && (
-            <DadinhoTypography variant="body1" color="error">
+            <DadinhoTypography variant="h3" color="error">
               {errorText || error.message}
             </DadinhoTypography>
           )}

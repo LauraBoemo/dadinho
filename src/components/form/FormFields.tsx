@@ -50,7 +50,6 @@ export const MultiColumnFormFields = ({ fields, rowSpacing, alignItems, ...props
           key={rowKey}
           alignItems={alignItems || "flex-start"}
           direction="row"
-          columnSpacing={1.5}
         >
           {rowFields.map(
             ({
