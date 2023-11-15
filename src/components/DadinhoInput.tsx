@@ -67,13 +67,12 @@ export const DadinhoInput: React.FC<DadinhoInputProps> = ({ field, form, require
   const valid = fieldTouched && !Boolean(fieldError);
   return (
     <DadinhoTextField
-      valid={valid}
       variant="standard"
       InputLabelProps={{ required: required, shrink: true }}
       InputProps={{
         disableUnderline: true,
         endAdornment: (
-          <InputAdornment sx={{ width: 20 }} position="start">
+          <InputAdornment position="start">
             {error && <ErrorIcon />}
             {valid && <ValidIcon />}
           </InputAdornment>

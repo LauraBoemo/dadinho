@@ -33,7 +33,7 @@ const Form: React.FC<FormProps> = ({ error, formFields, formSpacing = 1.5, submi
               {errorText || error.message}
             </DadinhoTypography>
           )}
-          <DadinhoButton fullWidth type="submit" variant="contained">
+          <DadinhoButton fullWidth type="submit">
             {submitText}
           </DadinhoButton>
         </DadinhoStack>

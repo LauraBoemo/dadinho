@@ -6,10 +6,7 @@ export const DadinhoButton = styled(Button)(({ theme, variant, size, disabled, c
     borderRadius: 10,
     textTransform: "none",
     border: `2px solid !important`,
-
-    ...(variant === "outlined" && {
-        borderColor: theme.palette.primary.main,
-    }),
+    borderColor: theme.palette.primary.main,
 
     ...(size === "medium" && {
         padding: "8px 20px",

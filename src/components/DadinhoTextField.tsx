@@ -6,24 +6,26 @@ export interface DadinhoTextFieldProps extends StandardTextFieldProps {
 }
 
 export const DadinhoTextField = styled(({ valid, ...props }: DadinhoTextFieldProps) => <TextField {...props} />)(
-  ({ theme, valid }) => ({
+  ({ theme }) => ({
     ...theme.typography.body1,
     margin: `${theme.spacing(1)} 0`,
 
     "& .MuiInputLabel-root": {
       ...theme.typography.h4,
-      color: theme.palette.text.primary,
       transform: "none",
       position: "relative",
+      color: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightMedium,
+      
       "& .MuiInputLabel-asterisk": {
-        color: theme.palette.error.main,
+        display: "none",
       },
     },
 
     "& .MuiInput-root": {
       backgroundColor: theme.palette.common.white,
       borderRadius: theme.spacing(0.8),
-      border: `${theme.spacing(0.05)} solid ${theme.palette.grey[100]}`,
+      border: "2px solid !important",
       transition: theme.transitions.create(["border-color", "background-color", "box-shadow"]),
       marginTop: theme.spacing(0.7),
       minHeight: theme.spacing(3.9),
@@ -33,18 +35,10 @@ export const DadinhoTextField = styled(({ valid, ...props }: DadinhoTextFieldPro
         backgroundColor: theme.palette.secondary.light,
       },
       
-      "&.Mui-error": {
-        border: `${theme.spacing(0.1)} solid ${theme.palette.error.main}`,
-        backgroundColor: theme.palette.error.light,
+      "&.Mui-disabled": {
+        backgroundColor: theme.palette.primary.light,
       },
       
-      "&.Mui-disabled": {
-        backgroundColor: theme.palette.grey[50],
-      },
-      ...(!!valid && {
-        border: `${theme.spacing(0.1)} solid ${theme.palette.success.main}`,
-        backgroundColor: theme.palette.success.light,
-      }),
       "> input": { ...theme.typography.h4 },
     },
     
