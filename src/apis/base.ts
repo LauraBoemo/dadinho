@@ -1,7 +1,7 @@
 import axios from "axios";
   
 const baseService = axios.create({
-    baseURL: process.env.baseAPIPath,
+    baseURL: "test",
 });
 
 baseService.defaults.headers.common["Content-Type"] = "application/json";
