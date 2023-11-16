@@ -14,6 +14,4 @@ const login = (payload: LoginPayload, config?: AxiosRequestConfig): Promise<Axio
   return baseService.post("auth/login", payload, config);
 };
 
-export {
-  login,
-};
+export { login };

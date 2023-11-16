@@ -12,7 +12,6 @@ interface LoginFormProps {
 
 export const Login: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   const [doLogin, loggedInUser, loginProgress, loginError] = useLogin();
-  const { setLoader } = useLoader();
 
   useEffect(() => {
     if (loggedInUser) {
@@ -21,6 +20,7 @@ export const Login: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   }, [loggedInUser]);
 
   const handleLogin = (values: Values) => {
+    console.log(values);
     doLogin(values);
   };
 
