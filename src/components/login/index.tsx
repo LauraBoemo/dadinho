@@ -15,11 +15,6 @@ export const Login: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   const { setLoader } = useLoader();
 
   useEffect(() => {
-    setLoader(loginProgress);
-    return () => setLoader(false);
-  }, [loginProgress]);
-
-  useEffect(() => {
     if (loggedInUser) {
       onLoginSuccess(loggedInUser);
     }
@@ -33,6 +28,7 @@ export const Login: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     <Formik initialValues={LoginFormInitialValues} validationSchema={LoginFormValidationSchema} onSubmit={handleLogin}>
       <Form
         error={loginError}
+        isLoading={loginProgress}
         formFields={LoginFormFields}
         errorText={"O email ou a senha inseridos não estão certos 😔"}
         submitText={"Fazer login"}

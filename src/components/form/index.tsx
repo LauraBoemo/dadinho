@@ -3,17 +3,18 @@ import { Form as FormikForm, useFormikContext } from "formik";
 
 import Fields from "./FormFields";
 import { FormFieldType } from "./FormConfig";
-import { DadinhoStack, DadinhoTypography, DadinhoButton } from "../common";
+import { DadinhoStack, DadinhoTypography, DadinhoButton, DadinhoLoader } from "../common";
 
 interface FormProps {
   error?: Error;
+  isLoading?: boolean;
   errorText?: string;
   formFields: FormFieldType[];
   formSpacing?: number;
   submitText: string;
 }
 
-const Form: React.FC<FormProps> = ({ error, formFields, formSpacing = 1.5, submitText, errorText }) => {
+const Form: React.FC<FormProps> = ({ error, isLoading, formFields, formSpacing = 1.5, submitText, errorText }) => {
   const { resetForm } = useFormikContext();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Form: React.FC<FormProps> = ({ error, formFields, formSpacing = 1.5, submi
               {errorText || error.message}
             </DadinhoTypography>
           )}
-          <DadinhoButton fullWidth type="submit">
+          <DadinhoButton fullWidth type="submit" disabled={isLoading} endIcon={isLoading && <DadinhoLoader />}>
             {submitText}
           </DadinhoButton>
         </DadinhoStack>

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik";
-import { useLoader } from "../../utils/LoaderProvider";
 import { Values } from "../form/FormConfig";
 import Form from "../form";
 import { useRegister } from "../../apis/register/useRegister";
@@ -12,12 +11,6 @@ interface RegistarFormProps {
 
 export const Register: React.FC<RegistarFormProps> = ({ onRegisterSuccess }) => {
   const [doLogin, loggedInUser, loginProgress, loginError] = useRegister();
-  const { setLoader } = useLoader();
-
-  useEffect(() => {
-    setLoader(loginProgress);
-    return () => setLoader(false);
-  }, [loginProgress]);
 
   useEffect(() => {
     if (loggedInUser) {
@@ -33,6 +26,7 @@ export const Register: React.FC<RegistarFormProps> = ({ onRegisterSuccess }) => 
     <Formik initialValues={RegisterFormInitialValues} validationSchema={RegisterFormValidationSchema} onSubmit={handleLogin}>
       <Form
         error={loginError}
+        isLoading={loginProgress}
         formFields={RegisterFormFields}
         errorText={"Não foi possível criar seu usuário 😔"}
         submitText={"Criar usuário"}
