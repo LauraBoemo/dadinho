@@ -6,51 +6,54 @@ import { PATHS } from "../../constants/Path";
 import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
+import { useLevels } from "../../apis/levels/useLevels";
+import { LevelsResponse } from "../../apis/levels/levelsService";
+import { useEffect } from "react";
 
-const levels = [
+const levelsData = [
     {
         id: 123,
-        image: "🥗",
+        icon: "🥗",
         isConcluded: true,
     },
     {
         id: 456,
-        image: "🍆",
+        icon: "🍆",
         isConcluded: true,
     },
     {
         id: 789,
-        image: "🧀",
+        icon: "🧀",
         isConcluded: true,
     },
     {
         id: 110,
-        image: "🍙",
+        icon: "🍙",
         isConcluded: true,
     },
     {
         id: 111,
-        image: "🍌",
+        icon: "🍌",
         isConcluded: false,
     },
     {
         id: 112,
-        image: "🍱",
+        icon: "🍱",
         isConcluded: false,
     },
     {
         id: 113,
-        image: "🌮",
+        icon: "🌮",
         isConcluded: false,
     },
     {
         id: 114,
-        image: "🍣",
+        icon: "🍣",
         isConcluded: false,
     },
     {
         id: 115,
-        image: "🍡",
+        icon: "🍡",
         isConcluded: false,
     },
 ]
@@ -58,10 +61,16 @@ const levels = [
 export const LevelsPage = () => {
     const theme = useTheme();
     const navigate = useNavigate();
+    const [getLevels, levels, levelsProgress, levelsError] = useLevels();
     
-    const goToLevel = (id: number) => {
+    const goToLevel = (id: string) => {
         navigate(`${PATHS.LEVELS}/${id}`);
     }
+    
+    // Add user id, progress and error status
+    useEffect(() => {
+        getLevels()
+    }, []);
 
     return (
         <>
@@ -77,7 +86,7 @@ export const LevelsPage = () => {
                         gridTemplateColumns: "1fr 1fr 1fr",
                     }}
                 >
-                    {levels.map((level, index) => {
+                    {levels?.map((level: LevelsResponse, index: number) => {
                         return (
                             <DadinhoButton 
                                 size="large" 
@@ -86,7 +95,7 @@ export const LevelsPage = () => {
                                 color={level.isConcluded ? "success" : "inherit"}
                                 disabled={!level.isConcluded && !levels[index -1].isConcluded}
                             >
-                                {level.image}
+                                {level.icon}
                             </DadinhoButton>
                         )
                     })}

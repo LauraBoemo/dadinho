@@ -1,12 +1,13 @@
 import { Basket } from "..";
 import { DadinhoStack } from "../..";
+import { BasquetProps } from "../../../apis/level/levelService";
 import { useTheme } from "../../../theme";
 
 interface BasketsProps {
-    products: string[][];
+    baskets: BasquetProps[];
 }
 
-export const Baskets = ({products}: BasketsProps) => {
+export const Baskets = ({ baskets }: BasketsProps) => {
     const theme = useTheme();
 
     return (
@@ -24,9 +25,9 @@ export const Baskets = ({products}: BasketsProps) => {
                 } 
             }}
         >
-            {products.map((product, index) => {
+            {baskets.map((product, index) => {
                 return (
-                    <Basket products={product} index={index + 1} />
+                    <Basket items={product.items} index={index + 1} />
                 )
             })}
         </DadinhoStack>

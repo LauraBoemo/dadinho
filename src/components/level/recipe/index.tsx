@@ -1,12 +1,13 @@
 import { useTheme } from "../../../theme";
 import { DadinhoBox, DadinhoStack, DadinhoTypography } from "../..";
+import { RecipeProps } from "../../../apis/level/levelService";
 
-interface RecipeProps {
+interface RecipeComponentProps {
     title: string;
-    description: string[];
+    recipe: RecipeProps[];
 }
 
-export const Recipe = ({title, description}: RecipeProps) => {
+export const Recipe = ({title, recipe}: RecipeComponentProps) => {
     const theme = useTheme();
 
     return (
@@ -17,16 +18,14 @@ export const Recipe = ({title, description}: RecipeProps) => {
                 </DadinhoTypography>
             </DadinhoBox>
             <DadinhoStack direction="column" padding={1}>
-                {description.map((row) => {
-                    const rowText = row.split(" ");
-
+                {recipe.map((row) => {
                     return (
-                        <DadinhoStack direction="row" spacing={0.5}>
+                        <DadinhoStack key={row.id} direction="row" spacing={0.5}>
                             <DadinhoTypography fontWeight={theme.typography.fontWeightMedium}>
-                                {rowText[0]}
+                                {row.quantity}
                             </DadinhoTypography>
                             <DadinhoTypography fontWeight={theme.typography.fontWeightLight}>
-                                {rowText.slice(1).join(' ')}
+                                {row.item.name} ({row.item.icon})
                             </DadinhoTypography>
                         </DadinhoStack>
                     )

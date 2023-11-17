@@ -1,21 +1,22 @@
 import { DadinhoBox, DadinhoStack, DadinhoTypography } from "../..";
+import { BasquetItemProps } from "../../../apis/level/levelService";
 import { useTheme } from "../../../theme";
 
 interface BasketProps {
-    products: string[];
+    items: BasquetItemProps[];
     index: number;
 }
 
-export const Basket = ({products, index}: BasketProps) => {
+export const Basket = ({items, index}: BasketProps) => {
     const theme = useTheme();
 
     return (
         <DadinhoBox border="2px solid" borderRadius="10px" maxWidth="150px" minWidth="150px">
             <DadinhoStack direction="row" flexWrap="wrap" bgcolor={theme.palette.primary.light} padding={2} height="60px" alignItems="center" justifyContent="center">
-                {products.map((product) => {
+                {items.map((product) => {
                     return (
                         <DadinhoTypography variant="h1" px={1}>
-                            {product}
+                            {product.icon}
                         </DadinhoTypography>
                     )
                 })}

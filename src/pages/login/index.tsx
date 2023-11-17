@@ -5,7 +5,6 @@ import { PATHS } from "../../constants/Path";
 
 import Login from "../../components/login";
 import { DadinhoLogo, DadinhoButton, DadinhoTypography, DadinhoStack, DadinhoDivider } from "../../components";
-import baseService from "../../apis/base";
 
 export const LoginPage = () => {
     const theme = useTheme();
