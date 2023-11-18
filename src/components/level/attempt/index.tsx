@@ -3,7 +3,22 @@ import { DadinhoBox, DadinhoStack, DadinhoButton } from "../..";
 
 interface AttemptProps {
     options: string[];
-    handleAttempt: (attempt: string) => void;
+    handleAttempt: (attempt: string[]) => void;
+}
+
+const splitOnWord = (str: string) => {
+    const word = "Pegue"
+    const parts = str.split(word);
+  
+    const filteredParts = parts.filter(part => part.trim() !== '');
+  
+    const result = filteredParts.map((part, index) => (index > 0 ? word + part : part).trim());
+  
+    if (str.startsWith(word)) {
+      result.unshift(word.trim());
+    }
+  
+    return result;
 }
 
 export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
@@ -20,9 +35,8 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
     }
 
     const finalResult = () => {
-        return selectedOptionIds
-            .map((id) => optionsWithIds.find(option => option.id === id)?.text)
-            .join('|');
+        const selectedOptionsString = selectedOptionIds.map((id) => optionsWithIds.find(option => option.id === id)?.text).join('|');
+        return splitOnWord(selectedOptionsString);
     }
 
     return (

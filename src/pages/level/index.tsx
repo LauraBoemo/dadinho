@@ -11,9 +11,11 @@ import { DadinhoIconButton, DadinhoLoader, DadinhoStack, DadinhoTypography } fro
 
 import { PATHS } from "../../constants/Path";
 import { useLevel } from "../../apis/level/useLevel";
+import { getStorage } from "../../apis/utilsStorage";
 import { useLevelAttempt } from "../../apis/level/useLevelAttempt";
 
 export const LevelPage = () => {
+    const userId = getStorage("id");
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -24,9 +26,14 @@ export const LevelPage = () => {
         navigate(`${PATHS.LEVELS}`);
     };
 
-    const handleAttempt = (attempt: any) => {
+    const handleAttempt = (attempt: string[]) => {
         console.log(attempt);
-        postLevelAttempt(attempt);
+
+        postLevelAttempt({
+            userId: userId,
+            levelId: id,
+            userAnswers: attempt,
+        });
     }
 
     useEffect(() => {
