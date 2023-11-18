@@ -34,9 +34,9 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
                             <DadinhoButton 
                                 size="large" 
                                 key={level.id}
-                                onClick={() => goToLevel((level.id).toString())}
+                                onClick={() => goToLevel(level.id)}
                                 color={level.isConcluded ? "success" : "inherit"}
-                                disabled={!level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}
+                                disabled={isAdmin ? false : !level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}
                             >
                                 {level.icon}
                             </DadinhoButton>

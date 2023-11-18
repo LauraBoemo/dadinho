@@ -2,10 +2,14 @@ import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { DadinhoStack, DadinhoTypography, DadinhoDivider, ConfigsHeader } from "../../../components";
+import { DadinhoStack, ConfigsHeader } from "../../../components";
 import AddLevelForm from '../../../components/level/addLevelForm/AddLevelForm';
+import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../../../constants/Path';
 
 export const LevelsConfigPage = () => {
+    const navigate = useNavigate();
+    
     const handleAddLevel = () => {
         toast.success('Nível cadastrado!', {
             position: "top-right",
@@ -17,20 +21,14 @@ export const LevelsConfigPage = () => {
             progress: undefined,
             theme: "colored",
         });
+        navigate(`${PATHS.ADMIN}${PATHS.HOME}`);
     }
 
     return (
         <DadinhoStack direction="column" gap={1} height="100%">
             <ConfigsHeader title="Novo nível" />
             <DadinhoStack direction="column" gap={1} justifyContent="space-around" height="100%">
-                <DadinhoStack direction="column" gap={1}>
-                    <DadinhoDivider>
-                        <DadinhoTypography variant="h3">
-                            Cadastrar novo nível
-                        </DadinhoTypography>
-                    </DadinhoDivider>
-                    <AddLevelForm onNewLevelSuccess={handleAddLevel} />
-                </DadinhoStack>
+                <AddLevelForm onNewLevelSuccess={handleAddLevel} />
             </DadinhoStack>
         </DadinhoStack>
     );

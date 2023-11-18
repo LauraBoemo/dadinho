@@ -4,7 +4,6 @@ import { FormFieldType, Values } from "../../form/FormConfig";
 export const AddLevelFormValidationSchema = yup.object({
   icon: yup.string().required("Precisamos de um ícone"),
   title: yup.string().required("Precisamos de um título"),
-  answers: yup.string().required("Precisamos de um respostas"),
 });
 
 export const AddLevelFormInitialValues: Values = {
@@ -23,12 +22,6 @@ export const AddLevelFormFields: FormFieldType[] = [
     id: "title",
     label: "Título",
     placeholder: "Insira o título do nível",
-    required: true,
-  },
-  {
-    id: "answers",
-    label: "Respostas",
-    placeholder: "Insira as respostas do nível",
     required: true,
   },
 ];

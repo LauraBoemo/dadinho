@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const LevelDetailsConfigPage = () => {
     const levelId = getStorage("id");
+    console.log(levelId);
     const navigate = useNavigate();
 
     const [getLevel, level, levelProgress, levelError] = useLevel();
