@@ -11,8 +11,17 @@ export interface LevelsResponse {
   isConcluded: true;
 }
 
+export interface AllLevelsResponse {
+  id: number;
+  icon: string;
+}
+
 const levels = (id: string, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelsResponse[]>> => {
   return baseService.get(`level/user/${id}`, config);
 };
 
-export { levels };
+const allLevels = (): Promise<AxiosResponse<AllLevelsResponse[]>> => {
+  return baseService.get(`level`);
+};
+
+export { levels, allLevels };

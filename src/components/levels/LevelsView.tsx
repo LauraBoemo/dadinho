@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
+import { adminVerify } from "../../apis/utilsStorage";
+import { LevelsResponse } from "../../apis/levels/levelsService";
+
 import { PATHS } from "../../constants/Path";
 import { DadinhoStack, DadinhoButton, DadinhoTypography } from "../common"
-import { LevelsResponse } from "../../apis/levels/levelsService"
 
 interface LevelsViewProps {
     levels: LevelsResponse[];
@@ -10,9 +12,10 @@ interface LevelsViewProps {
 
 export const LevelsView = ({ levels }: LevelsViewProps) => {
     const navigate = useNavigate();
+    const isAdmin = adminVerify();
     
     const goToLevel = (id: string) => {
-        navigate(`${PATHS.LEVELS}/${id}`);
+        navigate(isAdmin ? `${PATHS.ADMIN}${PATHS.LEVELS}/${id}` : `${PATHS.LEVELS}/${id}`);
     }
 
     return (
@@ -33,7 +36,7 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
                                 key={level.id}
                                 onClick={() => goToLevel((level.id).toString())}
                                 color={level.isConcluded ? "success" : "inherit"}
-                                disabled={!level.isConcluded && !levels[index -1].isConcluded}
+                                disabled={!level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}
                             >
                                 {level.icon}
                             </DadinhoButton>

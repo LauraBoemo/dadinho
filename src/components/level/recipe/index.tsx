@@ -9,6 +9,7 @@ interface RecipeComponentProps {
 
 export const Recipe = ({title, recipe}: RecipeComponentProps) => {
     const theme = useTheme();
+    console.log(recipe);
 
     return (
         <DadinhoBox border="2px solid" borderRadius="10px">
@@ -18,7 +19,7 @@ export const Recipe = ({title, recipe}: RecipeComponentProps) => {
                 </DadinhoTypography>
             </DadinhoBox>
             <DadinhoStack direction="column" padding={1}>
-                {recipe.map((row) => {
+                {recipe?.map((row) => {
                     return (
                         <DadinhoStack key={row.id} direction="row" spacing={0.5}>
                             <DadinhoTypography fontWeight={theme.typography.fontWeightMedium}>
