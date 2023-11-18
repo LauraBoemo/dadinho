@@ -6,10 +6,10 @@ import { getStorage } from '../../../apis/utilsStorage';
 import AddRecipeForm from '../../../components/level/addRecipeForm/AddRecipeForm';
 import { DadinhoStack, DadinhoTypography, DadinhoDivider, ConfigsHeader } from "../../../components";
 import { PATHS } from '../../../constants/Path';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const RecipesConfigPage = () => {
-    const levelId = getStorage("id");
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const handleAddRecipe = () => {
@@ -23,7 +23,7 @@ export const RecipesConfigPage = () => {
             progress: undefined,
             theme: "colored",
         });
-        navigate(`${PATHS.ADMIN}/${PATHS.HOME}`);
+        navigate(`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/${id}`);
     }
 
     return (
@@ -36,7 +36,7 @@ export const RecipesConfigPage = () => {
                             Cadastrar novo elemento
                         </DadinhoTypography>
                     </DadinhoDivider>
-                    <AddRecipeForm onNewRecipeSuccess={handleAddRecipe} levelId={levelId} />
+                    <AddRecipeForm onNewRecipeSuccess={handleAddRecipe} levelId={id} />
                 </DadinhoStack>
             </DadinhoStack>
         </DadinhoStack>

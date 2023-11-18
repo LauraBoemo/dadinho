@@ -22,7 +22,7 @@ export const Recipe = ({title, recipe}: RecipeComponentProps) => {
                         </DadinhoTypography>
                     </DadinhoBox>
                 )}
-                <DadinhoStack direction="column" padding={1}>
+                <DadinhoStack direction="column" padding={1} maxHeight="75px" sx={{ overflowY: "scroll" }}>
                     {recipe?.map((row) => {
                         return (
                             <DadinhoStack key={row.id} direction="row" spacing={0.5}>

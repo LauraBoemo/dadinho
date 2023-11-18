@@ -8,7 +8,7 @@ import { AddRecipeItemsView } from "./AddBasketItemsView";
 import { useNewBasket } from "../../../apis/basket/useNewBasket";
 
 interface NewRecipeFormProps {
-  levelId: string | null,
+  levelId: string | undefined,
   onNewBasketSuccess: (level: any) => void;
 }
 

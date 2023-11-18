@@ -11,7 +11,7 @@ import { DadinhoTypography, DadinhoLoader, DadinhoBox } from "../../common";
 import { AddRecipeItemsView } from "./AddRecipeItemsView";
 
 interface NewRecipeFormProps {
-  levelId: string | null,
+  levelId: string | undefined,
   onNewRecipeSuccess: (level: any) => void;
 }
 

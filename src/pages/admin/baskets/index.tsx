@@ -2,14 +2,13 @@ import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { getStorage } from '../../../apis/utilsStorage';
 import { DadinhoStack, DadinhoTypography, DadinhoDivider, ConfigsHeader } from "../../../components";
 import AddBasketForm from '../../../components/level/addBasketForm/AddBasketForm';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PATHS } from '../../../constants/Path';
 
 export const BasketsConfigPage = () => {
-    const levelId = getStorage("id");
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const handleAddBasket = () => {
@@ -23,7 +22,7 @@ export const BasketsConfigPage = () => {
             progress: undefined,
             theme: "colored",
         });
-        navigate(`${PATHS.ADMIN}/${PATHS.HOME}`);
+        navigate(`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/${id}`);
     }
 
     return (
@@ -36,7 +35,7 @@ export const BasketsConfigPage = () => {
                             Cadastrar novo cesto
                         </DadinhoTypography>
                     </DadinhoDivider>
-                    <AddBasketForm onNewBasketSuccess={handleAddBasket} levelId={levelId} />
+                    <AddBasketForm onNewBasketSuccess={handleAddBasket} levelId={id} />
                 </DadinhoStack>
             </DadinhoStack>
         </DadinhoStack>
