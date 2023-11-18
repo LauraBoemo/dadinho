@@ -15,7 +15,7 @@ export const ItemsView = ({ items }: ItemsViewProps) => {
                         sx={{
                             display: "grid",
                             gridGap: "5px",
-                            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+                            gridTemplateColumns: "1fr 1fr 1fr 1fr",
                         }}
                     >
                         {items && items?.map((level: ItemResponse) => {

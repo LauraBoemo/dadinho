@@ -2,11 +2,13 @@ import { useMemo, useState } from "react";
 import { DadinhoBox, DadinhoStack, DadinhoButton } from "../..";
 
 interface AttemptProps {
-    options: { id: number; text: string; }[];
-    handleAttempt: (attempt: number[]) => void;
+    options: string[];
+    handleAttempt: (attempt: string) => void;
 }
 
 export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
+    const optionsWithIds = useMemo(() => options.map((option: string, index: number) => ({ id: index, text: option })), []);
+
     const [selectedOptionIds, setSelectedOptionIds] = useState<number[]>([]);
 
     const handleSelectAttempt = (id: number) => {
@@ -17,23 +19,11 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
         }
     }
 
-    const shuffleOptions = (options: { id: number; text: string; }[]) => {
-        let currentIndex = options.length, temporaryValue, randomIndex;
-      
-        while (currentIndex !== 0) {
-      
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-      
-          temporaryValue = options[currentIndex];
-          options[currentIndex] = options[randomIndex];
-          options[randomIndex] = temporaryValue;
-        }
-      
-        return options;
+    const finalResult = () => {
+        return selectedOptionIds
+            .map((id) => optionsWithIds.find(option => option.id === id)?.text)
+            .join('|');
     }
-    
-    const shuffledOptions = useMemo(() => shuffleOptions(options), [options]);
 
     return (
         <>
@@ -41,7 +31,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                 <DadinhoBox border="2px solid" minWidth="100px" minHeight="100px" borderRadius="10px" padding="10px">
                     <DadinhoStack direction="row" flexWrap="wrap" gap={0.5}>
                         {selectedOptionIds.map((id) => {
-                            const option = options.find(option => option.id === id);
+                            const option = optionsWithIds.find(option => option.id === id);
                             return (
                                 <DadinhoButton key={id} size="medium" onClick={() => handleSelectAttempt(id)}>
                                     {option?.text}
@@ -51,7 +41,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                     </DadinhoStack>
                 </DadinhoBox>       
                 <DadinhoStack direction="row" flexWrap="wrap" gap={0.5}>
-                    {shuffledOptions.map((option) => {
+                    {optionsWithIds.map((option) => {
                         return (
                             <DadinhoButton
                                 size="medium"
@@ -65,7 +55,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                     })}
                 </DadinhoStack>                
             </DadinhoStack>
-            <DadinhoButton size="medium" disabled={options.length !== selectedOptionIds.length} onClick={() => handleAttempt(selectedOptionIds)}>
+            <DadinhoButton size="medium" disabled={options.length !== selectedOptionIds.length} onClick={() => handleAttempt(finalResult())}>
                 Enviar
             </DadinhoButton>
         </>

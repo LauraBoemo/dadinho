@@ -6,7 +6,7 @@ export interface LevelsPayload {
 }
 
 export interface LevelsResponse {
-  id: string;
+  id: number;
   icon: string;
   isConcluded: true;
 }

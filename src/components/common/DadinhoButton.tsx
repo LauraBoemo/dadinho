@@ -19,7 +19,7 @@ export const DadinhoButton = styled(Button)(({ theme, variant, size, disabled, c
 
         [theme.breakpoints.down('md')]: {
             fontSize: 30,
-            padding: "20px",
+            padding: "23px",
             borderRadius: "10px",
         }
     }), 

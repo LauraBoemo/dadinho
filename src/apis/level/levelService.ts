@@ -1,10 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import baseService from "../base";
 
-export interface LevelPayload {
-  id: string;
-}
-
 export interface RecipeProps {
   id: string;
   item: {
@@ -36,7 +32,7 @@ export interface LevelResponse {
   options: string[];
 }
 
-const level = (id: LevelPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelResponse>> => {
+const level = (id: string, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelResponse>> => {
   return baseService.get(`level/${id}`, config);
 };
 

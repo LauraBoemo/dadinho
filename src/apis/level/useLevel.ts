@@ -6,12 +6,12 @@ const useLevel = () => {
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const api = async () => {
+  const api = async ({ id }: { id: string}) => {
     try {
       setLoading(true);
       setLevelData(null);
       setError(null);
-      const res = (await level) as unknown as LevelResponse;
+      const res = (await level(id)) as unknown as LevelResponse;
       setLevelData(res);
     } catch (error) {
       setError(error);
