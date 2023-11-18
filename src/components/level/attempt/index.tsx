@@ -6,19 +6,18 @@ interface AttemptProps {
     handleAttempt: (attempt: string[]) => void;
 }
 
-const splitOnWord = (str: string) => {
-    const word = "Pegue"
-    const parts = str.split(word);
+function transformString(input: string) {
+    const delimiter = 'Pegue';
+    const placeholder = '{SPLIT_HERE}';
+    const inputWithPlaceholders = input.replace(new RegExp(delimiter, 'g'), placeholder + delimiter);
   
-    const filteredParts = parts.filter(part => part.trim() !== '');
+    const segments = inputWithPlaceholders.split(placeholder);
   
-    const result = filteredParts.map((part, index) => (index > 0 ? word + part : part).trim());
-  
-    if (str.startsWith(word)) {
-      result.unshift(word.trim());
-    }
-  
-    return result;
+    const transformedSegments = segments.map(segment => 
+      segment.trim().replace(/\|$/, '')
+    ).filter(segment => segment !== ''); 
+
+    return transformedSegments;
 }
 
 export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
@@ -36,7 +35,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
 
     const finalResult = () => {
         const selectedOptionsString = selectedOptionIds.map((id) => optionsWithIds.find(option => option.id === id)?.text).join('|');
-        return splitOnWord(selectedOptionsString);
+        return transformString(selectedOptionsString);
     }
 
     return (

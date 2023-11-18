@@ -23,16 +23,18 @@ export const LevelPage = () => {
     const [postLevelAttempt, levelAttempt, levelAttemptProgress, levelAttemptError] = useLevelAttempt();
 
     const handleAttempt = (attempt: string[]) => {
-        console.log(attempt);
-
         postLevelAttempt({
             userId: userId,
             levelId: id,
             userAnswers: attempt,
         });
-
-        navigate(`${PATHS.ANSWER}${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
     }
+
+    useEffect(() => {
+        if(levelAttempt !== null) {
+            navigate(`${PATHS.ANSWER}${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
+        }
+    }, [levelAttempt])
 
     useEffect(() => {
         getLevel({ id: id })
