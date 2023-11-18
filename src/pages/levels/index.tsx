@@ -2,7 +2,6 @@ import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
 import { getStorage } from "../../apis/utilsStorage";
 import { useLevels } from "../../apis/levels/useLevels";
@@ -45,14 +44,9 @@ export const LevelsPage = () => {
                 }
             </DadinhoStack>
             <DadinhoBox display="flex" justifyContent="end">
-                <DadinhoStack direction="row" spacing="10px">
-                    <DadinhoIconButton>
-                        <AutoAwesomeOutlinedIcon />
-                    </DadinhoIconButton>
-                    <DadinhoIconButton onClick={goToConfig}>
-                        <SettingsOutlinedIcon />
-                    </DadinhoIconButton>
-                </DadinhoStack>
+                <DadinhoIconButton onClick={goToConfig}>
+                    <SettingsOutlinedIcon />
+                </DadinhoIconButton>
             </DadinhoBox>
         </>
     );

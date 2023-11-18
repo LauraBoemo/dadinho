@@ -30,27 +30,27 @@ export const LevelPage = () => {
             levelId: id,
             userAnswers: attempt,
         });
+
+        navigate(`${PATHS.ANSWER}${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
     }
 
     useEffect(() => {
         getLevel({ id: id })
     }, []);
 
-    // useEffect(() => {
-    //     navigate(`${PATHS.ANSWER}${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
-    // }, [levelAttempt])
-
     useEffect(() => {
-        toast.success('Não foi possível enviar tentativa, tente novamente mais tarde!', {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
+        if(levelAttemptError) {
+            toast.error('Não foi possível enviar tentativa, tente novamente mais tarde!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
     }, [levelAttemptError])
 
     const goToLevels = () => {
@@ -62,7 +62,7 @@ export const LevelPage = () => {
             {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
             {levelProgress || levelAttemptProgress ? <DadinhoLoader /> : level && (
                 <>
-                    <DadinhoStack direction="row" justifyContent="space-between" alignItems="center">
+                    <DadinhoStack direction="row" alignItems="center" spacing={1}>
                         <DadinhoIconButton onClick={goToLevels}>
                             <KeyboardBackspaceRoundedIcon />
                         </DadinhoIconButton>

@@ -69,7 +69,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                     })}
                 </DadinhoStack>                
             </DadinhoStack>
-            <DadinhoButton size="medium" disabled={options.length !== selectedOptionIds.length} onClick={() => handleAttempt(finalResult())}>
+            <DadinhoButton size="medium" onClick={() => handleAttempt(finalResult())}>
                 Enviar
             </DadinhoButton>
         </>

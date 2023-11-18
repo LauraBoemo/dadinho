@@ -1,26 +1,35 @@
 import { useState } from "react";
 import { ItemResponse } from "../../../apis/items/itemsService";
-import { DadinhoBox, DadinhoTypography, DadinhoStack, DadinhoButton } from "../../common";
+import { DadinhoTypography, DadinhoStack, DadinhoButton, DadinhoBox } from "../../common";
+import { useTheme } from "../../../theme";
 
 interface AddRecipeItemsViewProps {
     items: ItemResponse[];
-    onItemSelected: (selectedIds: string[]) => void; // Update to accept an array of strings
+    onItemSelected: (selectedIds: string[]) => void;
 }
 
 export const AddRecipeItemsView = ({ items, onItemSelected }: AddRecipeItemsViewProps) => {
+    const theme = useTheme();
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
     const handleItemClick = (id: string) => {
-        if (selectedItems.includes(id)) {
-            setSelectedItems(selectedItems.filter(item => item !== id));
-        } else {
-            setSelectedItems([...selectedItems, id]);
-        }
-        onItemSelected(selectedItems);
+        // Add the item to the selections array every time it is clicked
+        const newSelectedItems = [...selectedItems, id];
+        setSelectedItems(newSelectedItems);
+        onItemSelected(newSelectedItems);
     }
 
+    // Function to remove item from the list by index
+    const removeItem = (index: number) => {
+        const newSelectedItems = [...selectedItems];
+        newSelectedItems.splice(index, 1); // Remove the item at the specified index
+        setSelectedItems(newSelectedItems);
+        onItemSelected(newSelectedItems);
+    };
+
     return (
-        <DadinhoBox width="100%">
+        <DadinhoStack width="100%" direction="column" gap={0.5}>
+            <DadinhoTypography fontWeight={theme.typography.fontWeightMedium}>Selecione o item</DadinhoTypography>
             {!items?.length ? (
                 <DadinhoTypography textAlign="center" color="error">
                     Não existem itens cadastrados
@@ -34,22 +43,30 @@ export const AddRecipeItemsView = ({ items, onItemSelected }: AddRecipeItemsView
                             gridTemplateColumns: "1fr 1fr 1fr 1fr",
                         }}
                     >
-                        {items.map((item: ItemResponse) => {
-                            const isSelected = selectedItems.includes(item.id);
-                            return (
-                                <DadinhoButton 
-                                    size="large" 
-                                    key={item.id}
-                                    onClick={() => handleItemClick(item.id)}
-                                    color={isSelected ? "success" : "inherit"} // Change color if the item is selected
-                                >
-                                    {item.icon}
-                                </DadinhoButton>
-                            );
-                        })}
+                        {items.map((item: ItemResponse) => (
+                            <DadinhoButton 
+                                size="large" 
+                                key={item.id}
+                                onClick={() => handleItemClick(item.id)}
+                            >
+                                {item.icon}
+                            </DadinhoButton>
+                        ))}
                     </DadinhoStack>
                 </DadinhoStack>
             )}
-        </DadinhoBox>
+            <DadinhoBox border="2px solid" paddingY={0.5} paddingX={1} borderRadius="10px" marginTop={1}>
+                <DadinhoStack direction="column" alignItems="center" gap={0.5}>
+                    {selectedItems.map((id, index) => {
+                        const item = items.find(item => item.id === id);
+                        return (
+                                <DadinhoButton fullWidth key={index} size="small" onClick={() => removeItem(index)} color="error">
+                                    {item?.icon}
+                                </DadinhoButton>
+                        );
+                    })}
+                </DadinhoStack>
+            </DadinhoBox>
+        </DadinhoStack>
     );
 }

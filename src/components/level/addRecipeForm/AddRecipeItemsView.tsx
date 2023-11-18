@@ -2,22 +2,27 @@
 import { useState } from "react";
 import { ItemResponse } from "../../../apis/items/itemsService";
 import { DadinhoBox, DadinhoTypography, DadinhoStack, DadinhoButton } from "../../common";
+import { useTheme } from "../../../theme";
 
 interface AddRecipeItemsViewProps {
     items: ItemResponse[];
-    onItemSelected: (id: string) => void | null; 
+    onItemSelected: (id: string) => void; 
 }
 
 export const AddRecipeItemsView = ({ items, onItemSelected }: AddRecipeItemsViewProps) => {
-    const [itemClick, setItemClick] = useState("");
+    const theme = useTheme();
+    const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 
     const handleItemClick = (id: string) => {
-        setItemClick(id);
+        setSelectedItemId(id);
         onItemSelected(id); 
     }
 
+    const selectedItem = items?.find(item => item.id === selectedItemId);
+
     return (
-        <DadinhoBox width="100%">
+        <DadinhoStack width="100%" direction="column" gap={0.5}>
+            <DadinhoTypography fontWeight={theme.typography.fontWeightMedium}>Selecione um item</DadinhoTypography>
             {!items?.length ? <DadinhoTypography textAlign="center" color="error">Não existem itens cadastrados</DadinhoTypography> : (
                 <DadinhoStack direction="column" spacing="10px">
                     <DadinhoStack 
@@ -28,13 +33,11 @@ export const AddRecipeItemsView = ({ items, onItemSelected }: AddRecipeItemsView
                         }}
                     >
                         {items && items?.map((level: ItemResponse) => {
-                            const isSelected = itemClick === level.id;
                             return (
                                 <DadinhoButton 
                                     size="large" 
                                     key={level.id}
                                     onClick={() => onItemSelected !== null && handleItemClick(level.id)}
-                                    color={isSelected ? "success" : "inherit"}
                                 >
                                     {level.icon}
                                 </DadinhoButton>
@@ -43,6 +46,9 @@ export const AddRecipeItemsView = ({ items, onItemSelected }: AddRecipeItemsView
                     </DadinhoStack>
                 </DadinhoStack>
             )}
-        </DadinhoBox>
+            <DadinhoBox border="2px solid" paddingY={0.5} paddingX={1} borderRadius="10px">
+                <DadinhoTypography>Item selecionado: {selectedItem?.icon}</DadinhoTypography>
+            </DadinhoBox>
+        </DadinhoStack>
     )
 }

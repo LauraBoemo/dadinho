@@ -5,9 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getStorage } from '../../../apis/utilsStorage';
 import AddRecipeForm from '../../../components/level/addRecipeForm/AddRecipeForm';
 import { DadinhoStack, DadinhoTypography, DadinhoDivider, ConfigsHeader } from "../../../components";
+import { PATHS } from '../../../constants/Path';
+import { useNavigate } from 'react-router-dom';
 
 export const RecipesConfigPage = () => {
     const levelId = getStorage("id");
+    const navigate = useNavigate();
 
     const handleAddRecipe = () => {
         toast.success('Elemento da Receita cadastrado!', {
@@ -20,6 +23,7 @@ export const RecipesConfigPage = () => {
             progress: undefined,
             theme: "colored",
         });
+        navigate(`${PATHS.ADMIN}/${PATHS.HOME}`);
     }
 
     return (
@@ -29,7 +33,7 @@ export const RecipesConfigPage = () => {
                 <DadinhoStack direction="column" gap={1}>
                     <DadinhoDivider>
                         <DadinhoTypography variant="h3">
-                            Cadastrar novo elemento da receita
+                            Cadastrar novo elemento
                         </DadinhoTypography>
                     </DadinhoDivider>
                     <AddRecipeForm onNewRecipeSuccess={handleAddRecipe} levelId={levelId} />

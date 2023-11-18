@@ -12,7 +12,7 @@ export const AddRecipeFormInitialValues: Values = {
 export const AddRecipeFormFields: FormFieldType[] = [
   {
     id: "quantity",
-    label: "Quantidade",
+    label: "Insira a Quantidade",
     placeholder: "Insira a quantidade necessária",
     required: true,
   },

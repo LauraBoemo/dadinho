@@ -5,9 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getStorage } from '../../../apis/utilsStorage';
 import { DadinhoStack, DadinhoTypography, DadinhoDivider, ConfigsHeader } from "../../../components";
 import AddBasketForm from '../../../components/level/addBasketForm/AddBasketForm';
+import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../../../constants/Path';
 
 export const BasketsConfigPage = () => {
     const levelId = getStorage("id");
+    const navigate = useNavigate();
 
     const handleAddBasket = () => {
         toast.success('Cesto cadastrado!', {
@@ -20,6 +23,7 @@ export const BasketsConfigPage = () => {
             progress: undefined,
             theme: "colored",
         });
+        navigate(`${PATHS.ADMIN}/${PATHS.HOME}`);
     }
 
     return (
