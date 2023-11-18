@@ -26,7 +26,6 @@ export interface LevelResponse {
   id: string;
   icon: string;
   title: string;
-  answer: string;
   recipe: RecipeProps[];
   baskets: BasquetProps[];
   options: string[];
@@ -38,6 +37,12 @@ export interface LevelAttemptPayload {
 	userAnswers: string[]
 }
 
+export interface NewLevelPayload {
+  icon: string,
+	title: string,
+	answers: string[]
+}
+
 const level = (id: string, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelResponse>> => {
   return baseService.get(`level/${id}`, config);
 };
@@ -46,4 +51,8 @@ const levelAttempt = (payload: LevelAttemptPayload, config?: AxiosRequestConfig)
   return baseService.post(`level/verify-answer`, payload, config);
 };
 
-export { level, levelAttempt };
+const newLevel = (payload: NewLevelPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> => {
+  return baseService.post(`level`, payload, config);
+};
+
+export { level, levelAttempt, newLevel };

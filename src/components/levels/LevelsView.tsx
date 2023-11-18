@@ -4,7 +4,7 @@ import { adminVerify } from "../../apis/utilsStorage";
 import { LevelsResponse } from "../../apis/levels/levelsService";
 
 import { PATHS } from "../../constants/Path";
-import { DadinhoStack, DadinhoButton, DadinhoTypography } from "../common"
+import { DadinhoStack, DadinhoButton, DadinhoTypography, DadinhoBox } from "../common"
 
 interface LevelsViewProps {
     levels: LevelsResponse[];
@@ -19,14 +19,14 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
     }
 
     return (
-        <>
+        <DadinhoBox width="100%">
             {!levels?.length ? <DadinhoTypography textAlign="center" color="error">Não existem níveis cadastrados</DadinhoTypography> : (
                 <DadinhoStack 
                     sx={{
                         display: "grid",
                         gridGap: "5px",
                         maxHeight: "250px",
-                        gridTemplateColumns: "1fr 1fr 1fr",
+                        gridTemplateColumns: isAdmin ? "1fr 1fr 1fr 1fr" : "1fr 1fr 1fr",
                     }}
                 >
                     {levels && levels?.map((level: any, index: number) => {
@@ -44,6 +44,6 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
                     })}
                 </DadinhoStack>
             )}
-        </>
+        </DadinhoBox>
     )
 }

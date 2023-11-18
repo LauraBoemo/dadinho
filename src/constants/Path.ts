@@ -14,6 +14,7 @@ export enum PATHS {
     ADMIN = "/admin",
     HOME = "home",
     ITEMS_CONFIG = "items",
-    BASKETS_CONFIG = "baskets",
     LEVELS_CONFIG = "levels",
+    BASKETS_CONFIG = "baskets",
+    RECIPES_CONFIG = "recipes",
 }

@@ -2,12 +2,15 @@ import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import { getStorage } from '../../../apis/utilsStorage';
+import AddRecipeForm from '../../../components/level/addRecipeForm/AddRecipeForm';
 import { DadinhoStack, DadinhoTypography, DadinhoDivider, ConfigsHeader } from "../../../components";
-import AddLevelForm from '../../../components/level/addLevelForm/AddLevelForm';
 
-export const LevelsConfigPage = () => {
-    const handleAddLevel = () => {
-        toast.success('Nível cadastrado!', {
+export const RecipesConfigPage = () => {
+    const levelId = getStorage("id");
+
+    const handleAddRecipe = () => {
+        toast.success('Elemento da Receita cadastrado!', {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -21,15 +24,15 @@ export const LevelsConfigPage = () => {
 
     return (
         <DadinhoStack direction="column" gap={1} height="100%">
-            <ConfigsHeader title="Novo nível" />
+            <ConfigsHeader title="Novo elemento da receita" />
             <DadinhoStack direction="column" gap={1} justifyContent="space-around" height="100%">
                 <DadinhoStack direction="column" gap={1}>
                     <DadinhoDivider>
                         <DadinhoTypography variant="h3">
-                            Cadastrar novo nível
+                            Cadastrar novo elemento da receita
                         </DadinhoTypography>
                     </DadinhoDivider>
-                    <AddLevelForm onNewLevelSuccess={handleAddLevel} />
+                    <AddRecipeForm onNewRecipeSuccess={handleAddRecipe} levelId={levelId} />
                 </DadinhoStack>
             </DadinhoStack>
         </DadinhoStack>
