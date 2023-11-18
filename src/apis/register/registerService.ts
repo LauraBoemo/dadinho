@@ -7,11 +7,7 @@ export interface RegisterPayload {
   password: string;
 }
 
-export interface RegisterResponse {
-  token: string;
-}
-
-const register = (payload: RegisterPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<RegisterResponse>> => {
+const register = (payload: RegisterPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> => {
   return baseService.post("auth/register", payload, config);
 };
 

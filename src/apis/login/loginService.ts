@@ -7,7 +7,10 @@ export interface LoginPayload {
 }
 
 export interface LoginResponse {
+  id: string;
+  email: string;
   token: string;
+  role: "ADMIN" | "ROLE";
 }
 
 const login = (payload: LoginPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<LoginResponse>> => {

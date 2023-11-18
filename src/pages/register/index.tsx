@@ -2,27 +2,39 @@ import { useNavigate } from "react-router-dom";
 
 import { useTheme } from "../../theme";
 import { PATHS } from "../../constants/Path";
-
 import Register from "../../components/register";
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { DadinhoLogo, DadinhoStack, DadinhoDivider, DadinhoTypography, DadinhoButton } from "../../components";
 
 export const RegisterPage = () => {
     const theme = useTheme();
     const navigate = useNavigate();
 
-    const goToLevels = () => {
-        navigate(`${PATHS.LEVELS}`);
+    const handleRegister = () => {
+        toast.success('Usuário criado!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+        goToLogin();
     };
 
     const goToLogin = () => {
         navigate(`${PATHS.LOGIN}`);
-    };
+    }
 
     return (
         <>
             <DadinhoLogo displayName={true} />
             <DadinhoStack direction="column" spacing={2}>
-                <Register onRegisterSuccess={goToLevels} />
+                <Register onRegisterSuccess={handleRegister} />
                 <DadinhoDivider>
                     <DadinhoTypography variant="h3">
                         Já tem uma conta?

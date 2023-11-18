@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { DadinhoBox, DadinhoStack } from "../../components";
 import { useTheme } from "../../theme";
+import { ToastContainer } from 'react-toastify';
 
 export const AppLayout = () => {
   const theme = useTheme();
@@ -16,6 +17,10 @@ export const AppLayout = () => {
         overflowX: "hidden", 
       }}
     >
+      <ToastContainer 
+        icon={false} 
+        style={{ fontFamily: 'Poppins' }}
+      />
       <DadinhoBox
         width="50%"
         height="100vh"

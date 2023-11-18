@@ -4,7 +4,6 @@ import { LoginFormFields, LoginFormInitialValues, LoginFormValidationSchema } fr
 import { useLogin } from "../../apis/login/useLogin";
 import { Values } from "../form/FormConfig";
 import Form from "../form";
-import baseService from "../../apis/base";
 
 interface LoginFormProps {
   onLoginSuccess: (loggedInUser: any) => void;
@@ -20,7 +19,6 @@ export const Login: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   }, [loggedInUser]);
 
   const handleLogin = (values: Values) => {
-    baseService.post("auth/register", values);
     doLogin(values);
   };
 

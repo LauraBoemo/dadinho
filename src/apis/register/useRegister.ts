@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RegisterResponse, register } from "./registerService";
+import { register } from "./registerService";
 
 export interface RegisterType {
   email: string;
@@ -8,7 +8,7 @@ export interface RegisterType {
 }
 
 const useRegister = () => {
-  const [registerData, setRegisterData] = useState<RegisterResponse | null>(null);
+  const [registerData, setRegisterData] = useState<boolean | null>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -22,8 +22,8 @@ const useRegister = () => {
         role,
         email,
         password,
-      })) as unknown as RegisterResponse;
-      setRegisterData(res);
+      })) as unknown as boolean;
+      setRegisterData(res !== null);
     } catch (error) {
       setError(error);
     } finally {

@@ -66,10 +66,14 @@ export const LevelsPage = () => {
     const goToLevel = (id: string) => {
         navigate(`${PATHS.LEVELS}/${id}`);
     }
+
+    const goToConfig = () => {
+        navigate(PATHS.CONFIG);
+    }
     
     // Add user id, progress and error status
     useEffect(() => {
-        getLevels()
+        getLevels({ id: "1" })
     }, []);
 
     return (
@@ -86,7 +90,7 @@ export const LevelsPage = () => {
                         gridTemplateColumns: "1fr 1fr 1fr",
                     }}
                 >
-                    {levels?.map((level: LevelsResponse, index: number) => {
+                    {levels && levels?.map((level: LevelsResponse, index: number) => {
                         return (
                             <DadinhoButton 
                                 size="large" 
@@ -111,7 +115,7 @@ export const LevelsPage = () => {
                     <DadinhoIconButton>
                         <AutoAwesomeOutlinedIcon />
                     </DadinhoIconButton>
-                    <DadinhoIconButton>
+                    <DadinhoIconButton onClick={goToConfig}>
                         <SettingsOutlinedIcon />
                     </DadinhoIconButton>
                 </DadinhoStack>

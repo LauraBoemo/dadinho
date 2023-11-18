@@ -11,7 +11,7 @@ export interface LevelsResponse {
   isConcluded: true;
 }
 
-const levels = (id: LevelsPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelsResponse[]>> => {
+const levels = (id: string, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelsResponse[]>> => {
   return baseService.get(`level/user/${id}`, config);
 };
 
