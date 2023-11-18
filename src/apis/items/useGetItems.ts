@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ItemResponse, getItem } from "./itemsService";
 
-const useItems = () => {
+const useGetItems = () => {
   const [itemsData, setItems] = useState<ItemResponse | null>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -23,4 +23,4 @@ const useItems = () => {
   return [api, itemsData, loading, error];
 };
 
-export { useItems };
+export { useGetItems };

@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useTheme } from "../../theme";
 import { PATHS } from "../../constants/Path";
 import Register from "../../components/register";
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { DadinhoLogo, DadinhoStack, DadinhoDivider, DadinhoTypography, DadinhoButton } from "../../components";
 
 export const RegisterPage = () => {
