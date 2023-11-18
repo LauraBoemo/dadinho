@@ -32,8 +32,18 @@ export interface LevelResponse {
   options: string[];
 }
 
+export interface LevelAttemptPayload {
+  userId: number,
+	levelId: number,
+	userAnswers: string[]
+}
+
 const level = (id: string, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelResponse>> => {
   return baseService.get(`level/${id}`, config);
 };
 
-export { level };
+const levelAttempt = (payload: LevelAttemptPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelResponse>> => {
+  return baseService.post(`level/verify-answer`, payload, config);
+};
+
+export { level, levelAttempt };

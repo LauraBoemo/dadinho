@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 
 import { Recipe, Baskets, Attempt } from "../../components/level";
@@ -8,19 +11,40 @@ import { DadinhoIconButton, DadinhoLoader, DadinhoStack, DadinhoTypography } fro
 
 import { PATHS } from "../../constants/Path";
 import { useLevel } from "../../apis/level/useLevel";
+import { useLevelAttempt } from "../../apis/level/useLevelAttempt";
 
 export const LevelPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+
     const [getLevel, level, levelProgress, levelError] = useLevel();
+    const [postLevelAttempt, levelAttempt, levelAttemptProgress, levelAttemptError] = useLevelAttempt();
 
     const goToLevels = () => {
         navigate(`${PATHS.LEVELS}`);
     };
 
     const handleAttempt = (attempt: any) => {
-        console.log(attempt)
+        console.log(attempt);
+        postLevelAttempt(attempt);
     }
+
+    useEffect(() => {
+        navigate(`${PATHS.ANSWER}/${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
+    }, [levelAttempt])
+
+    useEffect(() => {
+        toast.success('Não foi possível enviar tentativa, tente novamente mais tarde!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }, [levelAttemptError])
 
     useEffect(() => {
         getLevel({ id: id })
@@ -29,7 +53,7 @@ export const LevelPage = () => {
     return (
         <DadinhoStack direction="column" spacing={2} pr={1.5} sx={{ overflowX: "hidden" }}>
             {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
-            {levelProgress ?  <DadinhoLoader /> : (
+            {levelProgress || levelAttemptProgress ?  <DadinhoLoader /> : (
                 <>
                     <DadinhoStack direction="row" justifyContent="space-between" alignItems="center">
                         <DadinhoIconButton onClick={goToLevels}>
