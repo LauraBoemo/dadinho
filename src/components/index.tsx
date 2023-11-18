@@ -3,3 +3,4 @@ export * from "./form";
 export * from "./level";
 export * from "./login";
 export * from "./register";
+export * from "./admin";

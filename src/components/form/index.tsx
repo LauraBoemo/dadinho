@@ -18,10 +18,10 @@ const Form: React.FC<FormProps> = ({ error, isLoading, formFields, formSpacing =
   const { resetForm } = useFormikContext();
 
   useEffect(() => {
-    if (error) {
+    if (error || isLoading) {
       resetForm();
     }
-  }, [error]);
+  }, [error, isLoading]);
 
   return (
     <FormikForm>
