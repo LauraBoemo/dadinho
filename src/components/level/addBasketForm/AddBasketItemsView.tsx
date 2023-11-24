@@ -35,25 +35,36 @@ export const AddRecipeItemsView = ({ items, onItemSelected }: AddRecipeItemsView
                     Não existem itens cadastrados
                 </DadinhoTypography>
             ) : (
-                <DadinhoStack direction="column" spacing="10px">
-                    <DadinhoStack 
-                        sx={{
-                            display: "grid",
-                            gridGap: "5px",
-                            gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                        }}
-                    >
-                        {items.map((item: ItemResponse) => (
-                            <DadinhoButton 
-                                size="large" 
-                                key={item.id}
-                                onClick={() => handleItemClick(item.id)}
-                            >
-                                {item.icon}
-                            </DadinhoButton>
-                        ))}
+                <DadinhoBox
+                    display="flex"
+                    flexDirection="column"
+                    gap="10px"
+                    maxHeight="200px"
+                    sx={{
+                        overflowY: "auto",
+                        overflowX: "hidden"
+                    }}
+                >
+                    <DadinhoStack direction="column" spacing="10px">
+                        <DadinhoStack 
+                            sx={{
+                                display: "grid",
+                                gridGap: "5px",
+                                gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                            }}
+                        >
+                            {items.map((item: ItemResponse) => (
+                                <DadinhoButton 
+                                    size="large" 
+                                    key={item.id}
+                                    onClick={() => handleItemClick(item.id)}
+                                >
+                                    {item.icon}
+                                </DadinhoButton>
+                            ))}
+                        </DadinhoStack>
                     </DadinhoStack>
-                </DadinhoStack>
+                </DadinhoBox>
             )}
             <DadinhoBox border="2px solid" paddingY={0.5} paddingX={1} borderRadius="10px" marginTop={1}>
                 <DadinhoStack direction="column" alignItems="center" gap={0.5}>

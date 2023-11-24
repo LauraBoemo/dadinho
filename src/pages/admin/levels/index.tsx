@@ -21,7 +21,7 @@ export const LevelsConfigPage = () => {
             progress: undefined,
             theme: "colored",
         });
-        navigate(`${PATHS.ADMIN}${PATHS.HOME}`);
+        navigate(`${PATHS.ADMIN}/${PATHS.HOME}`);
     }
 
     return (

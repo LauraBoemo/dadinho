@@ -70,7 +70,7 @@ export const AddLevelForm: React.FC<LevelFormProps> = ({ onNewLevelSuccess }) =>
           isLoading={newLevelProgress}
           formFields={AddLevelFormFields}
           errorText={"Os valores estão incorretos 😔"}
-          submitText={"Cadastrar Item"}
+          submitText={"Cadastrar Nível"}
         />
       </Formik>
     </DadinhoStack>
