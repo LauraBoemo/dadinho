@@ -7,6 +7,7 @@ import { adminVerify } from "./apis/utilsStorage";
 import { LoginPage, RegisterPage, LevelsPage, LevelPage, AnswerPage, ConfigPage } from "./pages";
 import { BasketsConfigPage, HomePage, ItemsConfigPage, LevelDetailsConfigPage, LevelsConfigPage, RecipesConfigPage } from "./pages/admin";
 import AccessInstructionsPage from "./pages/accessInstructions";
+import AppLevelLayout from "./layouts/levels";
 
 const AppRoutes = () => {
   const isAdmin = adminVerify();
@@ -31,6 +32,8 @@ const AppRoutes = () => {
               </>
             )
           }
+      </Route>
+      <Route element={<AppLevelLayout />}>
           {!isAdmin && (
               <>
                 <Route path={PATHS.LEVELS} element={<LevelsPage />} />

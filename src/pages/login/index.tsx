@@ -1,17 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
-import { useTheme } from "../../theme";
-
 import { PATHS } from "../../constants/Path";
 
 import Login from "../../components/login";
-import { DadinhoLogo, DadinhoLink, DadinhoTypography, DadinhoStack } from "../../components";
+import { DadinhoFooter, DadinhoHeader, DadinhoLink, DadinhoStack, DadinhoTypography } from "../../components";
 
 import { adminVerify, setStorage } from "../../apis/utilsStorage";
 import { LoginResponse } from "../../apis/login/loginService";
 
 export const LoginPage = () => {
-    const theme = useTheme();
     const navigate = useNavigate();
 
     const handleLogin = (loggedInUser: LoginResponse) => {
@@ -32,12 +29,13 @@ export const LoginPage = () => {
 
     return (
         <>
-            <DadinhoLogo displayName />
+            <DadinhoHeader isMainPage displayLogoName />
             <DadinhoStack direction="column" spacing={2}>
+                <DadinhoTypography variant="h1" textAlign="center" fontWeight="light">Começe a jogar!</DadinhoTypography>
                 <Login onLoginSuccess={handleLogin} />
                 <DadinhoLink onClick={handleAccessInstructions} underline="none" textAlign="center">Como conseguir acesso?</DadinhoLink>
             </DadinhoStack>
-            <DadinhoTypography variant="h4" textAlign="center" color={theme.palette.secondary.light}>dadinho© 2023, Brasil</DadinhoTypography>
+            <DadinhoFooter />
         </>
     );
 }

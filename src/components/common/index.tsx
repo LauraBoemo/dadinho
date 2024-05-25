@@ -10,3 +10,4 @@ export * from "./DadinhoTextField";
 export * from "./DadinhoTypography";
 export * from "./DadinhoLoader";
 export * from "./DadinhoLink";
+export * from "../layout/DadinhoHeader";

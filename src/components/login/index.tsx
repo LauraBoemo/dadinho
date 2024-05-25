@@ -29,7 +29,7 @@ export const Login: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
         isLoading={loginProgress}
         formFields={LoginFormFields}
         errorText={"O email ou a senha inseridos não estão certos 😔"}
-        submitText={"Fazer login"}
+        submitText={"Entrar"}
       />
     </Formik>
   );

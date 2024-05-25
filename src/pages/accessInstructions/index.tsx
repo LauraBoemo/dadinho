@@ -1,38 +1,36 @@
-import { useNavigate } from "react-router-dom";
+import { ReactNode } from "react";
 
 import { useTheme } from "../../theme";
 
-import { DadinhoLogo, DadinhoTypography, DadinhoStack, DadinhoIconButton, DadinhoDivider, DadinhoLink } from "../../components";
+import { DadinhoTypography, DadinhoStack, DadinhoDivider, DadinhoLink, DadinhoHeader } from "../../components";
+import { DadinhoFooter } from "../../components/layout";
 
-import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
+interface AccessInstructionsHighlightProps {
+    children: ReactNode,
+}
+
+const AccessInstructionsHightLight = ({ children }: AccessInstructionsHighlightProps) => {
+    const theme = useTheme();
+
+    return (
+        <DadinhoTypography variant="h2" display="contents" color={theme.palette.warning.light}>
+            {children}
+        </DadinhoTypography>
+    );
+}
 
 export const AccessInstructionsPage = () => {
-    const theme = useTheme();
-    const navigate = useNavigate();
-
-    const handlePreviousPage = () => {
-        navigate(-1);
-    };
-    
     return (
-        <>
-            <DadinhoStack direction="row" alignItems="center" justifyContent="space-between">
-                <DadinhoIconButton onClick={handlePreviousPage}>
-                    <KeyboardBackspaceRoundedIcon />
-                </DadinhoIconButton>
-                <DadinhoLogo width={20} />
+        <DadinhoStack height="100%" direction="column" justifyContent="space-between" textAlign="center">
+            <DadinhoHeader pageTitle="Como conseguir acesso ao Dadinho?" backButton />
+            <DadinhoStack direction="column" spacing={3}>
+                <DadinhoTypography variant="h2" fontWeight="light">Chame o seu <AccessInstructionsHightLight>professor responsável</AccessInstructionsHightLight> e solicite o seu acesso à ele.</DadinhoTypography>
+                <DadinhoDivider />
+                <DadinhoTypography variant="h2" fontWeight="light">Caso não conheça seu professor, envie um Email com seu <AccessInstructionsHightLight>Nome Completo</AccessInstructionsHightLight> e <AccessInstructionsHightLight>Colégio</AccessInstructionsHightLight> para:</DadinhoTypography>
+                <DadinhoLink sx={{ fontSize: 20 }} href={`mailto:contatoDadinho@gmail.com`} underline="none">contatoDadinho@gmail.com</DadinhoLink>
             </DadinhoStack>
-            <DadinhoStack direction="column" textAlign="center" height="60%" justifyContent="space-between">
-                <DadinhoTypography variant="h1">Como conseguir acesso ao Dadinho?</DadinhoTypography>
-                <DadinhoStack direction="column" spacing={3}>
-                    <DadinhoTypography variant="h2" fontWeight="light">Chame o seu <DadinhoTypography variant="h2" display="contents" color={theme.palette.warning.light}>professor responsável</DadinhoTypography> e solicite o seu acesso à ele.</DadinhoTypography>
-                    <DadinhoDivider />
-                    <DadinhoTypography variant="h2" fontWeight="light">Caso não conheça seu professor, envie um Email com seu <DadinhoTypography variant="h2" display="contents" color={theme.palette.warning.light}>Nome Completo</DadinhoTypography> e <DadinhoTypography variant="h2" display="contents" color={theme.palette.warning.light}>Colégio</DadinhoTypography> para:</DadinhoTypography>
-                    <DadinhoLink href={`mailto:contatoDadinho@gmail.com`} underline="none">contatoDadinho@gmail.com</DadinhoLink>
-                </DadinhoStack>
-            </DadinhoStack>
-            <DadinhoTypography variant="h4" textAlign="center" color={theme.palette.secondary.light}>dadinho© 2023, Brasil</DadinhoTypography>
-        </>
+            <DadinhoFooter />
+        </DadinhoStack>
     );
 }
 

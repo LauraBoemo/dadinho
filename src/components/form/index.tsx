@@ -33,7 +33,7 @@ const Form: React.FC<FormProps> = ({ error, isLoading, formFields, formSpacing =
               {errorText || error.message}
             </DadinhoTypography>
           )}
-          <DadinhoButton fullWidth type="submit" disabled={isLoading} endIcon={isLoading && <DadinhoLoader />}>
+          <DadinhoButton fullWidth type="submit" variant="contained" disabled={isLoading} endIcon={isLoading && <DadinhoLoader />}>
             {submitText}
           </DadinhoButton>
         </DadinhoStack>
