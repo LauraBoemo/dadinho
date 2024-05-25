@@ -18,7 +18,7 @@ export const AnswerPage = () => {
 
     return (
         <DadinhoStack direction="column" height="70%" justifyContent="space-between">
-            <DadinhoLogo displayName={false} />
+            <DadinhoLogo />
             <DadinhoBox>
                 <DadinhoBox border="2px solid" borderRadius="10px" bgcolor={theme.palette.primary.light} px={3} py={4} pt={6}>
                     <DadinhoStack direction="column" textAlign="center" spacing={0.5}>

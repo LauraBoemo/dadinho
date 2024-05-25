@@ -6,6 +6,7 @@ import { adminVerify } from "./apis/utilsStorage";
 
 import { LoginPage, RegisterPage, LevelsPage, LevelPage, AnswerPage, ConfigPage } from "./pages";
 import { BasketsConfigPage, HomePage, ItemsConfigPage, LevelDetailsConfigPage, LevelsConfigPage, RecipesConfigPage } from "./pages/admin";
+import AccessInstructionsPage from "./pages/accessInstructions";
 
 const AppRoutes = () => {
   const isAdmin = adminVerify();
@@ -17,6 +18,7 @@ const AppRoutes = () => {
           <Route path={PATHS.LOGIN} element={<LoginPage />} />
           <Route path={PATHS.REGISTER} element={<RegisterPage />} />
           <Route path={PATHS.CONFIG} element={<ConfigPage />} />
+          <Route path={PATHS.ACCESS_INSTRUCTIONS} element={<AccessInstructionsPage />} />
           {/* <Route path="*" element={<Error errorCode={ERROR_CODES.PAGE_NOT_FOUND} />} /> */}
           {isAdmin && (
               <>

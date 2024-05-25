@@ -33,7 +33,7 @@ export const RegisterPage = () => {
 
     return (
         <>
-            <DadinhoLogo displayName={true} />
+            <DadinhoLogo displayName />
             <DadinhoStack direction="column" spacing={2}>
                 <Register onRegisterSuccess={handleRegister} />
                 <DadinhoDivider>

@@ -3,6 +3,7 @@ export enum PATHS {
     LOGIN = "/login",
     REGISTER = "/register",
     CONFIG = "/config",
+    ACCESS_INSTRUCTIONS = "/access-instructions",
 
     // USER Routes
     LEVELS = "/levels",

@@ -5,7 +5,7 @@ import { useTheme } from "../../theme";
 import { PATHS } from "../../constants/Path";
 
 import Login from "../../components/login";
-import { DadinhoLogo, DadinhoButton, DadinhoTypography, DadinhoStack, DadinhoDivider } from "../../components";
+import { DadinhoLogo, DadinhoLink, DadinhoTypography, DadinhoStack } from "../../components";
 
 import { adminVerify, setStorage } from "../../apis/utilsStorage";
 import { LoginResponse } from "../../apis/login/loginService";
@@ -23,21 +23,19 @@ export const LoginPage = () => {
         location.reload();
     };
 
-    const goToRegister = () => {
-        navigate(`${PATHS.REGISTER}`);
+    const handleAccessInstructions = () => {
+        navigate(`${PATHS.ACCESS_INSTRUCTIONS}`);
+
+        // eslint-disable-next-line no-restricted-globals
+        location.reload();
     };
-    
+
     return (
         <>
-            <DadinhoLogo displayName={true} />
+            <DadinhoLogo displayName />
             <DadinhoStack direction="column" spacing={2}>
                 <Login onLoginSuccess={handleLogin} />
-                <DadinhoDivider>
-                    <DadinhoTypography variant="h3">
-                        É novo por aqui?
-                    </DadinhoTypography>
-                </DadinhoDivider>
-                <DadinhoButton variant="contained" size="medium" onClick={goToRegister}>Crie sua conta</DadinhoButton>
+                <DadinhoLink onClick={handleAccessInstructions} underline="none" textAlign="center">Como conseguir acesso?</DadinhoLink>
             </DadinhoStack>
             <DadinhoTypography variant="h4" textAlign="center" color={theme.palette.secondary.light}>dadinho© 2023, Brasil</DadinhoTypography>
         </>

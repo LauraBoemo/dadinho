@@ -14,6 +14,10 @@ const theme = createTheme({
       light: "#CECFD1",
       contrastText: "#c2c2c21f",
     },
+    warning: {
+      main: "#FFB800",
+      light: "#FFB800",
+    }
   },
   spacing: 10,
   typography: {
@@ -26,7 +30,7 @@ const theme = createTheme({
     h1: {
       fontStyle: "normal",
       fontWeight: "300",
-      fontSize: 30,
+      fontSize: 28,
       lineHeight: "30px",
     },
     h2: {
