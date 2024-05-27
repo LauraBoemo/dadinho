@@ -67,7 +67,7 @@ export const AppLevelLayout = () => {
                     top: 0,
                     left: 0,
                     width: isTablet ? '280px' : '500px',
-                    height: '400vh',
+                    height: '2800px',
                     backgroundImage: `url(${base64Svg})`,
                     backgroundSize: 'auto',
                     backgroundRepeat: 'repeat-y',

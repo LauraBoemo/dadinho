@@ -8,9 +8,12 @@ import { useLevels } from "../../apis/levels/useLevels";
 
 import { PATHS } from "../../constants/Path";
 import { LevelsView } from "../../components/levels";
-import { DadinhoBox, DadinhoHeader, DadinhoIconButton, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
+import { DadinhoBox, DadinhoHeader, DadinhoIconButton, DadinhoLoader, DadinhoTypography } from "../../components";
+
+import { useTheme } from "../../theme";
 
 export const LevelsPage = () => {
+    const theme = useTheme();
     const navigate = useNavigate();
 
     const userId = useMemo(() => getStorage("id"), [])
@@ -25,8 +28,10 @@ export const LevelsPage = () => {
     }, []);
 
     return (
-        <DadinhoStack direction="column" mt={2}>
-            <DadinhoHeader isMainPage />
+        <>
+            <DadinhoBox position="fixed" width="80%" zIndex="10" py={1} bgcolor={theme.palette.primary.contrastText} boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}>
+                <DadinhoHeader isMainPage />
+            </DadinhoBox>
             {!levelsLoading && levelsError && <DadinhoTypography textAlign="center" color="error">Não foi possível carregar os níveis</DadinhoTypography>}
             {levelsLoading ? (
                     <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
@@ -42,12 +47,12 @@ export const LevelsPage = () => {
                     </>
                 )
             }
-            <DadinhoBox display="flex" justifyContent="end" position="fixed" sx={{ bottom: "5vh", right: "5vh" }}>
+            <DadinhoBox display="flex" justifyContent="end" position="fixed" sx={{ bottom: "30px", right: "45px" }}>
                 <DadinhoIconButton onClick={goToConfig}>
                     <SettingsOutlinedIcon />
                 </DadinhoIconButton>
             </DadinhoBox>
-        </DadinhoStack>
+        </>
     );
 }
 

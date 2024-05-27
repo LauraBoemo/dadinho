@@ -2,18 +2,30 @@ import { useNavigate } from "react-router-dom";
 
 import { useTheme } from "../../theme";
 import { PATHS } from "../../constants/Path";
-import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 
-import { DadinhoButton, DadinhoTypography, DadinhoStack, DadinhoIconButton, DadinhoBox } from "../../components";
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+
+import { DadinhoButton, DadinhoStack, DadinhoFooter, DadinhoHeader, DadinhoTypography } from "../../components";
 import { handleLogout } from "../../apis/utilsStorage";
 
-export const ConfigPage = () => {
-    const theme = useTheme();
-    const navigate = useNavigate();
+interface ConfigContentProps {
+    title: string,
+    content: string,
+}
 
-    const goToLevels = () => {
-        navigate(`${PATHS.LEVELS}`);
-    };
+const ConfigContent = ({ title, content }: ConfigContentProps) => {
+    const theme = useTheme();
+
+    return (
+        <DadinhoStack direction="column" spacing={0.5} textAlign="left">
+            <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightLight}>{title}</DadinhoTypography>
+            <DadinhoTypography variant="h2">{content}</DadinhoTypography>
+        </DadinhoStack>
+    )
+}
+
+export const ConfigPage = () => {
+    const navigate = useNavigate();
 
     const goToLogin = () => {
         handleLogout();
@@ -21,17 +33,18 @@ export const ConfigPage = () => {
     };
     
     return (
-        <>
-            <DadinhoBox display="flex">
-                <DadinhoIconButton onClick={goToLevels}>
-                    <KeyboardBackspaceRoundedIcon />
-                </DadinhoIconButton>
-            </DadinhoBox>
+        <DadinhoStack height="100%" direction="column" justifyContent="space-between" textAlign="center">
+            <DadinhoHeader backButtonCustomIcon={<SettingsOutlinedIcon />} backButton />
             <DadinhoStack direction="column" spacing={2}>
-                <DadinhoButton variant="contained" size="medium" onClick={goToLogin}>Sair</DadinhoButton>
+                {/* TODO: Complete this mock with real info */}
+                <ConfigContent title="Seu Nome" content="Laura Boemo" />
+                <ConfigContent title="Seu Email" content="lauraboemo@gmail.com" />
+                <ConfigContent title="Sua Turma" content="Turma 04" />
+                <ConfigContent title="Seu Professor" content="Paulo Pizzutti" />
             </DadinhoStack>
-            <DadinhoTypography variant="h4" textAlign="center" color={theme.palette.secondary.light}>dadinho© 2023, Brasil</DadinhoTypography>
-        </>
+            <DadinhoButton variant="outlined" size="medium" onClick={goToLogin}>Sair</DadinhoButton>
+            <DadinhoFooter />
+        </DadinhoStack>
     );
 }
 

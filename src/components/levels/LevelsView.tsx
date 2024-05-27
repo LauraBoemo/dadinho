@@ -57,7 +57,7 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
                                 disabled={isAdmin ? false : !level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}                sx={{
                                     position: "relative",
                                     width: "fit-content",
-                                    marginTop: 20,
+                                    marginTop: 22,
                                     left: leftPercentage,
                                     transform: "translate(-50%, 0)",
                                 }}
