@@ -11,6 +11,18 @@ export const DadinhoIconButton = styled(Button)(({ theme, variant, size, disable
     borderColor: theme.palette.primary.main,
     backgroundColor: theme.palette.primary.contrastText,
 
+    ...(variant === "text" && {
+        borderColor: "transparent !important",
+
+        ...(color === "info" && {
+            "&, &:hover": {
+                color: theme.palette.primary.contrastText,
+                backgroundColor: theme.palette.primary.main,
+            }
+        })
+    }),
+    
+
     ...(disabled === true && {
         color: theme.palette.secondary.light,
         borderColor: theme.palette.secondary.light,

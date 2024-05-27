@@ -12,7 +12,7 @@ export const ConfigsHeader = ({ title }: ConfigsHeaderProps) => {
     const navigate = useNavigate();
 
     const goToHome = () => {
-        navigate(`${PATHS.ADMIN}/${PATHS.HOME}`);
+        navigate(`${PATHS.ADMIN}/${PATHS.DATA}`);
     }
     
     return (

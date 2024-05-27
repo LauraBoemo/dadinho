@@ -3,6 +3,8 @@ import { DadinhoBox, DadinhoStack } from "../../components";
 import { useTheme } from "../../theme";
 import { ToastContainer } from 'react-toastify';
 
+const isTablet = window.innerWidth < 900;
+
 export const AppLayout = () => {
   const theme = useTheme();
 
@@ -23,7 +25,8 @@ export const AppLayout = () => {
       />
       <DadinhoBox
         height="100vh"
-        maxWidth="500px"
+        maxWidth={isTablet ? "500px" : "1000px"}
+        px={!isTablet ? 4 : undefined}
         
         margin="auto"
         display="grid"

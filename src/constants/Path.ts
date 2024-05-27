@@ -13,7 +13,8 @@ export enum PATHS {
 
     // ADMIN Routes
     ADMIN = "/admin",
-    HOME = "home",
+    DATA = "dados",
+    USERS = "usuarios",
     ITEMS_CONFIG = "items",
     LEVELS_CONFIG = "levels",
     BASKETS_CONFIG = "baskets",

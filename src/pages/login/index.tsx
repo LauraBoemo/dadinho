@@ -14,7 +14,7 @@ export const LoginPage = () => {
     const handleLogin = (loggedInUser: LoginResponse) => {
         setStorage(loggedInUser);
         const isAdmin = adminVerify();
-        navigate(isAdmin ? `${PATHS.ADMIN}/${PATHS.HOME}` : `${PATHS.LEVELS}`);
+        navigate(isAdmin ? `${PATHS.ADMIN}/${PATHS.DATA}` : `${PATHS.LEVELS}`);
 
         // eslint-disable-next-line no-restricted-globals
         location.reload();

@@ -9,6 +9,7 @@ import { BasketsConfigPage, HomePage, ItemsConfigPage, LevelDetailsConfigPage, L
 import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
 import CommonLayout from "./layouts/common";
+import AdminLayout from "./layouts/admin";
 
 const AppRoutes = () => {
   const isAdmin = adminVerify();
@@ -28,17 +29,20 @@ const AppRoutes = () => {
             </>
           </Route>
           {/* <Route path="*" element={<Error errorCode={ERROR_CODES.PAGE_NOT_FOUND} />} /> */}
-          {isAdmin && (
-              <>
-                <Route path={`${PATHS.ADMIN}/${PATHS.HOME}`} element={<HomePage />} />
-                <Route path={`${PATHS.ADMIN}/${PATHS.ITEMS_CONFIG}`} element={<ItemsConfigPage />} />
-                <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<LevelsConfigPage />} />
-                <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/:id`} element={<LevelDetailsConfigPage />} />
-                <Route path={`${PATHS.ADMIN}/${PATHS.BASKETS_CONFIG}/:id`} element={<BasketsConfigPage />} />
-                <Route path={`${PATHS.ADMIN}/${PATHS.RECIPES_CONFIG}/:id`} element={<RecipesConfigPage />} />
-              </>
-            )
-          }
+          <Route element={<AdminLayout />}>
+            {isAdmin && (
+                <>
+                  <Route path={`${PATHS.ADMIN}/${PATHS.DATA}`} element={<HomePage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.USERS}`} element={<HomePage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.ITEMS_CONFIG}`} element={<ItemsConfigPage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<LevelsConfigPage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/:id`} element={<LevelDetailsConfigPage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.BASKETS_CONFIG}/:id`} element={<BasketsConfigPage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.RECIPES_CONFIG}/:id`} element={<RecipesConfigPage />} />
+                </>
+              )
+            }
+          </Route>
           <Route element={<MapLayout />}>
               {!isAdmin && (
                 <Route path={PATHS.LEVELS} element={<LevelsPage />} />
