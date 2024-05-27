@@ -21,16 +21,16 @@ const AccessInstructionsHightLight = ({ children }: AccessInstructionsHighlightP
 
 export const AccessInstructionsPage = () => {
     return (
-        <DadinhoStack height="100%" direction="column" justifyContent="space-between" textAlign="center">
+        <>
             <DadinhoHeader pageTitle="Como conseguir acesso ao Dadinho?" backButton />
             <DadinhoStack direction="column" spacing={3}>
                 <DadinhoTypography variant="h2" fontWeight="light">Chame o seu <AccessInstructionsHightLight>professor responsável</AccessInstructionsHightLight> e solicite o seu acesso à ele.</DadinhoTypography>
                 <DadinhoDivider />
                 <DadinhoTypography variant="h2" fontWeight="light">Caso não conheça seu professor, envie um Email com seu <AccessInstructionsHightLight>Nome Completo</AccessInstructionsHightLight> e <AccessInstructionsHightLight>Colégio</AccessInstructionsHightLight> para:</DadinhoTypography>
-                <DadinhoLink sx={{ fontSize: 20 }} href={`mailto:contatoDadinho@gmail.com`} underline="none">contatoDadinho@gmail.com</DadinhoLink>
+                <DadinhoLink href={`mailto:contatoDadinho@gmail.com`} underline="none">contatoDadinho@gmail.com</DadinhoLink>
             </DadinhoStack>
             <DadinhoFooter />
-        </DadinhoStack>
+        </>
     );
 }
 

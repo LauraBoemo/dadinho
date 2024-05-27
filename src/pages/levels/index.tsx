@@ -29,7 +29,7 @@ export const LevelsPage = () => {
 
     return (
         <>
-            <DadinhoBox position="fixed" width="80%" zIndex="10" py={1} bgcolor={theme.palette.primary.contrastText} boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}>
+            <DadinhoBox position="fixed" width="80%" zIndex="10" mt={-3} bgcolor={theme.palette.primary.contrastText} boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}>
                 <DadinhoHeader isMainPage />
             </DadinhoBox>
             {!levelsLoading && levelsError && <DadinhoTypography textAlign="center" color="error">Não foi possível carregar os níveis</DadinhoTypography>}
@@ -47,7 +47,7 @@ export const LevelsPage = () => {
                     </>
                 )
             }
-            <DadinhoBox display="flex" justifyContent="end" position="fixed" sx={{ bottom: "30px", right: "45px" }}>
+            <DadinhoBox display="flex" justifyContent="end" position="fixed" sx={{ bottom: "30px", right: "40px" }}>
                 <DadinhoIconButton onClick={goToConfig}>
                     <SettingsOutlinedIcon />
                 </DadinhoIconButton>

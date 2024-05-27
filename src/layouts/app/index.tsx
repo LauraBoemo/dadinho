@@ -22,7 +22,6 @@ export const AppLayout = () => {
         style={{ fontFamily: 'Poppins' }}
       />
       <DadinhoBox
-        width="50%"
         height="100vh"
         maxWidth="500px"
         
@@ -30,16 +29,9 @@ export const AppLayout = () => {
         display="grid"
 
         alignItems="center"
-      
-        sx={{
-          [theme.breakpoints.down('md')]: {
-            width: "80%",
-          }
-        }}
       >
         <DadinhoStack 
-            height="90%"
-            maxHeight="630px"
+            height="90vh"
             direction="column"
             justifyContent="space-between"
         >
