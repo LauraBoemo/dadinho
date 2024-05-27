@@ -17,6 +17,8 @@ const svgString = `
 
 const base64Svg = `data:image/svg+xml;base64,${btoa(svgString)}`;
 
+const isTablet = window.innerWidth < 900;
+
 export const RectangleLayout = () => {
 
   return (
@@ -26,7 +28,7 @@ export const RectangleLayout = () => {
             position: 'absolute',
             top: 0,
             left: 0,
-            width: "110%",
+            width: isTablet ? "110%" : 0,
             height: "100%",
             backgroundImage: `url(${base64Svg})`,
             backgroundSize: 'auto',
