@@ -20,6 +20,8 @@ const AppRoutes = () => {
           <Route path={PATHS.REGISTER} element={<RegisterPage />} />
           <Route path={PATHS.CONFIG} element={<ConfigPage />} />
           <Route path={PATHS.ACCESS_INSTRUCTIONS} element={<AccessInstructionsPage />} />
+          <Route path={`${PATHS.LEVELS}/:id`} element={<LevelPage />} />
+          <Route path={`${PATHS.ANSWER}/:status`} element={<AnswerPage />} />
           {/* <Route path="*" element={<Error errorCode={ERROR_CODES.PAGE_NOT_FOUND} />} /> */}
           {isAdmin && (
               <>
@@ -37,8 +39,6 @@ const AppRoutes = () => {
           {!isAdmin && (
               <>
                 <Route path={PATHS.LEVELS} element={<LevelsPage />} />
-                <Route path={`${PATHS.LEVELS}/:id`} element={<LevelPage />} />
-                <Route path={`${PATHS.ANSWER}/:status`} element={<AnswerPage />} />
               </>
           )}
       </Route>

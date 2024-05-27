@@ -4,7 +4,7 @@ import { adminVerify } from "../../apis/utilsStorage";
 import { LevelsResponse } from "../../apis/levels/levelsService";
 
 import { PATHS } from "../../constants/Path";
-import { DadinhoStack, DadinhoButton, DadinhoTypography, DadinhoBox } from "../common"
+import { DadinhoStack, DadinhoTypography, DadinhoBox, DadinhoLevelButton } from "../common"
 
 interface LevelsViewProps {
     levels: LevelsResponse[];
@@ -21,25 +21,50 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
     return (
         <DadinhoBox width="100%">
             {!levels?.length ? <DadinhoTypography textAlign="center" color="error">Não existem níveis cadastrados</DadinhoTypography> : (
-                <DadinhoStack 
-                    sx={{
-                        display: "grid",
-                        gridGap: "5px",
-                        maxHeight: "250px",
-                        gridTemplateColumns: isAdmin ? "1fr 1fr 1fr 1fr" : "1fr 1fr 1fr",
-                    }}
-                >
+                <DadinhoStack direction="column">
                     {levels && levels?.map((level: any, index: number) => {
+                        let leftPercentage;
+                        switch (index % 6) {
+                            case 0:
+                                leftPercentage = "60%";
+                                break;
+                            case 1:
+                                leftPercentage = "35%";
+                                break;
+                            case 2:
+                                leftPercentage = "40%";
+                                break;
+                            case 3:
+                                leftPercentage = "50%";
+                                break;
+                            case 4:
+                                leftPercentage = "50%";
+                                break;
+                            case 5:
+                                leftPercentage = "50%";
+                                break;
+                            default:
+                                leftPercentage = "50%";
+                                break;
+                        }
+
                         return (
-                            <DadinhoButton 
+                            <DadinhoLevelButton 
                                 size="large" 
                                 key={level.id}
                                 onClick={() => goToLevel(level.id)}
                                 color={level.isConcluded ? "success" : "inherit"}
-                                disabled={isAdmin ? false : !level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}
+                                disabled={isAdmin ? false : !level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}                sx={{
+                                    position: "relative",
+                                    width: "fit-content",
+                                    marginTop: 20,
+                                    left: leftPercentage,
+                                    transform: "translate(-50%, 0)",
+                                }}
                             >
                                 {level.icon}
-                            </DadinhoButton>
+                                {level.isConcluded && <DadinhoTypography variant="h1" sx={{ position: "absolute", marginTop: "70px", marginLeft: "50px" }}>✅</DadinhoTypography> }
+                            </DadinhoLevelButton>
                         )
                     })}
                 </DadinhoStack>

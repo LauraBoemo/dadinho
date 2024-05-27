@@ -15,7 +15,7 @@ export const DadinhoLogo = ({ displayName, width = 40 }: DadinhoLogoProps) => {
 
     return (
         <DadinhoStack direction="column" alignItems="center" gap={0.5}>
-            <DadinhoBox sx={{ display: "inline-block", borderRadius: "50px", border: `2px solid ${theme.palette.primary.main}`, px: 1.5, pt: 1.2, pb: 1.1}}>
+            <DadinhoBox sx={{ display: "inline-block", borderRadius: "50px", border: `2px solid ${theme.palette.primary.main}`, px: 1.5, pt: 1.2, pb: 1.1, bgcolor: 'white'}}>
                 <Dado width={width}/>
             </DadinhoBox>
             {displayName &&
