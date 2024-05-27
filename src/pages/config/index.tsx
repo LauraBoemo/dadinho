@@ -33,7 +33,7 @@ export const ConfigPage = () => {
     };
     
     return (
-        <DadinhoStack height="100%" direction="column" justifyContent="space-between" textAlign="center">
+        <>
             <DadinhoHeader backButtonCustomIcon={<SettingsOutlinedIcon />} backButton />
             <DadinhoStack direction="column" spacing={2}>
                 {/* TODO: Complete this mock with real info */}
@@ -44,7 +44,7 @@ export const ConfigPage = () => {
             </DadinhoStack>
             <DadinhoButton variant="outlined" size="medium" onClick={goToLogin}>Sair</DadinhoButton>
             <DadinhoFooter />
-        </DadinhoStack>
+        </>
     );
 }
 

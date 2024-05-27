@@ -42,7 +42,7 @@ export const LevelsPage = () => {
                         <LevelsView levels={levels} />
                         <DadinhoBox bgcolor="white" border="2px solid black" borderRadius="15px" px={1} py={2} mt={20}>
                             <DadinhoTypography textAlign="center" variant="h4">Novos níveis estão sendo produzidos...</DadinhoTypography>
-                            <DadinhoTypography width="90%" fontSize={40} textAlign="center" position="absolute">🚧👷</DadinhoTypography>
+                            <DadinhoTypography width="80%" fontSize={40} textAlign="center" position="absolute">🚧👷</DadinhoTypography>
                         </DadinhoBox>
                     </>
                 )

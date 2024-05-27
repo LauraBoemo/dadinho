@@ -8,7 +8,7 @@ import { LoginPage, RegisterPage, LevelsPage, LevelPage, AnswerPage, ConfigPage 
 import { BasketsConfigPage, HomePage, ItemsConfigPage, LevelDetailsConfigPage, LevelsConfigPage, RecipesConfigPage } from "./pages/admin";
 import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
-import RectangleLayout from "./layouts/rectangle";
+import CommonLayout from "./layouts/common";
 
 const AppRoutes = () => {
   const isAdmin = adminVerify();
@@ -20,6 +20,13 @@ const AppRoutes = () => {
           <Route path={PATHS.REGISTER} element={<RegisterPage />} />
           <Route path={`${PATHS.LEVELS}/:id`} element={<LevelPage />} />
           <Route path={`${PATHS.ANSWER}/:status`} element={<AnswerPage />} />
+          <Route element={<CommonLayout />}>
+            <>
+              <Route path={PATHS.LOGIN} element={<LoginPage />} />
+              <Route path={PATHS.ACCESS_INSTRUCTIONS} element={<AccessInstructionsPage />} />
+              <Route path={PATHS.CONFIG} element={<ConfigPage />} /> 
+            </>
+          </Route>
           {/* <Route path="*" element={<Error errorCode={ERROR_CODES.PAGE_NOT_FOUND} />} /> */}
           {isAdmin && (
               <>
@@ -32,13 +39,6 @@ const AppRoutes = () => {
               </>
             )
           }
-          <Route element={<RectangleLayout />}>
-            <>
-              <Route path={PATHS.LOGIN} element={<LoginPage />} />
-              <Route path={PATHS.ACCESS_INSTRUCTIONS} element={<AccessInstructionsPage />} />
-              <Route path={PATHS.CONFIG} element={<ConfigPage />} />
-            </>
-          </Route>
           <Route element={<MapLayout />}>
               {!isAdmin && (
                 <Route path={PATHS.LEVELS} element={<LevelsPage />} />
