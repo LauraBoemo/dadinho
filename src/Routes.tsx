@@ -5,7 +5,7 @@ import { PATHS } from "./constants/Path";
 import { adminVerify } from "./apis/utilsStorage";
 
 import { LoginPage, RegisterPage, LevelsPage, LevelPage, AnswerPage, ConfigPage } from "./pages";
-import { BasketsConfigPage, HomePage, ItemsConfigPage, LevelDetailsConfigPage, LevelsConfigPage, RecipesConfigPage } from "./pages/admin";
+import { BasketsConfigPage, DataPage, ItemsConfigPage, LevelDetailsConfigPage, LevelsConfigPage, RecipesConfigPage, UsersPage } from "./pages/admin";
 import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
 import CommonLayout from "./layouts/common";
@@ -32,8 +32,8 @@ const AppRoutes = () => {
           <Route element={<AdminLayout />}>
             {isAdmin && (
                 <>
-                  <Route path={`${PATHS.ADMIN}/${PATHS.DATA}`} element={<HomePage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.USERS}`} element={<HomePage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.DATA}`} element={<DataPage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.USERS}`} element={<UsersPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.ITEMS_CONFIG}`} element={<ItemsConfigPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<LevelsConfigPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/:id`} element={<LevelDetailsConfigPage />} />

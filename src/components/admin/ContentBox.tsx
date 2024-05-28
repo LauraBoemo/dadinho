@@ -18,7 +18,7 @@ export const ContentBox = ({ title, input, children }: ContentBoxProps) => {
                 <DadinhoTypography variant="h1">{title}</DadinhoTypography>
                 {input && input}
             </DadinhoStack>
-            <DadinhoBox minHeight="200px" width="100%" borderRadius="15px" p={3} border={`2px solid ${theme.palette.primary.main}`}>
+            <DadinhoBox minHeight="200px" borderRadius="15px" p={3} border={`2px solid ${theme.palette.primary.main}`}>
                 {children}
             </DadinhoBox>
         </DadinhoStack>
