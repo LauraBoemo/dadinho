@@ -11,3 +11,4 @@ export * from "./DadinhoTypography";
 export * from "./DadinhoLoader";
 export * from "./DadinhoLink";
 export * from "./DadinhoLevelButton";
+export * from "./DadinhoTable";

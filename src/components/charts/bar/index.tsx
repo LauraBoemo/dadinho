@@ -70,7 +70,7 @@ export const DadinhoBarChart = () => {
 
   return (
     <DadinhoBox marginLeft={-4}>
-      <BarChart style={{ fontFamily: theme.typography.fontFamily }} width={550} height={250} data={mockedData}>
+      <BarChart style={{ fontFamily: theme.typography.fontFamily }} width={800} height={250} data={mockedData}>
           <Tooltip />
         <CartesianGrid  />
           <XAxis dataKey="Nível" />

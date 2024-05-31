@@ -1,5 +1,6 @@
 import { useTheme } from "../../../theme";
 import { ContentBox, DadinhoBarChart, DadinhoStack, DadinhoTypography } from "../../../components";
+import BasicTable from "../../../components/common/DadinhoTable";
 
 export const DataPage = () => {
     const theme = useTheme();
@@ -47,21 +48,39 @@ export const DataPage = () => {
                         <DadinhoBarChart />
                     }
                 />
-                <ContentBox 
-                    title="Média de tempo por nível" 
-                    content={
-                        <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                            4/20
-                        </DadinhoTypography>
-                    }
-                />
+                <DadinhoStack direction="column" gap={1}>
+                    <ContentBox 
+                        title="Maior média de tempo por nível" 
+                        content={
+                            <DadinhoStack direction="row" alignItems="flex-end">
+                                <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
+                                    9min
+                                </DadinhoTypography>
+                                <DadinhoTypography variant="h4">
+                                    (Nível 5)
+                                </DadinhoTypography>
+                            </DadinhoStack>
+                        }
+                    />
+                    <ContentBox 
+                        title="Menor média de tempo por nível" 
+                        content={
+                            <DadinhoStack direction="row" alignItems="flex-end">
+                                <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
+                                    0.5min
+                                </DadinhoTypography>
+                                <DadinhoTypography variant="h4">
+                                    (Nível 1)
+                                </DadinhoTypography>
+                            </DadinhoStack>
+                        }
+                    />
+                </DadinhoStack>
             </DadinhoStack>
                 <ContentBox 
-                    title="Nível mais alto por turma" 
+                    title="Progresso particular dos alunos" 
                     content={
-                        <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                            4/20
-                        </DadinhoTypography>
+                        <BasicTable />
                     }
                 />
         </DadinhoStack>

@@ -13,7 +13,7 @@ export const ContentBox = ({ title, subtitle, content }: ContentBoxProps) => {
     const theme = useTheme();
     
     return (
-        <DadinhoStack width="-webkit-fill-available" borderRadius="15px" p={3} border={`2px solid ${theme.palette.primary.main}`}>
+        <DadinhoStack width="-webkit-fill-available" height="-webkit-fill-available" maxHeight="300px" borderRadius="15px" p={3} border={`2px solid ${theme.palette.primary.main}`}>
             <DadinhoTypography variant="h3" fontWeight={theme.typography.fontWeightMedium}>
                 {title}
             </DadinhoTypography>
