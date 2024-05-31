@@ -35,8 +35,8 @@ export const DadinhoButton = styled(Button)(({ theme, variant, size, disabled, c
     }), 
     
     ...(color === "success" && {
-        color: theme.palette.secondary.dark,
-        borderColor: theme.palette.secondary.dark,
+        color: theme.palette.secondary.main,
+        borderColor: theme.palette.secondary.main,
         backgroundColor: theme.palette.secondary.main,
     }), 
 }));

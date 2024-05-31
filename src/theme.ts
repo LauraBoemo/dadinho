@@ -4,7 +4,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#000",
-      dark: "#000",
+      dark: "#D8D8D8",
       light: "#E3E6EB59",
       contrastText: "#FFF",
     },
@@ -31,7 +31,7 @@ const theme = createTheme({
       fontStyle: "normal",
       fontWeight: "300",
       fontSize: 28,
-      lineHeight: "30px",
+      lineHeight: "20px",
     },
     h2: {
       fontStyle: "normal",

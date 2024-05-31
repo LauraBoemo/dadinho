@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../constants/Path";
 
 import Login from "../../components/login";
-import { DadinhoFooter, DadinhoHeader, DadinhoLink, DadinhoStack, DadinhoTypography } from "../../components";
+import { DadinhoFooter, DadinhoHeader, DadinhoLink, DadinhoStack } from "../../components";
 
 import { adminVerify, setStorage } from "../../apis/utilsStorage";
 import { LoginResponse } from "../../apis/login/loginService";
@@ -31,7 +31,6 @@ export const LoginPage = () => {
         <>
             <DadinhoHeader isMainPage displayLogoName />
             <DadinhoStack direction="column" spacing={2}>
-                <DadinhoTypography variant="h1" textAlign="center" fontWeight="light">Começe a jogar!</DadinhoTypography>
                 <Login onLoginSuccess={handleLogin} />
                 <DadinhoLink onClick={handleAccessInstructions} underline="none" textAlign="center">Como conseguir acesso?</DadinhoLink>
             </DadinhoStack>

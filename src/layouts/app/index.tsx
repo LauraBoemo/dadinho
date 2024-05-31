@@ -25,7 +25,7 @@ export const AppLayout = () => {
       />
       <DadinhoBox
         height="100vh"
-        maxWidth={isTablet ? "500px" : "1000px"}
+        maxWidth={isTablet ? "500px" : "60vw"}
         px={!isTablet ? 4 : undefined}
         
         margin="auto"
