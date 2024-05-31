@@ -1,5 +1,5 @@
 import { useTheme } from "../../../theme";
-import { BarChart, XAxis, YAxis, Tooltip, Bar} from "recharts";
+import { BarChart, XAxis, YAxis, Tooltip, CartesianGrid, Bar} from "recharts";
 import { DadinhoBox } from "../../common";
 
 const mockedData = [
@@ -70,8 +70,9 @@ export const DadinhoBarChart = () => {
 
   return (
     <DadinhoBox marginLeft={-4}>
-      <BarChart style={{ fontFamily: theme.typography.fontFamily }} width={600} height={250} data={mockedData}>
+      <BarChart style={{ fontFamily: theme.typography.fontFamily }} width={550} height={250} data={mockedData}>
           <Tooltip />
+        <CartesianGrid  />
           <XAxis dataKey="Nível" />
           <YAxis />
           <Bar dataKey="Alunos" fill={theme.palette.primary.dark} />
