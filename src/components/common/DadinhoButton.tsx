@@ -11,6 +11,13 @@ export const DadinhoButton = styled(Button)(({ theme, variant, size, disabled, c
         backgroundColor: theme.palette.primary.contrastText,
     }),
 
+    ...(variant === "contained" && {
+        "&:hover": {
+            color: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.contrastText,
+        }
+    }),
+
     ...(size === "medium" && {
         padding: "8px 20px",
     }), 

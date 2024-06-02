@@ -2,6 +2,20 @@ import { useTheme } from "../../../theme";
 import { ContentBox, DadinhoBarChart, DadinhoStack, DadinhoTypography } from "../../../components";
 import BasicTable from "../../../components/common/DadinhoTable";
 
+interface DataContentBoxTitleProps {
+    title: string;
+}
+
+const DataContentBoxTitle = ({ title }: DataContentBoxTitleProps) => {
+    const theme = useTheme();
+
+    return (
+        <DadinhoTypography variant="h3" fontWeight={theme.typography.fontWeightMedium}>
+            {title}
+        </DadinhoTypography>
+    )
+}
+
 export const DataPage = () => {
     const theme = useTheme();
     
@@ -9,7 +23,7 @@ export const DataPage = () => {
         <DadinhoStack direction="column" spacing={1} width="100%" sx={{ overflow: "auto" }}>
             <DadinhoStack direction="row" gap={1}>
                 <ContentBox 
-                    title="Alunos cadastrados" 
+                    title={<DataContentBoxTitle title="Alunos cadastrados" />}
                     subtitle="Total de alunos cadastrados." 
                     content={
                         <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
@@ -18,7 +32,7 @@ export const DataPage = () => {
                     }
                 />
                 <ContentBox 
-                    title="Alunos ativos" 
+                    title={<DataContentBoxTitle title="Alunos ativos" />}
                     subtitle="Alunos que avançaram do 1º nível." 
                     content={
                         <DadinhoStack direction="row" alignItems="flex-end">
@@ -32,7 +46,7 @@ export const DataPage = () => {
                     }
                 />
                 <ContentBox 
-                    title="Nível mais alto atingido" 
+                    title={<DataContentBoxTitle title="Nível mais alto atingido" />}
                     subtitle="Ao menos 1 aluno atingiu este nível." 
                     content={
                         <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
@@ -43,14 +57,14 @@ export const DataPage = () => {
             </DadinhoStack>
             <DadinhoStack direction="row" gap={1}>
                 <ContentBox 
-                    title="Quantidade de alunos em níveis" 
+                    title={<DataContentBoxTitle title="Quantidade de alunos em níveis" />}
                     content={
                         <DadinhoBarChart />
                     }
                 />
                 <DadinhoStack direction="column" gap={1}>
                     <ContentBox 
-                        title="Maior média de tempo por nível" 
+                        title={<DataContentBoxTitle title="Maior média de tempo por nível" />}
                         content={
                             <DadinhoStack direction="row" alignItems="flex-end">
                                 <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
@@ -63,7 +77,7 @@ export const DataPage = () => {
                         }
                     />
                     <ContentBox 
-                        title="Menor média de tempo por nível" 
+                        title={<DataContentBoxTitle title="Menor média de tempo por nível" />}
                         content={
                             <DadinhoStack direction="row" alignItems="flex-end">
                                 <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
@@ -78,7 +92,7 @@ export const DataPage = () => {
                 </DadinhoStack>
             </DadinhoStack>
                 <ContentBox 
-                    title="Progresso particular dos alunos" 
+                    title={<DataContentBoxTitle title="Progresso particular dos alunos"  />}
                     content={
                         <BasicTable />
                     }
