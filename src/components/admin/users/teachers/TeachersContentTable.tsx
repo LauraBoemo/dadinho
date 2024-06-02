@@ -12,7 +12,7 @@ export const TeachersContentTable = () => {
                 <BasicTable />
             }
             sideContent={
-                <ContentBoxTableSideContent buttonLabel="Adicionar Professor" searchPlaceholder="Professor" />
+                <ContentBoxTableSideContent onButtonClick={() => console.log("test")} buttonLabel="Adicionar Professor" searchPlaceholder="Professor" />
             }
         />
     );
