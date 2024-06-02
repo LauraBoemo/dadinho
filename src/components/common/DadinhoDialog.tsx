@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import DadinhoStack from "./DadinhoStack";
 import DadinhoIconButton from "./DadinhoIconButton";
 import DadinhoTypography from "./DadinhoTypography";
+import CloseIcon from '@mui/icons-material/Close';
 
 export interface DadinhoDialogProps extends DialogProps {
   title?: string;
@@ -11,8 +12,8 @@ export interface DadinhoDialogProps extends DialogProps {
 }
 
 const StyledTitle = styled(DadinhoTypography)(({ theme }) => ({
-  ...theme.typography.h3,
-  fontWeight: theme.typography.fontWeightMedium,
+  ...theme.typography.h2,
+  fontWeight: theme.typography.fontWeightLight,
 }));
 
 const DialogWithTitle: React.FC<DadinhoDialogProps> = ({ title, hasCloseIcon, children, ...props }) => (
@@ -25,12 +26,11 @@ const DialogWithTitle: React.FC<DadinhoDialogProps> = ({ title, hasCloseIcon, ch
             <DadinhoIconButton
               aria-label="Close Form"
               color="primary"
-              bordered={false}
               // @ts-ignore
               onClick={props.onClose}
-              sx={{ p: 0.5 }}
+              sx={{ p: 0.5, borderColor: "transparent !important" }}
             >
-                X
+                <CloseIcon />
             </DadinhoIconButton>
           )}
         </DadinhoStack>
@@ -49,7 +49,7 @@ export const DadinhoDialogContent = styled(DialogContent)(({ theme }) => ({
   paddingLeft: theme.spacing(3.0),
   paddingRight: theme.spacing(3.0),
   paddingTop: theme.spacing(0),
-  paddingBottom: theme.spacing(1.5),
+  paddingBottom: theme.spacing(3.0),
 }));
 export const DadinhoDialogContentText = styled(DialogContentText)(({ theme }) => ({}));
 export const DadinhoDialogActions = styled(DialogActions)(({ theme }) => ({

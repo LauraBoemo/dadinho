@@ -1,27 +1,27 @@
 import DadinhoDialog, { DadinhoDialogContent } from "../../../common/DadinhoDialog";
-import AddStudentForm from "./AddStudentForm";
+import AddTeacherForm from "./AddTeacherForm";
 
-interface AddStudentDialogProps {
+interface AddTeacherDialogProps {
     isOpen: boolean;
     handleCloseDialog: () => void;
 }
 
-export const AddStudentDialog = ({ isOpen, handleCloseDialog }: AddStudentDialogProps) => {
+export const AddTeacherDialog = ({ isOpen, handleCloseDialog }: AddTeacherDialogProps) => {
     return (
         <DadinhoDialog
             disablePortal
             maxWidth="sm"
             hasCloseIcon
             fullWidth
-            title={"Adicionar Aluno"}
+            title={"Adicionar Professor"}
             open={isOpen}
             onClose={handleCloseDialog}
         >
             <DadinhoDialogContent>
-                <AddStudentForm onAddStudentSuccess={() => console.log("test")} />
+                <AddTeacherForm onAddTeacherSuccess={() => console.log("test")} />
             </DadinhoDialogContent>
         </DadinhoDialog>
     );
 }
 
-export default AddStudentDialog;
+export default AddTeacherDialog;
