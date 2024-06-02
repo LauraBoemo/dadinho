@@ -9,7 +9,8 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import FlagIcon from '@mui/icons-material/Flag';
 
-import { NavigationButton } from "./NavigationButton";
+import NavigationButton from "./NavigationButton";
+
 
 export const NavigationBar = () => {
     const theme = useTheme();

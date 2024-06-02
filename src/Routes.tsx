@@ -4,8 +4,8 @@ import AppLayout from "./layouts/app";
 import { PATHS } from "./constants/Path";
 import { adminVerify } from "./apis/utilsStorage";
 
-import { LoginPage, RegisterPage, LevelsPage, LevelPage, AnswerPage, ConfigPage } from "./pages";
-import { BasketsConfigPage, DataPage, ItemsConfigPage, LevelDetailsConfigPage, LevelsConfigPage, RecipesConfigPage, UsersPage } from "./pages/admin";
+import { LoginPage, RegisterPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage } from "./pages";
+import { BasketsConfigPage, DataPage, ItemsConfigPage, LevelDetailsConfigPage, LevelsPage as AdminLevelsPage, RecipesConfigPage, UsersPage } from "./pages/admin";
 import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
 import CommonLayout from "./layouts/common";
@@ -19,7 +19,7 @@ const AppRoutes = () => {
       <Route element={<AppLayout />}>
           <Route index element={<LoginPage />} />
           <Route path={PATHS.REGISTER} element={<RegisterPage />} />
-          <Route path={`${PATHS.LEVELS}/:id`} element={<LevelPage />} />
+          <Route path={`${PATHS.LEVELS}/:id`} element={<UserLevelsPage />} />
           <Route path={`${PATHS.ANSWER}/:status`} element={<AnswerPage />} />
           <Route element={<CommonLayout />}>
             <>
@@ -35,7 +35,7 @@ const AppRoutes = () => {
                   <Route path={`${PATHS.ADMIN}/${PATHS.DATA}`} element={<DataPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.USERS}`} element={<UsersPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.ITEMS_CONFIG}`} element={<ItemsConfigPage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<LevelsConfigPage />} />
+                  <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<AdminLevelsPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/:id`} element={<LevelDetailsConfigPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.BASKETS_CONFIG}/:id`} element={<BasketsConfigPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.RECIPES_CONFIG}/:id`} element={<RecipesConfigPage />} />

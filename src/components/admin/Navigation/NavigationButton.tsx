@@ -4,14 +4,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { PATHS } from "../../../constants/Path";
 import { DadinhoStack, DadinhoIconButton, DadinhoTypography } from "../../common";
 
-
 interface NavigationButtonProps {
     name: string;
     icon: ReactNode;
     navigationPath: PATHS;
 }
 
-export const NavigationButton = ({ name, icon, navigationPath }: NavigationButtonProps) => {
+const NavigationButton = ({ name, icon, navigationPath }: NavigationButtonProps) => {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -33,3 +32,5 @@ export const NavigationButton = ({ name, icon, navigationPath }: NavigationButto
         </DadinhoIconButton>
     )
 }
+
+export default NavigationButton;
