@@ -7,6 +7,8 @@ import { DadinhoStack, DadinhoLogo, DadinhoBox, DadinhoIconButton } from "../../
 import MultilineChartIcon from '@mui/icons-material/MultilineChart';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import FlagIcon from '@mui/icons-material/Flag';
+
 import { NavigationButton } from "./NavigationButton";
 
 export const NavigationBar = () => {
@@ -38,6 +40,7 @@ export const NavigationBar = () => {
                 </DadinhoBox>
                 <NavigationButton name="Dados" icon={<MultilineChartIcon />} navigationPath={PATHS.DATA} />
                 <NavigationButton name="Usuários" icon={<PeopleAltIcon />} navigationPath={PATHS.USERS} />
+                <NavigationButton name="Níveis" icon={<FlagIcon />} navigationPath={PATHS.LEVELS_CONFIG} />
             </DadinhoStack>
             <DadinhoBox display="flex" justifyContent="left">
                 <DadinhoIconButton onClick={goToConfig}>

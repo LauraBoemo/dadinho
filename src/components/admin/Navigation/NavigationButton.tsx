@@ -23,9 +23,10 @@ export const NavigationButton = ({ name, icon, navigationPath }: NavigationButto
         <DadinhoIconButton 
             variant="text" 
             onClick={goToConfig}
+            fullWidth
             color={`${PATHS.ADMIN}/${navigationPath}` === location.pathname ? "info" : "inherit"} 
         >
-            <DadinhoStack direction="row" gap={1} alignContent="left">
+            <DadinhoStack width="100%" direction="row" gap={1} alignContent="left">
                 {icon}
                 <DadinhoTypography>{name}</DadinhoTypography>
             </DadinhoStack>
