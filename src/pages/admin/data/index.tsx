@@ -10,7 +10,7 @@ const DataContentBoxTitle = ({ title }: DataContentBoxTitleProps) => {
     const theme = useTheme();
 
     return (
-        <DadinhoTypography variant="h3" fontWeight={theme.typography.fontWeightMedium}>
+        <DadinhoTypography alignContent="center" variant="h3" fontWeight={theme.typography.fontWeightMedium}>
             {title}
         </DadinhoTypography>
     )
@@ -20,7 +20,7 @@ export const DataPage = () => {
     const theme = useTheme();
     
     return (
-        <DadinhoStack direction="column" spacing={1} width="100%" sx={{ overflow: "auto" }}>
+        <DadinhoStack direction="column" spacing={1} mr={2} sx={{ overflow: "auto" }}>
             <DadinhoStack direction="row" gap={1}>
                 <ContentBox 
                     title={<DataContentBoxTitle title="Alunos cadastrados" />}

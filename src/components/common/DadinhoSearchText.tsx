@@ -9,17 +9,18 @@ interface SearchTextProps {
   onChange: (searchText: string) => void;
   placeholder?: string;
   fullWidth?: boolean;
+  minWidth?: string;
   disabled?: boolean;
 }
 
-export const SearchText = ({ searchText, onChange, placeholder, fullWidth, disabled }: SearchTextProps) => {
+export const SearchText = ({ searchText, onChange, placeholder, fullWidth, minWidth = "fit-content", disabled }: SearchTextProps) => {
   const theme = useTheme();
 
   return (
     <DadinhoTextField
       sx={{
         m: 0,
-        minWidth: fullWidth ? "100%" : "fit-content",
+        minWidth: fullWidth ? "100%" : minWidth,
         backgroundColor: "common.white",
         borderRadius: theme.spacing(1),
         "& .MuiInput-root": {
