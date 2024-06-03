@@ -4,7 +4,7 @@ import DadinhoTypography from "./DadinhoTypography";
 import { useTheme } from "../../theme";
 import SearchIcon from '@mui/icons-material/Search';
 
-interface SearchTextProps {
+interface DadinhoSearchTextProps {
   searchText: string;
   onChange: (searchText: string) => void;
   placeholder?: string;
@@ -13,7 +13,7 @@ interface SearchTextProps {
   disabled?: boolean;
 }
 
-export const SearchText = ({ searchText, onChange, placeholder, fullWidth, minWidth = "fit-content", disabled }: SearchTextProps) => {
+export const DadinhoSearchText = ({ searchText, onChange, placeholder, fullWidth, minWidth = "fit-content", disabled }: DadinhoSearchTextProps) => {
   const theme = useTheme();
 
   return (
@@ -56,4 +56,4 @@ export const SearchText = ({ searchText, onChange, placeholder, fullWidth, minWi
   );
 };
 
-export default SearchText;
+export default DadinhoSearchText;

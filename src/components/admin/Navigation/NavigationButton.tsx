@@ -23,7 +23,7 @@ const NavigationButton = ({ name, icon, navigationPath }: NavigationButtonProps)
             variant="text" 
             onClick={goToConfig}
             fullWidth
-            color={`${PATHS.ADMIN}/${navigationPath}` === location.pathname ? "info" : "inherit"} 
+            color={location.pathname.includes(`${PATHS.ADMIN}/${navigationPath}`) ? "info" : "inherit"} 
         >
             <DadinhoStack width="100%" direction="row" gap={1} alignContent="left">
                 {icon}

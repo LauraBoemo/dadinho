@@ -13,3 +13,4 @@ export * from "./DadinhoLink";
 export * from "./DadinhoLevelButton";
 export * from "./DadinhoTable";
 export * from "./DadinhoSearchText";
+export * from "./DadinhoTablePaginationContainer";
