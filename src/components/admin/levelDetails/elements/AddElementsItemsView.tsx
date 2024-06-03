@@ -1,15 +1,15 @@
 
 import { useState } from "react";
-import { ItemResponse } from "../../../apis/items/itemsService";
-import { DadinhoBox, DadinhoTypography, DadinhoStack, DadinhoButton } from "../../common";
-import { useTheme } from "../../../theme";
+import { ItemResponse } from "../../../../apis/items/itemsService";
+import { DadinhoStack, DadinhoTypography, DadinhoBox, DadinhoButton } from "../../../common";
+import { useTheme } from "../../../../theme";
 
-interface AddRecipeItemsViewProps {
+interface AddElementsItemsViewProps {
     items: ItemResponse[];
     onItemSelected: (id: string) => void; 
 }
 
-export const AddRecipeItemsView = ({ items, onItemSelected }: AddRecipeItemsViewProps) => {
+export const AddElementsItemsView = ({ items, onItemSelected }: AddElementsItemsViewProps) => {
     const theme = useTheme();
     const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 

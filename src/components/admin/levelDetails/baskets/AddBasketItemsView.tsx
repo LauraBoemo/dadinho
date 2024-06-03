@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ItemResponse } from "../../../apis/items/itemsService";
-import { DadinhoTypography, DadinhoStack, DadinhoButton, DadinhoBox } from "../../common";
-import { useTheme } from "../../../theme";
+import { useTheme } from "../../../../theme";
+import { ItemResponse } from "../../../../apis/items/itemsService";
+import { DadinhoStack, DadinhoTypography, DadinhoBox, DadinhoButton } from "../../../common";
 
 interface AddRecipeItemsViewProps {
     items: ItemResponse[];

@@ -1,15 +1,15 @@
 import * as yup from "yup";
-import { FormFieldType, Values } from "../../form/FormConfig";
+import { Values, FormFieldType } from "../../../form/FormConfig";
 
-export const AddRecipeFormValidationSchema = yup.object({
+export const AddElementFormValidationSchema = yup.object({
   quantity: yup.number().required("Precisamos saber quantas vezes esse item é necessário"),
 });
 
-export const AddRecipeFormInitialValues: Values = {
+export const AddElementFormInitialValues: Values = {
   quantity: "",
 };
 
-export const AddRecipeFormFields: FormFieldType[] = [
+export const AddElementFormFields: FormFieldType[] = [
   {
     id: "quantity",
     label: "Insira a Quantidade",

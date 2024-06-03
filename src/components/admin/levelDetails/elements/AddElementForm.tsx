@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
+
+import { AddElementsItemsView } from "./AddElementsItemsView";
+import { useGetItems } from "../../../../apis/items/useGetItems";
+import { useNewRecipe } from "../../../../apis/recipe/useNewRecipe";
+import { DadinhoTypography, DadinhoLoader, DadinhoBox } from "../../../common";
+import { Values } from "../../../form/FormConfig";
+import { AddElementFormInitialValues, AddElementFormValidationSchema, AddElementFormFields } from "./AddElementFormConfig";
+import Form from "../../../form";
 import { Formik } from "formik";
 
-import Form from "../../form";
-import { Values } from "../../form/FormConfig";
-
-import { AddRecipeFormFields, AddRecipeFormInitialValues, AddRecipeFormValidationSchema } from "./AddRecipeFormConfig";
-import { useNewRecipe } from "../../../apis/recipe/useNewRecipe";
-import { useGetItems } from "../../../apis/items/useGetItems";
-import { DadinhoTypography, DadinhoLoader, DadinhoBox } from "../../common";
-import { AddRecipeItemsView } from "./AddRecipeItemsView";
-
-interface NewRecipeFormProps {
+interface AddElementFormProps {
   levelId: string | undefined,
-  onNewRecipeSuccess: (level: any) => void;
+  onAddElementSuccess: (level: any) => void;
 }
 
-export const AddRecipeForm: React.FC<NewRecipeFormProps> = ({ levelId, onNewRecipeSuccess }) => {
+export const AddElementForm: React.FC<AddElementFormProps> = ({ levelId, onAddElementSuccess }) => {
   const [itemSelected, setItemSelected] = useState("");
   
   const [getItems, items, itemsLoading, itemsError] = useGetItems();
@@ -27,7 +26,7 @@ export const AddRecipeForm: React.FC<NewRecipeFormProps> = ({ levelId, onNewReci
 
   useEffect(() => {
     if (newRecipe) {
-      onNewRecipeSuccess(newRecipe);
+      onAddElementSuccess(newRecipe);
     }
   }, [newRecipe]);
 
@@ -46,14 +45,14 @@ export const AddRecipeForm: React.FC<NewRecipeFormProps> = ({ levelId, onNewReci
           <DadinhoLoader />
       ) : (
           <DadinhoBox>
-              <AddRecipeItemsView items={items} onItemSelected={handleSelectItem} />
+              <AddElementsItemsView items={items} onItemSelected={handleSelectItem} />
           </DadinhoBox>
       )}
-      <Formik initialValues={AddRecipeFormInitialValues} validationSchema={AddRecipeFormValidationSchema} onSubmit={handleItem}>
+      <Formik initialValues={AddElementFormInitialValues} validationSchema={AddElementFormValidationSchema} onSubmit={handleItem}>
         <Form
           error={newRecipeError}
           isLoading={newRecipeProgress}
-          formFields={AddRecipeFormFields}
+          formFields={AddElementFormFields}
           errorText={"Os valores estão incorretos 😔"}
           submitText={"Cadastrar Item"}
         />
@@ -62,4 +61,4 @@ export const AddRecipeForm: React.FC<NewRecipeFormProps> = ({ levelId, onNewReci
   );
 };
 
-export default AddRecipeForm;
+export default AddElementForm;

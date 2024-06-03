@@ -5,7 +5,7 @@ import { PATHS } from "./constants/Path";
 import { adminVerify } from "./apis/utilsStorage";
 
 import { LoginPage, RegisterPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage } from "./pages";
-import { BasketsConfigPage, DataPage, LevelDetailsConfigPage, LevelsPage as AdminLevelsPage, RecipesConfigPage, UsersPage } from "./pages/admin";
+import { DataPage, LevelDetailsConfigPage, LevelsPage as AdminLevelsPage, UsersPage } from "./pages/admin";
 import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
 import CommonLayout from "./layouts/common";
@@ -36,8 +36,6 @@ const AppRoutes = () => {
                   <Route path={`${PATHS.ADMIN}/${PATHS.USERS}`} element={<UsersPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<AdminLevelsPage />} />
                   <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/:id`} element={<LevelDetailsConfigPage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.BASKETS_CONFIG}/:id`} element={<BasketsConfigPage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.RECIPES_CONFIG}/:id`} element={<RecipesConfigPage />} />
                 </>
               )
             }

@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-
-import { Values } from "../../form/FormConfig";
-
-import { useGetItems } from "../../../apis/items/useGetItems";
-import { DadinhoTypography, DadinhoLoader, DadinhoBox, DadinhoButton } from "../../common";
+import { useNewBasket } from "../../../../apis/basket/useNewBasket";
+import { useGetItems } from "../../../../apis/items/useGetItems";
+import { DadinhoTypography, DadinhoLoader, DadinhoBox, DadinhoButton } from "../../../common";
 import { AddRecipeItemsView } from "./AddBasketItemsView";
-import { useNewBasket } from "../../../apis/basket/useNewBasket";
 
 interface NewRecipeFormProps {
   levelId: string | undefined,
-  onNewBasketSuccess: (level: any) => void;
+  onAddBasketSuccess: (level: any) => void;
 }
 
-export const AddBasketForm: React.FC<NewRecipeFormProps> = ({ levelId, onNewBasketSuccess }) => {
+export const AddBasketForm: React.FC<NewRecipeFormProps> = ({ levelId, onAddBasketSuccess }) => {
   const [itemSelected, setItemSelected] = useState<string[]>([]);
   
   const [getItems, items, itemsLoading, itemsError] = useGetItems();
@@ -24,7 +21,7 @@ export const AddBasketForm: React.FC<NewRecipeFormProps> = ({ levelId, onNewBask
 
   useEffect(() => {
     if (newBasket) {
-      onNewBasketSuccess(newBasket);
+      onAddBasketSuccess(newBasket);
     }
   }, [newBasket]);
 
