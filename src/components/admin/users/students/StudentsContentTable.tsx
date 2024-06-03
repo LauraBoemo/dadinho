@@ -5,6 +5,7 @@ import AddStudentDialog from "./AddStudentDialog";
 import StudentsTable from "./StudentsTable";
 
 const mockedContent = [
+    { name: "Rani Rani", teacher: "Laura", class: "Turma 2", serie: "6 Ano" },
     { name: "Laura Boemo", teacher: "Laura", class: "Turma 2", serie: "6 Ano" },
     { name: "Ana Clara", teacher: "Laura", class: "Turma 3", serie: "6 Ano" },
     { name: "Julia Rachi", teacher: "Murilo", class: "Turma 1", serie: "6 Ano" },
@@ -54,7 +55,12 @@ export const StudentsContentTable = () => {
                             <StudentsTable content={rows} />
                         }
                         sideContent={
-                            <ContentBoxTableSideContent onButtonClick={() => setShowDialog(true)} buttonLabel="Adicionar Aluno" searchPlaceholder="Alunos" />
+                            <ContentBoxTableSideContent 
+                                onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)}
+                                onButtonClick={() => setShowDialog(true)} 
+                                buttonLabel="Adicionar Aluno" 
+                                searchPlaceholder="Alunos" 
+                            />
                         }
                     />
                     <AddStudentDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
