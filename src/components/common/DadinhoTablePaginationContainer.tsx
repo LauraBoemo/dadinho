@@ -14,15 +14,11 @@ export const DadinhoTablePaginationContainer = ({
   page,
   rowsPerPage,
 }: DadinhoTablePaginationContainerTypes) => {
-  if (totalCount > rowsPerPage) {
-    return (
-      <DadinhoStack pt={1.5} direction="row" justifyContent="center">
-        <DadinhoTablePagination count={Math.ceil(totalCount / rowsPerPage)} page={page} onChange={onPageChange} />
-      </DadinhoStack>
-    );
-  }
-
-  return null;
+  return (
+    <DadinhoStack pt={1.5} direction="row" justifyContent="center">
+      <DadinhoTablePagination count={Math.ceil(totalCount / rowsPerPage)} page={page} onChange={onPageChange} />
+    </DadinhoStack>
+  );
 };
 
 export default DadinhoTablePaginationContainer;

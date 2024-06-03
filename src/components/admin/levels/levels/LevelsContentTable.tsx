@@ -24,6 +24,7 @@ export const LevelsContentTable = () => {
           level.title.toLowerCase().includes(searchKey.toLowerCase())
         );
       }, [levels, searchKey]);
+
     return (
         <>
             {!levelsLoading && levelsError && 
