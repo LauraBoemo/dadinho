@@ -18,7 +18,7 @@ export const AddLevelDialog = ({ isOpen, handleCloseDialog }: AddLevelDialogProp
             onClose={handleCloseDialog}
         >
             <DadinhoDialogContent>
-                <AddLevelForm onAddLevelSuccess={() => console.log("test")} />
+                <AddLevelForm onAddLevelSuccess={handleCloseDialog} />
             </DadinhoDialogContent>
         </DadinhoDialog>
     );

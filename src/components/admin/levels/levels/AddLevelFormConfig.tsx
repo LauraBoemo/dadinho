@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { FormFieldType, Values } from "../../../form/FormConfig";
+import { Values } from "../../../form/FormConfig";
 
 export const AddLevelFormValidationSchema = yup.object({
   icon: yup.string().required("Precisamos de um ícone"),
@@ -11,7 +11,7 @@ export const AddLevelFormInitialValues: Values = {
   title: "",
 };
 
-export const AddLevelFormFields: FormFieldType[] = [
+export const AddLevelFormFields = [
   {
     id: "icon",
     label: "Ícone",

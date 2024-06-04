@@ -17,7 +17,7 @@ export const NavigationBar = () => {
     const navigate = useNavigate();
 
     const goToConfig = () => {
-        navigate(PATHS.CONFIG);
+        navigate(`${PATHS.ADMIN}/${PATHS.CONFIG}`);
     }
     
     return (

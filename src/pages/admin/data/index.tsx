@@ -1,6 +1,5 @@
 import { useTheme } from "../../../theme";
-import { ContentBox, DadinhoBarChart, DadinhoStack, DadinhoTypography } from "../../../components";
-import BasicTable from "../../../components/common/DadinhoTable";
+import { ContentBox, DadinhoBarChart, DadinhoStack, DadinhoTypography, StudentsProgressContentTable } from "../../../components";
 
 interface DataContentBoxTitleProps {
     title: string;
@@ -91,12 +90,7 @@ export const DataPage = () => {
                     />
                 </DadinhoStack>
             </DadinhoStack>
-                <ContentBox 
-                    title={<DataContentBoxTitle title="Progresso particular dos alunos"  />}
-                    content={
-                        <BasicTable />
-                    }
-                />
+            <StudentsProgressContentTable />
         </DadinhoStack>
     );
 }

@@ -1,15 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { AddLevelFormFields, AddLevelFormInitialValues, AddLevelFormValidationSchema } from "./AddLevelFormConfig";
 import { Values } from "../../../form/FormConfig";
 import Form from "../../../form";
 import { useNewLevel } from "../../../../apis/level/useNewLevel";
+import { AnswersInput } from "./AnswerInput";
+
+const transformArray = (arr: string[]) => {
+  const result = [];
+  let currentString = '';
+
+  arr.forEach((item) => {
+    if (item === 'Pegue' && currentString !== '') {
+      result.push(currentString.trim());
+      currentString = item;
+    } else {
+      currentString += (currentString ? '|' : '') + item;
+    }
+  });
+
+  if (currentString !== '') {
+    result.push(currentString.trim());
+  }
+
+  return result;
+}
 
 interface AddLevelFormProps {
     onAddLevelSuccess: (loggedInUser: any) => void;
 }
 
 export const AddLevelForm: React.FC<AddLevelFormProps> = ({ onAddLevelSuccess }) => {
+  const [answerFormat, setAnswerFormat] = useState([""]);
   const [createNewLevel, newLevel, newLevelProgress, newLevelError] = useNewLevel();
 
   useEffect(() => {
@@ -19,12 +41,16 @@ export const AddLevelForm: React.FC<AddLevelFormProps> = ({ onAddLevelSuccess })
   }, [newLevel]);
 
   const handleAddLevel = (values: Values) => {
-    // TODO: Remove Answers from Create
-    createNewLevel({...values, answers: ""});
+    createNewLevel({...values, answers: transformArray(answerFormat)});
   };
+
+  const onAnswerUpdate = (answer: string[]) => {
+    setAnswerFormat(answer);
+  }
 
   return (
     <>
+        <AnswersInput onAnswerUpdate={onAnswerUpdate} />
         <Formik initialValues={AddLevelFormInitialValues} validationSchema={AddLevelFormValidationSchema} onSubmit={handleAddLevel}>
         <Form
             error={newLevelError}
