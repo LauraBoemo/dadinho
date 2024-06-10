@@ -2,11 +2,11 @@ import { Outlet } from "react-router-dom";
 import { DadinhoBox, DadinhoStack } from "../../components";
 import { useTheme } from "../../theme";
 import { ToastContainer } from 'react-toastify';
-
-const isTablet = window.innerWidth < 900;
+import { adminVerify } from "../../apis/utilsStorage";
 
 export const AppLayout = () => {
   const theme = useTheme();
+  const isAdmin = adminVerify();
 
   return (
     // TODO Need to find better ways to declare these styles
@@ -25,8 +25,7 @@ export const AppLayout = () => {
       />
       <DadinhoBox
         height="100vh"
-        maxWidth={isTablet ? "500px" : "undefined"}
-        px={!isTablet ? 4 : undefined}
+        maxWidth={isAdmin ? "undefined" : "500px"}
         
         margin="auto"
         display="grid"

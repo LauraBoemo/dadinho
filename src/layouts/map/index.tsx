@@ -17,8 +17,6 @@ const svgString = `
 
 const base64Svg = `data:image/svg+xml;base64,${btoa(svgString)}`;
 
-const isTablet = window.innerWidth < 900;
-
 export const MapLayout = () => {
 
   return (
@@ -28,13 +26,14 @@ export const MapLayout = () => {
             position: 'absolute',
             top: 0,
             left: 0,
-            width: isTablet ? '350px' : '500px',
-            height: '2800px',
+            minWidth: "100%",
+            height: '3800px',
+            marginTop: -10,
             backgroundImage: `url(${base64Svg})`,
             backgroundSize: 'auto',
             backgroundRepeat: 'repeat-y',
-            backgroundPosition: 'top',
-            zIndex: -1,
+            backgroundPosition: 'center',
+            zIndex: -1, 
         }}
     />
       <DadinhoStack height="80%" px={3} direction="column" justifyContent="space-between" textAlign="center">

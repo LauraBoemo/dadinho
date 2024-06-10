@@ -32,7 +32,7 @@ export const DadinhoHeader = ({ isMainPage, pageTitle, displayLogoName, backButt
                 </DadinhoIconButton>)}
                 {backButtonCustomIcon ? backButtonCustomIcon : <DadinhoLogo width={20} />}
             </DadinhoStack>
-            {pageTitle && <DadinhoTypography variant="h1">{pageTitle}</DadinhoTypography>}
+            {pageTitle && <DadinhoTypography variant="h1" lineHeight={1.2}>{pageTitle}</DadinhoTypography>}
         </DadinhoStack>
     );
 }

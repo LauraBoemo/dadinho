@@ -22,7 +22,7 @@ const AccessInstructionsHightLight = ({ children }: AccessInstructionsHighlightP
 export const AccessInstructionsPage = () => {
     return (
         <>
-            <DadinhoHeader pageTitle="Como conseguir acesso ao Dadinho?" backButton />
+            <DadinhoHeader pageTitle={`Como conseguir acesso ao Dadinho?`} backButton />
             <DadinhoStack direction="column" spacing={3}>
                 <DadinhoTypography variant="h2" fontWeight="light">Chame o seu <AccessInstructionsHightLight>professor responsável</AccessInstructionsHightLight> e solicite o seu acesso à ele.</DadinhoTypography>
                 <DadinhoDivider />

@@ -28,14 +28,14 @@ export const LoginPage = () => {
     };
 
     return (
-        <>
+        <DadinhoStack p={1} maxWidth="500px" height="100vh" justifyContent={"space-between"}>
             <DadinhoHeader isMainPage displayLogoName />
             <DadinhoStack direction="column" spacing={2}>
                 <Login onLoginSuccess={handleLogin} />
                 <DadinhoLink onClick={handleAccessInstructions} underline="none" textAlign="center">Como conseguir acesso?</DadinhoLink>
             </DadinhoStack>
             <DadinhoFooter />
-        </>
+        </DadinhoStack>
     );
 }
 

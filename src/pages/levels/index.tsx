@@ -8,7 +8,7 @@ import { useLevels } from "../../apis/levels/useLevels";
 
 import { PATHS } from "../../constants/Path";
 import { LevelsView } from "../../components/levels";
-import { DadinhoBox, DadinhoHeader, DadinhoIconButton, DadinhoLoader, DadinhoTypography } from "../../components";
+import { DadinhoBox, DadinhoHeader, DadinhoIconButton, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
 
 import { useTheme } from "../../theme";
 
@@ -28,8 +28,18 @@ export const LevelsPage = () => {
     }, []);
 
     return (
-        <>
-            <DadinhoBox position="fixed" width="80%" zIndex="10" mt={-3} bgcolor={theme.palette.primary.contrastText} boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}>
+        <DadinhoStack height="100vh" justifyContent="space-between">
+            <DadinhoBox 
+                position="fixed" 
+                margin="auto" 
+                alignSelf="center" 
+                zIndex="10" 
+                mt={-2} 
+                pb={2} 
+                width="50%"
+                sx={{ insetArea: "center" }}
+                bgcolor={theme.palette.primary.contrastText} 
+                boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}>
                 <DadinhoHeader isMainPage />
             </DadinhoBox>
             {!levelsLoading && levelsError && <DadinhoTypography textAlign="center" color="error">Não foi possível carregar os níveis</DadinhoTypography>}
@@ -42,7 +52,7 @@ export const LevelsPage = () => {
                         <LevelsView levels={levels} />
                         <DadinhoBox bgcolor="white" border="2px solid black" borderRadius="15px" px={1} py={2} mt={20}>
                             <DadinhoTypography textAlign="center" variant="h4">Novos níveis estão sendo produzidos...</DadinhoTypography>
-                            <DadinhoTypography width="80%" fontSize={40} textAlign="center" position="absolute">🚧👷</DadinhoTypography>
+                            <DadinhoTypography width="100%" left={0} fontSize={40} textAlign="center" position="absolute">🚧👷</DadinhoTypography>
                         </DadinhoBox>
                     </>
                 )
@@ -52,7 +62,7 @@ export const LevelsPage = () => {
                     <SettingsOutlinedIcon />
                 </DadinhoIconButton>
             </DadinhoBox>
-        </>
+        </DadinhoStack>
     );
 }
 

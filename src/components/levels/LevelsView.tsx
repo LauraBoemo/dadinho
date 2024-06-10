@@ -19,7 +19,7 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
     }
 
     return (
-        <DadinhoBox width="100%">
+        <DadinhoBox maxWidth="375px" margin="auto">
             {!levels?.length ? <DadinhoTypography textAlign="center" color="error">Não existem níveis cadastrados</DadinhoTypography> : (
                 <DadinhoStack direction="column">
                     {levels && levels?.map((level: any, index: number) => {
@@ -54,7 +54,8 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
                                 key={level.id}
                                 onClick={() => goToLevel(level.id)}
                                 color={level.isConcluded ? "success" : "inherit"}
-                                disabled={isAdmin ? false : !level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}                sx={{
+                                disabled={isAdmin ? false : !level.isConcluded && (index !== 0 && !levels[index -1].isConcluded)}                
+                                sx={{
                                     position: "relative",
                                     width: "fit-content",
                                     marginTop: 22,
