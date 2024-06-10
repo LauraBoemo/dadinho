@@ -13,7 +13,7 @@ interface TransformRecipeToBasketProps {
 
 const TransformRecipeToBasket = ({ recipe }: TransformRecipeToBasketProps) => {
     const result: any[] = [];
-    recipe.forEach(entry => {
+    recipe?.forEach(entry => {
         for (let i = 0; i < entry.quantity; i++) {
             result.push({...entry.item});
         }
