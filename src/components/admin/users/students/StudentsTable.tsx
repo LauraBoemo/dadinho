@@ -46,11 +46,11 @@ export default function StudentsTable({ content }: StudentsTableProps) {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }  }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.email}
                 </TableCell>
-                <TableCell align="right">{row.teacher}</TableCell>
-                <TableCell align="right">{row.class}</TableCell>
-                <TableCell align="right">{row.serie}</TableCell>
+                <TableCell align="right">{row?.teacher || "-"}</TableCell>
+                <TableCell align="right">{row?.class || "-"}</TableCell>
+                <TableCell align="right">{row?.serie || "-"}</TableCell>
               </TableRow>
             ))}
           </TableBody>

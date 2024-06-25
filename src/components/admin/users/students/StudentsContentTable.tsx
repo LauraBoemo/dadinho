@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
-import { ContentBox } from "../../..";
+import { useEffect, useMemo, useState } from "react";
+import { ContentBox, DadinhoBox, DadinhoLoader, DadinhoTypography } from "../../..";
 import { ContentBoxTableHeader, ContentBoxTableSideContent } from "../contentBoxTableConfig";
 import AddStudentDialog from "./AddStudentDialog";
 import StudentsTable from "./StudentsTable";
+import { useGetUsers } from "../../../../apis/user/useGetUsers";
 
 const mockedContent = [
     { name: "Rani Rani", teacher: "Laura", class: "Turma 2", serie: "6 Ano" },
@@ -16,36 +17,33 @@ const mockedContent = [
 export const StudentsContentTable = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [searchKey, setSearchKey] = useState<string>();
+    const [getUsers, users, usersLoading, usersError] = useGetUsers();
 
-    // TODO: Add Teachers Route
-    // const userId = useMemo(() => getStorage("id"), [])
-    // const [getLevels, levels, levelsLoading, levelsError] = useAllLevels();
-
-    // useEffect(() => {
-    //     getLevels({ id: userId })
-    // }, []);
+    useEffect(() => {
+        getUsers({ role: "STUDENT" })
+    }, []);
 
     const rows = useMemo(() => {
-        if (!searchKey || searchKey === "") return mockedContent;
+        if (!searchKey || searchKey === "") return users;
       
-        return mockedContent?.filter((level: { name: string; }) => 
+        return users?.filter((level: { name: string; }) => 
           level.name.toLowerCase().includes(searchKey.toLowerCase())
         );
-      }, [mockedContent, searchKey]);
+      }, [users, searchKey]);
 
     return (
         <>
-            {/* {!levelsLoading && levelsError && 
+            {!usersLoading && usersError && 
                 <DadinhoTypography textAlign="center" color="error">
-                    Não foi possível carregar os níveis
+                    Não foi possível carregar os alunos
                 </DadinhoTypography>
             }
-            {levelsLoading && 
+            {usersLoading && 
                 <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
                     <DadinhoLoader />
                 </DadinhoBox>
             }
-            {!levelsLoading && !levelsError && */}
+            {!usersLoading && !usersError &&
                 <>
                     <ContentBox 
                         title={
@@ -65,7 +63,7 @@ export const StudentsContentTable = () => {
                     />
                     <AddStudentDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
                 </>
-             {/* } */}
+             }
         </>
     );
 }

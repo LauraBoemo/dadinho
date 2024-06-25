@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
-import { ContentBox } from "../../..";
+import { useEffect, useMemo, useState } from "react";
+import { ContentBox, DadinhoBox, DadinhoLoader, DadinhoTypography } from "../../..";
 import { ContentBoxTableHeader, ContentBoxTableSideContent } from "../contentBoxTableConfig";
 import ClassesTable from "./ClassesTable";
 import AddClassDialog from "./AddClassDialog";
+import { useGetClasses } from "../../../../apis/class/useGetClasses";
 
 const mockedContent = [
     { class: "2", serie: "6 Ano" },
@@ -14,36 +15,33 @@ const mockedContent = [
 export const ClassesContentTable = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [searchKey, setSearchKey] = useState<string>();
+    const [getClasses, classes, classesLoading, classesError] = useGetClasses();
 
-    // TODO: Add Teachers Route
-    // const userId = useMemo(() => getStorage("id"), [])
-    // const [getLevels, levels, levelsLoading, levelsError] = useAllLevels();
-
-    // useEffect(() => {
-    //     getLevels({ id: userId })
-    // }, []);
+    useEffect(() => {
+        getClasses()
+    }, []);
 
     const rows = useMemo(() => {
-        if (!searchKey || searchKey === "") return mockedContent;
+        if (!searchKey || searchKey === "") return classes;
       
-        return mockedContent?.filter((level: { class: string; }) => 
+        return classes?.filter((level: { class: string; }) => 
           level.class.toLowerCase().includes(searchKey.toLowerCase())
         );
-      }, [mockedContent, searchKey]);
+      }, [classes, searchKey]);
 
     return (
         <>
-            {/* {!levelsLoading && levelsError && 
+            {!classesLoading && classesError && 
                 <DadinhoTypography textAlign="center" color="error">
                     Não foi possível carregar os níveis
                 </DadinhoTypography>
             }
-            {levelsLoading && 
+            {classesLoading && 
                 <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
                     <DadinhoLoader />
                 </DadinhoBox>
             }
-            {!levelsLoading && !levelsError && */}
+            {!classesLoading && !classesError &&
                 <>
                     <ContentBox 
                         title={
@@ -63,7 +61,7 @@ export const ClassesContentTable = () => {
                     />
                     <AddClassDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
                 </>
-             {/* } */}
+            }
         </>
     );
 }

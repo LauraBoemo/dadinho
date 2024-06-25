@@ -18,7 +18,7 @@ export const AddClassDialog = ({ isOpen, handleCloseDialog }: AddClassDialogProp
             onClose={handleCloseDialog}
         >
             <DadinhoDialogContent>
-                <AddClassForm onAddClassSuccess={() => console.log("test")} />
+                <AddClassForm onAddClassSuccess={handleCloseDialog} />
             </DadinhoDialogContent>
         </DadinhoDialog>
     );

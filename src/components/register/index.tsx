@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import { Formik } from "formik";
 import { Values } from "../form/FormConfig";
 import Form from "../form";
-import { useRegister } from "../../apis/register/useRegister";
 import { RegisterFormFields, RegisterFormInitialValues, RegisterFormValidationSchema } from "./RegisterFormConfig";
+import { useUser } from "../../apis/user/useUser";
 
 interface RegistarFormProps {
   onRegisterSuccess: (registerUser: any) => void;
 }
 
 export const Register: React.FC<RegistarFormProps> = ({ onRegisterSuccess }) => {
-  const [doRegister, registerUser, registerProgress, registerError] = useRegister();
+  const [doRegister, registerUser, registerProgress, registerError] = useUser();
 
   useEffect(() => {
     if (registerUser) {

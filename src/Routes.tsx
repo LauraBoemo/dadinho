@@ -4,7 +4,7 @@ import AppLayout from "./layouts/app";
 import { PATHS } from "./constants/Path";
 import { adminVerify } from "./apis/utilsStorage";
 
-import { LoginPage, RegisterPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage } from "./pages";
+import { LoginPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage } from "./pages";
 import { DataPage, LevelDetailsConfigPage, LevelsPage as AdminLevelsPage, UsersPage, AdminConfigPage } from "./pages/admin";
 import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
@@ -18,7 +18,6 @@ const AppRoutes = () => {
     <Routes>
       <Route element={<AppLayout />}>
           <Route index element={<LoginPage />} />
-          <Route path={PATHS.REGISTER} element={<RegisterPage />} />
           <Route path={`${PATHS.LEVELS}/:id`} element={<UserLevelsPage />} />
           <Route path={`${PATHS.ANSWER}/:status`} element={<AnswerPage />} />
           <Route element={<CommonLayout />}>

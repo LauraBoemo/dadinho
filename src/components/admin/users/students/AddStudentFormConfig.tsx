@@ -2,27 +2,27 @@ import * as yup from "yup";
 import { Values, FormFieldType } from "../../../form/FormConfig";
 
 export const AddStudentFormValidationSchema = yup.object({
-  nome: yup.string().required("Precisamos do nome do aluno"),
-  turma: yup.string().required("Precisamos da turma do aluno"),
+  email: yup.string().required("Precisamos do nome do aluno"),
+  password: yup.string().required("Precisamos da senha do aluno"),
 });
 
 export const AddStudentFormInitialValues: Values = {
-  nome: "",
-  turma: "",
+  email: "",
+  password: "",
+  role: "USER",
 };
 
 export const AddStudentFormFields: FormFieldType[] = [
   {
-    id: "nome",
-    label: "Insira o Nome do Aluno",
-    placeholder: "ex.: Fulano Silva",
+    id: "email",
+    label: "Insira o Email do Aluno",
+    placeholder: "ex.: fulanosilva@gmail.com",
     required: true,
   },
   {
-    // TODO: Isso precisa ser um select
-    id: "turma",
-    label: "Selecione a Turma do Aluno",
-    placeholder: "ex.: Turma 3",
+    id: "password",
+    label: "Informe uma senha para o Aluno",
+    placeholder: "ex.: 03531303031",
     required: true,
   },
 ];
