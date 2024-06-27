@@ -19,6 +19,7 @@ export const AddClassForm: React.FC<AddClassFormProps> = ({ onAddClassSuccess })
   }, [classAdded]);
 
   const handleAddClass = (values: Values) => {
+    values.grade = Number(values.grade);
     addClass(values);
   };
 
@@ -27,6 +28,7 @@ export const AddClassForm: React.FC<AddClassFormProps> = ({ onAddClassSuccess })
       <Form
         error={addClassError}
         isLoading={addClassProgress}
+        // @ts-ignore
         formFields={AddClassFormFields}
         errorText={"Ocoreu um erro. Contate os desevolvedores."}
         submitText={"Adicionar"}

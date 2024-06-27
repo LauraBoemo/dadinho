@@ -3,9 +3,9 @@ import { ClassesContentTable, DadinhoStack, StudentsContentTable, TeachersConten
 export const UsersPage = () => {
     return (
         <DadinhoStack spacing={1} mr={2}>
+            <ClassesContentTable />
             <StudentsContentTable />
             <TeachersContentTable />
-            <ClassesContentTable />
         </DadinhoStack>
     );
 }

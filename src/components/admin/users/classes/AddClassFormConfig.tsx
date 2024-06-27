@@ -1,5 +1,7 @@
 import * as yup from "yup";
-import { Values, FormFieldType } from "../../../form/FormConfig";
+import { Values } from "../../../form/FormConfig";
+import { StudentsMultiSelect } from "../common/StudentsMultiSelect";
+import { TeacherSelect } from "../common/TeacherSelect";
 
 export const AddClassFormValidationSchema = yup.object({
   name: yup.string().required("Precisamos do name da turma"),
@@ -10,10 +12,10 @@ export const AddClassFormInitialValues: Values = {
   name: "",
   grade: "",
   teacherId: "",
-  studentsId: "",
+  studentsIds: [],
 };
 
-export const AddClassFormFields: FormFieldType[] = [
+export const AddClassFormFields = [
   {
     id: "name",
     label: "Insira o name da Turma",
@@ -23,7 +25,22 @@ export const AddClassFormFields: FormFieldType[] = [
   {
     id: "grade",
     label: "Insira a Série da Turma",
-    placeholder: "ex.: 6º Ano",
+    placeholder: "ex.: 6",
     required: true,
+    type: yup.number,
+  },
+  {
+    id: "teacherId",
+    label: "Selecione o Professor desta Turma",
+    placeholder: "Pesquise pelo nome dos professores",
+    required: true,
+    component: TeacherSelect,
+  },
+  {
+    id: "studentsIds",
+    label: "Selecione os Alunos desta Turma",
+    placeholder: "Pesquise pelo nome dos alunos",
+    required: true,
+    component: StudentsMultiSelect,
   },
 ];
