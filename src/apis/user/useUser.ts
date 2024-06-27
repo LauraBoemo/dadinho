@@ -1,24 +1,19 @@
 import { useState } from "react";
-import { addUser } from "./userService";
-
-export interface RegisterType {
-  email: string;
-  role: string;
-  password: string;
-}
+import { AddUserPayload, addUser } from "./userService";
 
 const useUser = () => {
   const [registerData, setRegisterData] = useState<boolean | null>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const api = async (registerData: RegisterType) => {
+  const api = async (registerData: AddUserPayload) => {
     try {
-      const { email, password, role } = registerData;
+      const { name, email, password, role } = registerData;
       setLoading(true);
       setRegisterData(null);
       setError(null);
       const res = (await addUser({
+        name,
         role,
         email,
         password,

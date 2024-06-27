@@ -5,15 +5,6 @@ import AddStudentDialog from "./AddStudentDialog";
 import StudentsTable from "./StudentsTable";
 import { useGetUsers } from "../../../../apis/user/useGetUsers";
 
-const mockedContent = [
-    { name: "Rani Rani", teacher: "Laura", class: "Turma 2", serie: "6 Ano" },
-    { name: "Laura Boemo", teacher: "Laura", class: "Turma 2", serie: "6 Ano" },
-    { name: "Ana Clara", teacher: "Laura", class: "Turma 3", serie: "6 Ano" },
-    { name: "Julia Rachi", teacher: "Murilo", class: "Turma 1", serie: "6 Ano" },
-    { name: "Rafaela", teacher: "Luana", class: "Turma 4", serie: "6 Ano" },
-    { name: "Malu", teacher: "Luana", class: "Turma 4", serie: "6 Ano" },
-]
-
 export const StudentsContentTable = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [searchKey, setSearchKey] = useState<string>();
@@ -29,8 +20,8 @@ export const StudentsContentTable = () => {
         return users?.filter((level: { name: string; }) => 
           level.name.toLowerCase().includes(searchKey.toLowerCase())
         );
-      }, [users, searchKey]);
-
+    }, [users, searchKey]);
+    
     return (
         <>
             {!usersLoading && usersError && 

@@ -34,7 +34,7 @@ export default function TeachersTable({ content }: TeachersTableProps) {
           <TableHead>
             <TableRow>
               <TableCell>Nome</TableCell>
-              <TableCell align="right">Turma Responsável</TableCell>
+              <TableCell align="right">Email</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,9 +44,9 @@ export default function TeachersTable({ content }: TeachersTableProps) {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }  }}
               >
                 <TableCell component="th" scope="row">
-                  {row.gmail}
+                  {row.name}
                 </TableCell>
-                <TableCell align="right">{row?.assignedClass || "-"}</TableCell>
+                <TableCell align="right">{row.email}</TableCell>
               </TableRow>
             ))}
           </TableBody>

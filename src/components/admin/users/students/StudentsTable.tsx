@@ -34,9 +34,7 @@ export default function StudentsTable({ content }: StudentsTableProps) {
           <TableHead>
             <TableRow>
               <TableCell>Nome</TableCell>
-              <TableCell align="right">Professor</TableCell>
-              <TableCell align="right">Turma</TableCell>
-              <TableCell align="right">Série</TableCell>
+              <TableCell align="right">Email</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -46,11 +44,9 @@ export default function StudentsTable({ content }: StudentsTableProps) {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }  }}
               >
                 <TableCell component="th" scope="row">
-                  {row.email}
+                  {row.name}
                 </TableCell>
-                <TableCell align="right">{row?.teacher || "-"}</TableCell>
-                <TableCell align="right">{row?.class || "-"}</TableCell>
-                <TableCell align="right">{row?.serie || "-"}</TableCell>
+                <TableCell align="right">{row.email}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -5,13 +5,6 @@ import AddTeacherDialog from "./AddTeacherDialog";
 import TeachersTable from "./TeachersTable";
 import { useGetUsers } from "../../../../apis/user/useGetUsers";
 
-const mockedContent = [
-    { name: "Laura", assignedClass: "Turma 2" },
-    { name: "Murilo", assignedClass: "Turma 3" },
-    { name: "Luana", assignedClass: "Turma 1" },
-    { name: "Flávio", assignedClass: "Turma 4" },
-]
-
 export const TeachersContentTable = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [searchKey, setSearchKey] = useState<string>();

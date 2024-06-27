@@ -2,12 +2,14 @@ import { AxiosRequestConfig, AxiosResponse } from "axios";
 import baseService from "../base";
 
 export interface AddUserPayload {
+  name: string;
   email: string;
   password: string;
   role: string;
 }
 
 export interface GetUsersResponse {
+  name: string;
   email: string;
   password: string;
   role: string;

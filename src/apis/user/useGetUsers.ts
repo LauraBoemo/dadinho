@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { getUsers } from "./userService";
+import { GetUsersResponse, getUsers } from "./userService";
 
 export interface UserRole {
   role: string;
 }
 
 const useGetUsers = () => {
-  const [userData, setUserData] = useState<boolean | null>(null);
+  const [userData, setUserData] = useState<GetUsersResponse[] | null>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -18,8 +18,8 @@ const useGetUsers = () => {
       setError(null);
       const res = (await getUsers({
         params: { role: role },
-      })) as unknown as boolean;
-      setUserData(res !== null);
+      })) as unknown as GetUsersResponse[];
+      setUserData(res);
     } catch (error) {
       setError(error);
     } finally {
