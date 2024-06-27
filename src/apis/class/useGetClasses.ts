@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { getClasses } from "./classService";
+import { GetClassesResponse, getClasses } from "./classService";
 
 const useGetClasses = () => {
-  const [useGetClasses, setUseGetClasses] = useState<boolean | null>(null);
+  const [useGetClasses, setUseGetClasses] = useState<GetClassesResponse | null>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -11,8 +11,8 @@ const useGetClasses = () => {
       setLoading(true);
       setUseGetClasses(null);
       setError(null);
-      const res = (await getClasses()) as unknown as boolean;
-      setUseGetClasses(res !== null);
+      const res = (await getClasses()) as unknown as GetClassesResponse;
+      setUseGetClasses(res);
     } catch (error) {
       setError(error);
     } finally {

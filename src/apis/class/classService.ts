@@ -16,7 +16,7 @@ interface UserProps {
     concludedLevels: string[],
 }
 
-export interface getClassesResponse {
+export interface GetClassesResponse {
 	name: string,
 	grade: number,
 	teacher: UserProps,
@@ -27,7 +27,7 @@ const addClass = (payload: AddClassPayload, config?: AxiosRequestConfig): Promis
     return baseService.post("class", payload, config);
 };
 
-const getClasses = (): Promise<AxiosResponse<getClassesResponse[]>> => {
+const getClasses = (): Promise<AxiosResponse<GetClassesResponse[]>> => {
   return baseService.get("class");
 };
 

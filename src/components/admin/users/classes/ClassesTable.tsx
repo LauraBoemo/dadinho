@@ -6,6 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useMemo, useState } from 'react';
 import { DadinhoTablePaginationContainer } from '../../../common';
+import DadinhoMultiValuesChip from '../../../common/DadinhoMultiValuesChip';
 
 interface ClassesTableProps {
   content: any[];
@@ -35,6 +36,8 @@ export default function ClassesTable({ content }: ClassesTableProps) {
             <TableRow>
               <TableCell>Turma</TableCell>
               <TableCell align="right">Série</TableCell>
+              <TableCell align="right">Estudantes</TableCell>
+              <TableCell align="right">Professor</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,9 +47,12 @@ export default function ClassesTable({ content }: ClassesTableProps) {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }  }}
               >
                 <TableCell component="th" scope="row">
-                  {row.class}
+                  {row.name}
                 </TableCell>
-                <TableCell align="right">{row.serie}</TableCell>
+                <TableCell align="right">{row.grade}</TableCell>
+                {/* @ts-ignore */}
+                <TableCell align="right"><DadinhoMultiValuesChip values={row?.students} /></TableCell>
+                <TableCell align="right">{row.teacher.name}</TableCell>
               </TableRow>
             ))}
           </TableBody>

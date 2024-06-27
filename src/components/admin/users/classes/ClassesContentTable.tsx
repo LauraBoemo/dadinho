@@ -5,12 +5,6 @@ import ClassesTable from "./ClassesTable";
 import AddClassDialog from "./AddClassDialog";
 import { useGetClasses } from "../../../../apis/class/useGetClasses";
 
-const mockedContent = [
-    { class: "2", serie: "6 Ano" },
-    { class: "3", serie: "6 Ano" },
-    { class: "1", serie: "6 Ano" },
-    { class: "4", serie: "6 Ano" },
-]
 
 export const ClassesContentTable = () => {
     const [showDialog, setShowDialog] = useState(false);
@@ -23,11 +17,19 @@ export const ClassesContentTable = () => {
 
     const rows = useMemo(() => {
         if (!searchKey || searchKey === "") return classes;
-      
-        return classes?.filter((level: { class: string; }) => 
-          level.class.toLowerCase().includes(searchKey.toLowerCase())
-        );
-      }, [classes, searchKey]);
+    
+        return classes?.filter((turma: any) => {
+            const searchKeyLower = searchKey.toLowerCase();
+            const hasMatchingStudent = turma.students?.some((student: { name: string }) => 
+                student.name.toLowerCase().includes(searchKeyLower)
+            );
+            const hasMatchingTeacher = turma.teacher?.name.toLowerCase().includes(searchKeyLower);
+            const hasMatchingClassName = turma.name?.toLowerCase().includes(searchKeyLower);
+    
+            return hasMatchingClassName || hasMatchingStudent || hasMatchingTeacher;
+        });
+    }, [classes, searchKey]);
+    
 
     return (
         <>
