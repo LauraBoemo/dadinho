@@ -3,12 +3,12 @@ import { FormFieldType, Values } from "../../../form/FormConfig";
 
 export const AddItemFormValidationSchema = yup.object({
   icon: yup.string().required("Precisamos de um ícone"),
-  title: yup.string().required("Precisamos de um título"),
+  name: yup.string().required("Precisamos de um título"),
 });
 
 export const AddItemFormInitialValues: Values = {
   icon: "",
-  title: "",
+  name: "",
 };
 
 export const AddItemFormFields: FormFieldType[] = [
@@ -19,7 +19,7 @@ export const AddItemFormFields: FormFieldType[] = [
     required: true,
   },
   {
-    id: "title",
+    id: "name",
     label: "Título",
     placeholder: "Insira o título do nível",
     required: true,

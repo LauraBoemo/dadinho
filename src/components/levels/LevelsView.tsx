@@ -24,27 +24,30 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
                 <DadinhoStack direction="column">
                     {levels && levels?.map((level: any, index: number) => {
                         let leftPercentage;
-                        switch (index % 6) {
+                        switch (index % 7) {
                             case 0:
-                                leftPercentage = "60%";
+                                leftPercentage = "70%";
                                 break;
                             case 1:
-                                leftPercentage = "35%";
+                                leftPercentage = "220%";
                                 break;
                             case 2:
-                                leftPercentage = "40%";
+                                leftPercentage = "-30%";
                                 break;
                             case 3:
-                                leftPercentage = "50%";
+                                leftPercentage = "20%";
                                 break;
                             case 4:
-                                leftPercentage = "50%";
+                                leftPercentage = "130%";
                                 break;
                             case 5:
-                                leftPercentage = "50%";
+                                leftPercentage = "-60%";
+                                break;
+                            case 6:
+                                leftPercentage = "100%";
                                 break;
                             default:
-                                leftPercentage = "50%";
+                                leftPercentage = "40%";
                                 break;
                         }
 
@@ -58,13 +61,12 @@ export const LevelsView = ({ levels }: LevelsViewProps) => {
                                 sx={{
                                     position: "relative",
                                     width: "fit-content",
-                                    marginTop: 22,
+                                    marginTop: 23.4,
                                     left: leftPercentage,
                                     transform: "translate(-50%, 0)",
                                 }}
                             >
                                 {level.icon}
-                                {level.isConcluded && <DadinhoTypography variant="h1" sx={{ position: "absolute", marginTop: "70px", marginLeft: "50px" }}>✅</DadinhoTypography> }
                             </DadinhoLevelButton>
                         )
                     })}

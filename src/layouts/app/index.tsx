@@ -2,14 +2,11 @@ import { Outlet } from "react-router-dom";
 import { DadinhoBox, DadinhoStack } from "../../components";
 import { useTheme } from "../../theme";
 import { ToastContainer } from 'react-toastify';
-import { adminVerify } from "../../apis/utilsStorage";
 
 export const AppLayout = () => {
   const theme = useTheme();
-  const isAdmin = adminVerify();
 
   return (
-    // TODO Need to find better ways to declare these styles
     <DadinhoBox 
       height="97vh"
       borderRadius="10px"
@@ -25,11 +22,9 @@ export const AppLayout = () => {
       />
       <DadinhoBox
         height="100vh"
-        maxWidth={isAdmin ? "undefined" : "500px"}
-        
         margin="auto"
         display="grid"
-
+        
         alignItems="center"
       >
         <DadinhoStack 

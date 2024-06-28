@@ -12,7 +12,7 @@ export const DadinhoLevelButton = styled(Button)(({ theme, disabled, color }) =>
     backgroundColor: theme.palette.primary.contrastText,
     
     ...(disabled === true && {
-        backgroundColor: theme.palette.secondary.contrastText,
+        backgroundColor: theme.palette.secondary.light,
     }), 
     
     ...(color === "success" && {

@@ -37,7 +37,7 @@ const theme = createTheme({
       fontStyle: "normal",
       fontWeight: "normal",
       fontSize: 20,
-      lineHeight: "20px",
+      lineHeight: "25px",
     },
     h3: {
       fontStyle: "normal",

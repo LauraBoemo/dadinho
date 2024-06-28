@@ -36,11 +36,17 @@ export const LevelsPage = () => {
                 zIndex="10" 
                 mt={-2} 
                 pb={2} 
-                width="50%"
+                width="94.5%"
                 sx={{ insetArea: "center" }}
                 bgcolor={theme.palette.primary.contrastText} 
                 boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}>
                 <DadinhoHeader isMainPage />
+            </DadinhoBox>
+            <DadinhoBox bgcolor="white" border="2px solid black" borderRadius="15px" maxWidth="500px" margin="auto" px={1} py={2} mt={10} mb={-19}>
+                <DadinhoStack>
+                    <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightMedium}>Que bom tê-lo por aqui!</DadinhoTypography>
+                    <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightLight} display="flex" gap="5px">Role pra baixo e explore! ▼</DadinhoTypography>
+                </DadinhoStack>
             </DadinhoBox>
             {!levelsLoading && levelsError && <DadinhoTypography textAlign="center" color="error">Não foi possível carregar os níveis</DadinhoTypography>}
             {levelsLoading ? (
@@ -50,14 +56,17 @@ export const LevelsPage = () => {
                 )  : (
                     <>
                         <LevelsView levels={levels} />
-                        <DadinhoBox bgcolor="white" border="2px solid black" borderRadius="15px" px={1} py={2} mt={20}>
-                            <DadinhoTypography textAlign="center" variant="h4">Novos níveis estão sendo produzidos...</DadinhoTypography>
-                            <DadinhoTypography width="100%" left={0} fontSize={40} textAlign="center" position="absolute">🚧👷</DadinhoTypography>
+                        <DadinhoBox bgcolor="white" border="2px solid black" borderRadius="15px" maxWidth="500px" margin="auto" px={1} py={2} mt={40}>
+                            <DadinhoStack>
+                                <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightMedium}>Muito obrigada por jogar!</DadinhoTypography>
+                                <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightLight}>Voltaremos com mais ;)</DadinhoTypography>
+                            </DadinhoStack>
                         </DadinhoBox>
                     </>
                 )
             }
-            <DadinhoBox display="flex" justifyContent="end" position="fixed" sx={{ bottom: "30px", right: "40px" }}>
+            {/* @ts-ignore */}
+            <DadinhoBox  position="fixed" right="20px" bottom="25px">
                 <DadinhoIconButton onClick={goToConfig}>
                     <SettingsOutlinedIcon />
                 </DadinhoIconButton>

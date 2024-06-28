@@ -7,8 +7,10 @@ import { DadinhoFooter, DadinhoHeader, DadinhoLink, DadinhoStack } from "../../c
 
 import { adminVerify, setStorage } from "../../apis/utilsStorage";
 import { LoginResponse } from "../../apis/login/loginService";
+import { useTheme } from "../../theme";
 
 export const LoginPage = () => {
+    const theme = useTheme();
     const navigate = useNavigate();
 
     const handleLogin = (loggedInUser: LoginResponse) => {
@@ -28,7 +30,11 @@ export const LoginPage = () => {
     };
 
     return (
-        <DadinhoStack p={1} maxWidth="500px" height="100vh" justifyContent={"space-between"}>
+        <DadinhoStack p={1} maxWidth="500px" minWidth="500px" height="100vh" justifyContent={"space-between"} sx={{ 
+            [theme.breakpoints.down('md')]: {
+                minWidth: "300px",
+              },
+        }}>
             <DadinhoHeader isMainPage displayLogoName />
             <DadinhoStack direction="column" spacing={2}>
                 <Login onLoginSuccess={handleLogin} />
