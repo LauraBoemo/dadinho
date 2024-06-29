@@ -56,7 +56,6 @@ export const Recipe = ({ recipe }: RecipeComponentProps) => {
             <DadinhoTypography variant="h3" color="error">Não há receita cadastrada para este nível</DadinhoTypography>
         ) : (
             <DadinhoStack 
-                pb={3} 
                 direction="row" 
                 justifyContent="space-between" 
                 sx={{ 
