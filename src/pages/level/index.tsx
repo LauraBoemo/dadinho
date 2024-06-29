@@ -54,16 +54,14 @@ export const LevelPage = () => {
     }, [levelAttemptError])
 
     return (
-        <DadinhoStack direction="column" spacing={2} pr={1.5} sx={{ overflowX: "hidden" }}>
+        <DadinhoStack maxWidth="40vw" direction="column" spacing={2} pr={1.5} sx={{ overflowX: "hidden" }}>
             {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
             {levelProgress || levelAttemptProgress ? <DadinhoLoader /> : level && (
                 <DadinhoStack px={0.5} spacing={3}>
                     <DadinhoHeader 
                         backButton 
                         backButtonCustomIcon={     
-                            <DadinhoIconButton onClick={() => {}}>
-                                <DadinhoTypography variant="h3">{level?.icon}</DadinhoTypography>
-                            </DadinhoIconButton>                    
+                            <DadinhoTypography variant="h1">Nível 0{level?.icon}</DadinhoTypography>
                         } 
                     />
                     <DadinhoStack direction="column" spacing={3}>

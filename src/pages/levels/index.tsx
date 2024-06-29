@@ -28,7 +28,7 @@ export const LevelsPage = () => {
     }, []);
 
     return (
-        <DadinhoStack height="100vh" justifyContent="space-between">
+        <DadinhoStack height="100vh" ml={-3} minWidth="100vw" justifyContent="space-between">
             <DadinhoBox 
                 position="fixed" 
                 margin="auto" 

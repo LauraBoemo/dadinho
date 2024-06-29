@@ -20,13 +20,15 @@ export const Baskets = ({ baskets }: BasketsProps) => {
                     borderRadius="10px" 
                     width="fit-content"
                     border="2px solid" 
+                    margin="auto"
                     mt={-4}
-                    mb={2}
                     p={1}
                 >
-                    <DadinhoTypography>Cestos 🧺</DadinhoTypography>
+                    <DadinhoTypography>Cestos de Itens</DadinhoTypography>
                 </DadinhoBox>
-                <DadinhoStack spacing={1} 
+                <DadinhoStack 
+                    spacing={1} 
+                    pt={1}
                     direction="row" 
                     paddingBottom={1}
                     sx={{ 

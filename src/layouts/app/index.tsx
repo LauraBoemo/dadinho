@@ -29,6 +29,7 @@ export const AppLayout = () => {
       >
         <DadinhoStack 
             height="90vh"
+            alignItems="center"
             direction="column"
             justifyContent="space-between"
         >
