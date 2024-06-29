@@ -19,7 +19,7 @@ export const DataPage = () => {
     const theme = useTheme();
     
     return (
-        <DadinhoStack direction="column" spacing={1} mr={2} sx={{ overflow: "auto" }}>
+        <DadinhoStack direction="column" spacing={1} ml={2} sx={{ overflow: "auto" }}>
             <DadinhoStack direction="row" gap={1}>
                 <ContentBox 
                     title={<DataContentBoxTitle title="Alunos cadastrados" />}

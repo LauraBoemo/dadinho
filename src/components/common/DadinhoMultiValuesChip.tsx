@@ -19,7 +19,7 @@ const MultiTooltip = ({ values }: MultiValuesChipProps) => {
         return (
           <DadinhoListItem disablePadding key={value?._id}>
             <DadinhoListItemText
-              primary={<DadinhoTypography>&#8226; {value?.name}</DadinhoTypography>}
+              primary={<DadinhoTypography variant="h4">&#8226; {value?.name}</DadinhoTypography>}
               primaryTypographyProps={{ variant: "h4" }}
             />
           </DadinhoListItem>
@@ -37,17 +37,17 @@ export const MultiValuesChip = ({ values }: MultiValuesChipProps) => {
   const isSoloInfo = values?.length <= 1;
 
   const label = (
-    <DadinhoStack direction="row" spacing={theme.spacing(0.5)} width={theme.spacing(30)}>
+    <DadinhoStack direction="row" spacing={theme.spacing(0.5)} width={theme.spacing(15)}>
       {isSoloInfo ? (
-        <DadinhoTypography maxWidth={theme.spacing(30)} overflow="hidden" textOverflow="ellipsis">
+        <DadinhoTypography variant="h4" maxWidth={theme.spacing(30)} overflow="hidden" textOverflow="ellipsis">
           {values[0]?.name || "-"}
         </DadinhoTypography>
       ) : (
         <>
-          <DadinhoTypography maxWidth={theme.spacing(30)} overflow="hidden" textOverflow="ellipsis">
+          <DadinhoTypography variant="h4" maxWidth={theme.spacing(30)} overflow="hidden" textOverflow="ellipsis">
             {`${values[0]?.name || "-"}, ${values[1]?.name || "-"}`}
           </DadinhoTypography>
-          <DadinhoTypography>+{values?.length - 1}</DadinhoTypography>
+          <DadinhoTypography variant="h4">+{values?.length - 1}</DadinhoTypography>
         </>
       )}
     </DadinhoStack>

@@ -13,7 +13,7 @@ export const AdminConfigPage = () => {
     };
     
     return (
-        <DadinhoStack direction="column" spacing={1} mr={2} sx={{ overflow: "auto" }}>
+        <DadinhoStack direction="column" spacing={1} ml={2} sx={{ overflow: "auto" }}>
             <DadinhoButton variant="outlined" size="medium" onClick={goToLogin}>Sair</DadinhoButton>
         </DadinhoStack>
     );

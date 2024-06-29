@@ -4,7 +4,7 @@ import { ItemsContentTable } from "../../../components/admin/levels/items";
 
 export const LevelsPage = () => {
     return (
-        <DadinhoStack spacing={1} mr={2}>
+        <DadinhoStack spacing={1} ml={2}>
             <LevelsContentTable />
             <ItemsContentTable />
         </DadinhoStack>

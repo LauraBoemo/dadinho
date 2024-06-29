@@ -11,7 +11,7 @@ export const DadinhoListItem = styled(ListItem)<DadinhoListItemProps>(
   ({ theme, leftBorderAccentColor, selected, bordered }) => ({
     margin: 0,
     padding: 0,
-    fontSize: `${theme.typography.h5}`,
+    fontSize: `${theme.typography.h4}`,
     ...((bordered && {
       ":first-of-type": {
         borderTop: `1px solid ${theme.palette.divider}`,

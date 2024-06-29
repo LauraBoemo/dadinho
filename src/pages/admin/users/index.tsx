@@ -2,7 +2,7 @@ import { ClassesContentTable, DadinhoStack, StudentsContentTable, TeachersConten
 
 export const UsersPage = () => {
     return (
-        <DadinhoStack spacing={1} mr={2}>
+        <DadinhoStack spacing={1} ml={2}>
             <ClassesContentTable />
             <StudentsContentTable />
             <TeachersContentTable />
