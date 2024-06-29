@@ -32,12 +32,12 @@ export const Baskets = ({ baskets }: BasketsProps) => {
                     direction="row" 
                     paddingBottom={1}
                     sx={{ 
-                        width: "500px", 
+                        width: "450px", 
                         overflow: "auto", 
                         whiteSpace: "nowrap", 
                         
-                        [theme.breakpoints.down('md')]: {
-                            width: "300px",
+                        [theme.breakpoints.down('sm')]: {
+                            width: "75vw",
                         } 
                     }}
                 >

@@ -28,21 +28,45 @@ export const LevelsPage = () => {
     }, []);
 
     return (
-        <DadinhoStack height="100vh" ml={-3} minWidth="100vw" justifyContent="space-between">
+        <DadinhoStack
+            height="100vh"
+            width="100vw"
+            justifyContent="space-between"
+            sx={{ 
+                [theme.breakpoints.down('sm')]: {
+                    width: "90vw",
+                },
+            }} 
+        >
             <DadinhoBox 
                 position="fixed" 
-                margin="auto" 
                 alignSelf="center" 
                 zIndex="10" 
+                width="93vw"
                 mt={-2} 
                 pb={2} 
-                width="94.5%"
-                sx={{ insetArea: "center" }}
                 bgcolor={theme.palette.primary.contrastText} 
-                boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}>
+                boxShadow={`0 10px 10px 0px ${theme.palette.primary.contrastText}`}
+            >
                 <DadinhoHeader isMainPage />
             </DadinhoBox>
-            <DadinhoBox bgcolor="white" border="2px solid black" borderRadius="15px" maxWidth="500px" margin="auto" px={1} py={2} mt={10} mb={-19}>
+            <DadinhoBox 
+                maxWidth="500px" 
+                margin="auto" 
+                sx={{ 
+                    insetArea: "center",
+                    [theme.breakpoints.down('sm')]: {
+                        maxWidth: "90vw",
+                    },
+                }} 
+                bgcolor="white" 
+                border="2px solid black" 
+                borderRadius="15px" 
+                px={1}
+                py={2}
+                mt={10}
+                mb={-19}
+            >
                 <DadinhoStack>
                     <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightMedium}>Que bom tê-lo por aqui!</DadinhoTypography>
                     <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightLight} display="flex" gap="5px">Role pra baixo e explore! ▼</DadinhoTypography>

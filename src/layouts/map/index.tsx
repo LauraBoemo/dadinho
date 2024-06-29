@@ -266,7 +266,7 @@ export const MapLayout = () => {
             zIndex: -1, 
         }}
     />
-      <DadinhoStack height="80%" px={3} direction="column" justifyContent="space-between" textAlign="center">
+      <DadinhoStack height="80%" direction="column" justifyContent="space-between" textAlign="center">
         <Outlet />
       </DadinhoStack>
     </DadinhoBox>

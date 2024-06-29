@@ -5,16 +5,18 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Recipe, Baskets, Attempt } from "../../components/level";
-import { DadinhoBox, DadinhoHeader, DadinhoIconButton, DadinhoLevelButton, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
+import { DadinhoBox, DadinhoHeader, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
 
 import { PATHS } from "../../constants/Path";
 import { useLevel } from "../../apis/level/useLevel";
 import { getStorage } from "../../apis/utilsStorage";
 import { useLevelAttempt } from "../../apis/level/useLevelAttempt";
+import { useTheme } from "../../theme";
 
 export const LevelPage = () => {
     const userId = getStorage("id");
     const { id } = useParams();
+    const theme = useTheme();
     const navigate = useNavigate();
 
     const [getLevel, level, levelProgress, levelError] = useLevel();
@@ -54,23 +56,33 @@ export const LevelPage = () => {
     }, [levelAttemptError])
 
     return (
-        <DadinhoStack maxWidth="40vw" direction="column" spacing={2} pr={1.5} sx={{ overflowX: "hidden" }}>
-            {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
-            {levelProgress || levelAttemptProgress ? <DadinhoLoader /> : level && (
-                <DadinhoStack px={0.5} spacing={3}>
-                    <DadinhoHeader 
-                        backButton 
-                        backButtonCustomIcon={     
-                            <DadinhoTypography variant="h1">Nível 0{level?.icon}</DadinhoTypography>
-                        } 
-                    />
-                    <DadinhoStack direction="column" spacing={3}>
-                        <Recipe title={level?.title} recipe={level?.recipe} />
-                        <Baskets baskets={level?.baskets} />
+        <DadinhoStack height="100vh" minWidth="90vw" sx={{ overflowX: "hidden" }}>
+            <DadinhoBox 
+                maxWidth="500px" 
+                margin="auto" 
+                sx={{ 
+                    [theme.breakpoints.down('sm')]: {
+                        maxWidth: "90vw",
+                    },
+                }}
+            >
+                {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
+                {levelProgress || levelAttemptProgress ? <DadinhoLoader /> : level && (
+                    <DadinhoStack px={0.5} spacing={3}>
+                        <DadinhoHeader 
+                            backButton 
+                            backButtonCustomIcon={     
+                                <DadinhoTypography variant="h1">Nível 0{level?.icon}</DadinhoTypography>
+                            } 
+                        />
+                        <DadinhoStack direction="column" spacing={3}>
+                            <Recipe recipe={level?.recipe} />
+                            <Baskets baskets={level?.baskets} />
+                        </DadinhoStack>
+                        <Attempt options={level?.options} handleAttempt={handleAttempt} />
                     </DadinhoStack>
-                    <Attempt options={level?.options} handleAttempt={handleAttempt} />
-                </DadinhoStack>
-            )}
+                )}
+            </DadinhoBox>
         </DadinhoStack>
     );
 }

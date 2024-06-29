@@ -3,7 +3,6 @@ import { RecipeProps } from "../../../apis/level/levelService";
 import { useTheme } from "../../../theme";
 
 interface RecipeComponentProps {
-    title?: string;
     recipe: RecipeProps[];
 }
 
@@ -48,7 +47,7 @@ const TransformRecipeToBasket = ({ recipe }: TransformRecipeToBasketProps) => {
     return result;
 }
 
-export const Recipe = ({ title, recipe }: RecipeComponentProps) => {
+export const Recipe = ({ recipe }: RecipeComponentProps) => {
     const theme = useTheme();
     const recipeToBasket = TransformRecipeToBasket({ recipe: recipe });
 
@@ -56,27 +55,48 @@ export const Recipe = ({ title, recipe }: RecipeComponentProps) => {
         !recipeToBasket?.length ? (
             <DadinhoTypography variant="h3" color="error">Não há receita cadastrada para este nível</DadinhoTypography>
         ) : (
-            <DadinhoStack maxWidth="40vw" direction="row" justifyContent="space-between" pb={3}>
+            <DadinhoStack 
+                pb={3} 
+                direction="row" 
+                justifyContent="space-between" 
+                sx={{ 
+                    [theme.breakpoints.down('sm')]: {
+                        flexDirection: "column-reverse",
+                        pb: 0,
+                    },
+                }}
+            >
                 <DadinhoBox
                     sx={{
                         height: '180px',
-                        width: '320px',
+                        width: '40vw',
                         backgroundImage: `url(${base64Svg})`,
                         backgroundSize: 'auto',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         zIndex: 10, 
-                        mr: -2,
+                        mr: -5,
+                        [theme.breakpoints.down('sm')]: {
+                            flexDirection: "column-reverse",
+                            width: '60vw',
+                            mt: -2,
+                            ml: -8,
+                        },
                     }}
                 />
                 <DadinhoBox 
                     p={1.5} 
-                    width="100%" 
-                    height="70px" 
+                    width="60vw" 
+                    height="10vh" 
                     textAlign="center"
                     bgcolor={theme.palette.primary.light}  
                     border="1.5px solid" 
                     borderRadius="10px"
+                    sx={{ 
+                        [theme.breakpoints.down('sm')]: {
+                            width: "auto",
+                        },
+                    }}
                 >
                     <DadinhoTypography variant="body1">Monte uma sequência de comandos que agrupe os seguintes itens...</DadinhoTypography>
                     <DadinhoBox sx={{ mt: 1, textAlign: "-webkit-center" }}>
