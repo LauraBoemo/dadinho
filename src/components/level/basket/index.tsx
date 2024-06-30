@@ -7,15 +7,16 @@ interface BasketProps {
     index: number;
     title?: string;
     customWidth?: string;
+    customHeight?: string;
     noTitle?: boolean;
     customBg?: string;
 }
 
-export const Basket = ({ items, index, title, customWidth, noTitle, customBg }: BasketProps) => {
+export const Basket = ({ items, index, title, customWidth, noTitle, customBg, customHeight }: BasketProps) => {
     const theme = useTheme();
 
     return (
-        <DadinhoBox border="2px solid" borderRadius="10px" maxWidth={customWidth ? customWidth : "150px"} minWidth="150px">
+        <DadinhoBox border="2px solid" borderRadius="10px" width={customWidth ? customWidth : "150px"} height={customHeight ? customHeight : "120px"}>
             <DadinhoStack direction="row" borderRadius="10px" flexWrap="wrap" bgcolor={customBg ? customBg : theme.palette.primary.light} padding={2} alignItems="center" justifyContent="center">
                 {items?.map((product) => {
                     return (

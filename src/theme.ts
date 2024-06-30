@@ -57,6 +57,12 @@ const theme = createTheme({
       fontSize: 20,
       lineHeight: "18px",
     },
+    "body2": {
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: 15,
+      lineHeight: "18px",
+    },
   },
   breakpoints: {
     values: {

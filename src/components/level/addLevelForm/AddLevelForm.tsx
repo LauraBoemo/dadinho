@@ -18,7 +18,7 @@ const transformArray = (arr: string[]) => {
   let currentString = '';
 
   arr?.forEach((item) => {
-    if (item === 'Pegue' && currentString !== '') {
+    if ((item === 'Pegue' || item === 'Remova') && currentString !== '') {
       result.push(currentString.trim());
       currentString = item;
     } else {

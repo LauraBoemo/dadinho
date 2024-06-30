@@ -14,39 +14,43 @@ export const Baskets = ({ baskets }: BasketsProps) => {
         !baskets?.length ? (
             <DadinhoTypography color="error">Não há cestos cadastrados para este nível</DadinhoTypography>
         ) : (
-            <DadinhoBox border="2px solid" borderRadius="10px" p={2} mt={"30px !important"}>
+            <DadinhoBox>   
                 <DadinhoBox 
-                    bgcolor={theme.palette.primary.contrastText} 
-                    borderRadius="10px" 
-                    width="fit-content"
-                    border="2px solid" 
-                    margin="auto"
-                    mt={-4}
-                    p={1}
-                >
-                    <DadinhoTypography>Cestos de Itens</DadinhoTypography>
+                        bgcolor={theme.palette.primary.contrastText} 
+                        borderRadius="10px" 
+                        width="fit-content"
+                        border="2px solid" 
+                        alignSelf="center"
+                        margin="auto"
+                        mb={-2}
+                        p={1}
+                        position="relative"
+                    >
+                        <DadinhoTypography>Cestos de Itens</DadinhoTypography>
+                    </DadinhoBox>
+                <DadinhoBox border="2px solid" borderRadius="10px" overflow="scroll" p={2}>
+                    <DadinhoStack 
+                        spacing={1} 
+                        pt={1}
+                        direction="row" 
+                        paddingBottom={1}
+                        sx={{ 
+                            width: "590px", 
+                            overflow: "auto", 
+                            whiteSpace: "nowrap", 
+                            
+                            [theme.breakpoints.down('sm')]: {
+                                width: "75vw",
+                            } 
+                        }}
+                    >
+                        {baskets?.map((product, index) => {
+                            return (
+                                <Basket items={product.items} index={index + 1} />
+                            )
+                        })}
+                    </DadinhoStack>
                 </DadinhoBox>
-                <DadinhoStack 
-                    spacing={1} 
-                    pt={1}
-                    direction="row" 
-                    paddingBottom={1}
-                    sx={{ 
-                        width: "450px", 
-                        overflow: "auto", 
-                        whiteSpace: "nowrap", 
-                        
-                        [theme.breakpoints.down('sm')]: {
-                            width: "75vw",
-                        } 
-                    }}
-                >
-                    {baskets?.map((product, index) => {
-                        return (
-                            <Basket items={product.items} index={index + 1} />
-                        )
-                    })}
-                </DadinhoStack>
             </DadinhoBox>
         )
     );

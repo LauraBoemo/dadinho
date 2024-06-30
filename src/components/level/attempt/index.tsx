@@ -39,18 +39,23 @@ const base64Svg = `data:image/svg+xml;base64,${btoa(svgStringMobile)}`;
 
 
 function transformString(input: string) {
-    const delimiter = 'Pegue';
+    const delimiters = ['Pegue', 'Remova'];
     const placeholder = '{SPLIT_HERE}';
-    const inputWithPlaceholders = input.replace(new RegExp(delimiter, 'g'), placeholder + delimiter);
+  
+    let inputWithPlaceholders = input;
+    delimiters.forEach(delimiter => {
+        inputWithPlaceholders = inputWithPlaceholders.replace(new RegExp(delimiter, 'g'), placeholder + delimiter);
+    });
   
     const segments = inputWithPlaceholders.split(placeholder);
   
     const transformedSegments = segments.map(segment => 
-      segment.trim().replace(/\|$/, '')
+        segment.trim().replace(/\|$/, '')
     ).filter(segment => segment !== ''); 
-
+  
     return transformedSegments;
 }
+
 
 export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
     const theme = useTheme();
