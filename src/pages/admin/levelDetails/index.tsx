@@ -15,7 +15,7 @@ export const LevelDetailsConfigPage = () => {
     }, []);
 
     return (
-        <DadinhoStack direction="column" gap={1} height="100%">
+        <DadinhoStack direction="column" gap={1} ml={2} height="100%">
             {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar os detalhes do nível</DadinhoTypography>}
             {levelProgress ? (
                 <DadinhoBox alignItems="center" justifyContent="center">

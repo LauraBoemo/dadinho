@@ -89,8 +89,8 @@ export const UserLayout = () => {
     <>
         <DadinhoBox
             sx={{
-                height: '700px',
-                width: '700px',
+                height: '100vh',
+                width: '50vw',
                 position: "fixed",
                 backgroundImage: `url(${base64SvgLeft})`,
                 backgroundSize: 'auto',
@@ -113,8 +113,8 @@ export const UserLayout = () => {
             <Outlet />
         <DadinhoBox
             sx={{
-                height: '700px',
-                width: '700px',
+                height: '100vh',
+                width: '50vw',
                 position: "fixed",
                 backgroundImage: `url(${base64SvgRight})`,
                 backgroundSize: 'auto',
