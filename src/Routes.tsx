@@ -10,6 +10,7 @@ import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
 import CommonLayout from "./layouts/common";
 import AdminLayout from "./layouts/admin";
+import UserLayout from "./layouts/user/UserLayout";
 
 const AppRoutes = () => {
   const isAdmin = adminVerify();
@@ -17,34 +18,36 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-          <Route index element={<LoginPage />} />
-          <Route path={`${PATHS.LEVELS}/:id`} element={<UserLevelsPage />} />
-          <Route path={`${PATHS.ANSWER}/:status`} element={<AnswerPage />} />
-          <Route element={<CommonLayout />}>
-            <>
-              <Route path={PATHS.LOGIN} element={<LoginPage />} />
-              <Route path={PATHS.ACCESS_INSTRUCTIONS} element={<AccessInstructionsPage />} />
-              <Route path={PATHS.CONFIG} element={<ConfigPage />} /> 
-            </>
+          <Route element={<UserLayout />}>
+            <Route index element={<LoginPage />} />
+            <Route path={`${PATHS.LEVELS}/:id`} element={<UserLevelsPage />} />
+            <Route path={`${PATHS.ANSWER}/:status`} element={<AnswerPage />} />
+            <Route element={<CommonLayout />}>
+              <>
+                <Route path={PATHS.LOGIN} element={<LoginPage />} />
+                <Route path={PATHS.ACCESS_INSTRUCTIONS} element={<AccessInstructionsPage />} />
+                <Route path={PATHS.CONFIG} element={<ConfigPage />} /> 
+              </>
+            </Route>
+            <Route element={<MapLayout />}>
+                {!isAdmin && (
+                  <Route path={PATHS.LEVELS} element={<LevelsPage />} />
+                )}
+            </Route>
+            {/* <Route path="*" element={<Error errorCode={ERROR_CODES.PAGE_NOT_FOUND} />} /> */}
           </Route>
-          {/* <Route path="*" element={<Error errorCode={ERROR_CODES.PAGE_NOT_FOUND} />} /> */}
-          <Route element={<AdminLayout />}>
-            {isAdmin && (
-                <>
-                  <Route path={`${PATHS.ADMIN}/${PATHS.DATA}`} element={<DataPage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.CONFIG}`} element={<AdminConfigPage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.USERS}`} element={<UsersPage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<AdminLevelsPage />} />
-                  <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/:id`} element={<LevelDetailsConfigPage />} />
-                </>
-              )
-            }
-          </Route>
-          <Route element={<MapLayout />}>
-              {!isAdmin && (
-                <Route path={PATHS.LEVELS} element={<LevelsPage />} />
-              )}
-          </Route>
+          {isAdmin && (
+            <Route element={<AdminLayout />}>
+                  <>
+                    <Route path={`${PATHS.ADMIN}/${PATHS.DATA}`} element={<DataPage />} />
+                    <Route path={`${PATHS.ADMIN}/${PATHS.CONFIG}`} element={<AdminConfigPage />} />
+                    <Route path={`${PATHS.ADMIN}/${PATHS.USERS}`} element={<UsersPage />} />
+                    <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}`} element={<AdminLevelsPage />} />
+                    <Route path={`${PATHS.ADMIN}/${PATHS.LEVELS_CONFIG}/:id`} element={<LevelDetailsConfigPage />} />
+                  </>
+            </Route>
+            )
+          }
       </Route>
     </Routes>
   );

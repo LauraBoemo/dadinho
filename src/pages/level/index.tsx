@@ -56,7 +56,7 @@ export const LevelPage = () => {
     }, [levelAttemptError])
 
     return (
-        <DadinhoStack height="100vh" minWidth="90vw" sx={{ overflowX: "hidden" }}>
+        <DadinhoStack height="100vh" minWidth="100vw" sx={{ overflowX: "hidden" }}>
             <DadinhoBox 
                 maxWidth="500px" 
                 margin="auto" 

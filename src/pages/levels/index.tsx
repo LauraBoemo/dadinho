@@ -41,7 +41,7 @@ export const LevelsPage = () => {
             <DadinhoBox 
                 position="fixed" 
                 alignSelf="center" 
-                zIndex="10" 
+                zIndex="9" 
                 width="93vw"
                 mt={-2} 
                 pb={2} 
@@ -90,7 +90,7 @@ export const LevelsPage = () => {
                 )
             }
             {/* @ts-ignore */}
-            <DadinhoBox  position="fixed" right="20px" bottom="25px">
+            <DadinhoBox  position="fixed" right="27vw" bottom="25px">
                 <DadinhoIconButton onClick={goToConfig}>
                     <SettingsOutlinedIcon />
                 </DadinhoIconButton>
