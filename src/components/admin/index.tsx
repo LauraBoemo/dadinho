@@ -1,6 +1,6 @@
 export * from "./data";
 export * from "./users";
-export * from "./navigation";
+export * from "./navigationBar";
 export * from "./contentBox";
 export * from "./levelDetails";
 
