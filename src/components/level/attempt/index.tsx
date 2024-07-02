@@ -131,7 +131,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                             }}
                         />
                     </DadinhoStack>
-                    <DadinhoBox bgcolor={theme.palette.primary.light} minWidth="30vw" minHeight="110px" borderRadius="10px" padding="10px">
+                    <DadinhoBox bgcolor={theme.palette.primary.light} minHeight="110px" borderRadius="10px" padding="10px">
                         <DadinhoStack direction="row" flexWrap="wrap" gap={0.5} p={1.5}>
                             {!selectedOptionIds.length && 
                                 <DadinhoTypography color={theme.palette.primary.main} textAlign="center" sx={{ opacity: 0.4}}>
