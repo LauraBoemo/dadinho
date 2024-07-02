@@ -2,7 +2,7 @@ import axios from "axios";
 import { responseSuccessCallback, responseFailCallback, requestSuccessCallback, requestFailCallback } from "./utilService";
 
 const baseService = axios.create({
-    baseURL: "http://localhost:8080/",
+    baseURL: "https://dadinho.ngrok.io",
 });
 
 baseService.defaults.headers.common["Content-Type"] = "application/json";
