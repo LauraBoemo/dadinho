@@ -25,37 +25,37 @@ export const StudentsContentTable = () => {
     
     return (
         <>
-            {!usersLoading && usersError && 
-                <DadinhoTypography textAlign="center" color="error">
-                    Não foi possível carregar os alunos
-                </DadinhoTypography>
-            }
-            {usersLoading && 
-                <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
-                    <DadinhoLoader />
-                </DadinhoBox>
-            }
-            {!usersLoading && !usersError &&
-                <>
-                    <ContentBox 
-                        title={
-                            <ContentBoxTableHeader title="Alunos Cadastrados" />
-                        } 
-                        content={
+            <ContentBox 
+                title={
+                    <ContentBoxTableHeader title="Alunos Cadastrados" />
+                } 
+                content={
+                    <>
+                        {!usersLoading && usersError && 
+                            <DadinhoTypography textAlign="center" color="error">
+                                Não foi possível carregar os alunos
+                            </DadinhoTypography>
+                        }
+                        {usersLoading && 
+                            <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
+                                <DadinhoLoader />
+                            </DadinhoBox>
+                        }
+                        {!usersLoading && !usersError &&
                             <StudentsTable content={rows} />
                         }
-                        sideContent={
-                            <ContentBoxTableSideContent 
-                                onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)}
-                                onButtonClick={() => setShowDialog(true)} 
-                                buttonLabel="Adicionar Aluno" 
-                                searchPlaceholder="Alunos" 
-                            />
-                        }
+                    </>
+                }
+                sideContent={
+                    <ContentBoxTableSideContent 
+                        onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)}
+                        onButtonClick={() => setShowDialog(true)} 
+                        buttonLabel="Adicionar Aluno" 
+                        searchPlaceholder="Alunos" 
                     />
-                    <AddStudentDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
-                </>
-             }
+                }
+            />
+            <AddStudentDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
         </>
     );
 }

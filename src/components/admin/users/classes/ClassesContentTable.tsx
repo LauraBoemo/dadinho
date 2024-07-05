@@ -33,37 +33,37 @@ export const ClassesContentTable = () => {
 
     return (
         <>
-            {!classesLoading && classesError && 
-                <DadinhoTypography textAlign="center" color="error">
-                    Não foi possível carregar os níveis
-                </DadinhoTypography>
-            }
-            {classesLoading && 
-                <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
-                    <DadinhoLoader />
-                </DadinhoBox>
-            }
-            {!classesLoading && !classesError &&
-                <>
-                    <ContentBox 
-                        title={
-                            <ContentBoxTableHeader title="Turmas Cadastrados" />
-                        } 
-                        content={
+            <ContentBox 
+                title={
+                    <ContentBoxTableHeader title="Turmas Cadastrados" />
+                } 
+                content={
+                    <>
+                        {!classesLoading && classesError && 
+                            <DadinhoTypography textAlign="center" color="error">
+                                Não foi possível carregar os níveis
+                            </DadinhoTypography>
+                        }
+                        {classesLoading && 
+                            <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
+                                <DadinhoLoader />
+                            </DadinhoBox>
+                        }
+                        {!classesLoading && !classesError &&
                             <ClassesTable content={rows} />
                         }
-                        sideContent={
-                            <ContentBoxTableSideContent 
-                                onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)} 
-                                onButtonClick={() => setShowDialog(true)} 
-                                buttonLabel="Adicionar Turma" 
-                                searchPlaceholder="Turmas" 
-                            />
-                        }
+                    </>
+                }
+                sideContent={
+                    <ContentBoxTableSideContent 
+                        onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)} 
+                        onButtonClick={() => setShowDialog(true)} 
+                        buttonLabel="Adicionar Turma" 
+                        searchPlaceholder="Turmas" 
                     />
-                    <AddClassDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
-                </>
-            }
+                }
+            />
+            <AddClassDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
         </>
     );
 }

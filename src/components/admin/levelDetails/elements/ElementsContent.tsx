@@ -3,6 +3,7 @@ import { ContentBox } from "../../contentBox";
 import { ContentBoxTableHeader, ContentBoxTableSideContent } from "../../users/contentBoxTableConfig";
 import { Recipe } from "../../../level";
 import AddElementDialog from "./AddElementDialog";
+import { DadinhoBox } from "../../../common";
 
 interface ElementsContentProps {
     level: any;
@@ -18,7 +19,9 @@ export const ElementsContent = ({ level }: ElementsContentProps) => {
                     <ContentBoxTableHeader title="Elementos exigidos" />
                 } 
                 content={
-                    <Recipe recipe={level?.recipe} />
+                    <DadinhoBox maxWidth="500px">
+                        <Recipe recipe={level?.recipe} />
+                    </DadinhoBox>
                 }
                 sideContent={
                     <ContentBoxTableSideContent onButtonClick={() => setShowDialog(true)} buttonLabel="Adicionar Elemento" />

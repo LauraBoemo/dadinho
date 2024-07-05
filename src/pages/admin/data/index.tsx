@@ -40,79 +40,81 @@ export const DataPage = () => {
                     <DadinhoLoader />
                 </DadinhoBox>
             }
-            <DadinhoStack direction="column" spacing={1} ml={2} sx={{ overflow: "auto" }}>
-                <DadinhoStack direction="row" gap={1}>
-                    <ContentBox 
-                        title={<DataContentBoxTitle title="Alunos cadastrados" />}
-                        subtitle="Total de alunos cadastrados." 
-                        content={
-                            <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                {getTotalStudents(users)}
-                            </DadinhoTypography>
-                        }
-                    />
-                    <ContentBox 
-                        title={<DataContentBoxTitle title="Alunos ativos" />}
-                        subtitle="Alunos que avançaram do 1º nível." 
-                        content={
-                            <DadinhoStack direction="row" alignItems="flex-end">
-                                <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                    {getCountStudentsPassedLevel1(users)}
-                                </DadinhoTypography>
-                                <DadinhoTypography variant="h4">
-                                    ({(getCountStudentsPassedLevel1(users)/getTotalStudents(users))*100}% do total de alunos)
-                                </DadinhoTypography>
-                            </DadinhoStack>
-                        }
-                    />
-                    <ContentBox 
-                        title={<DataContentBoxTitle title="Nível mais alto atingido" />}
-                        subtitle="Ao menos 1 aluno atingiu este nível." 
-                        content={
-                            <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                {getMaxLevelReached(users)}/7
-                            </DadinhoTypography>
-                        }
-                    />
-                </DadinhoStack>
-                <DadinhoStack direction="row" gap={1}>
-                    <ContentBox 
-                        title={<DataContentBoxTitle title="Quantidade de alunos em níveis" />}
-                        content={
-                            <DadinhoBarChart data={formatStudentData(users)} />
-                        }
-                    />
-                    <DadinhoStack direction="column" gap={1}>
+            {!usersLoading && !usersError && 
+                <DadinhoStack direction="column" spacing={1} ml={2} sx={{ overflow: "auto" }}>
+                    <DadinhoStack direction="row" gap={1}>
                         <ContentBox 
-                            title={<DataContentBoxTitle title="Maior média de tempo por nível" />}
+                            title={<DataContentBoxTitle title="Alunos cadastrados" />}
+                            subtitle="Total de alunos cadastrados." 
+                            content={
+                                <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
+                                    {getTotalStudents(users)}
+                                </DadinhoTypography>
+                            }
+                        />
+                        <ContentBox 
+                            title={<DataContentBoxTitle title="Alunos ativos" />}
+                            subtitle="Alunos que avançaram do 1º nível." 
                             content={
                                 <DadinhoStack direction="row" alignItems="flex-end">
                                     <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                        {getHighestAverageTime(users).averageTime}min
+                                        {getCountStudentsPassedLevel1(users)}
                                     </DadinhoTypography>
                                     <DadinhoTypography variant="h4">
-                                        (Nível {getHighestAverageTime(users).level})
+                                        ({(getCountStudentsPassedLevel1(users)/getTotalStudents(users))*100}% do total de alunos)
                                     </DadinhoTypography>
                                 </DadinhoStack>
                             }
                         />
                         <ContentBox 
-                            title={<DataContentBoxTitle title="Menor média de tempo por nível" />}
+                            title={<DataContentBoxTitle title="Nível mais alto atingido" />}
+                            subtitle="Ao menos 1 aluno atingiu este nível." 
                             content={
-                                <DadinhoStack direction="row" alignItems="flex-end">
-                                    <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                        {getLowestAverageTime(users).averageTime}min
-                                    </DadinhoTypography>
-                                    <DadinhoTypography variant="h4">
-                                        (Nível {getLowestAverageTime(users).level})
-                                    </DadinhoTypography>
-                                </DadinhoStack>
+                                <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
+                                    {getMaxLevelReached(users)}/7
+                                </DadinhoTypography>
                             }
                         />
                     </DadinhoStack>
+                    <DadinhoStack direction="row" gap={1}>
+                        <ContentBox 
+                            title={<DataContentBoxTitle title="Quantidade de alunos em níveis" />}
+                            content={
+                                <DadinhoBarChart data={formatStudentData(users)} />
+                            }
+                        />
+                        <DadinhoStack direction="column" gap={1}>
+                            <ContentBox 
+                                title={<DataContentBoxTitle title="Maior média de tempo por nível" />}
+                                content={
+                                    <DadinhoStack direction="row" alignItems="flex-end">
+                                        <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
+                                            {getHighestAverageTime(users).averageTime}min
+                                        </DadinhoTypography>
+                                        <DadinhoTypography variant="h4">
+                                            (Nível {getHighestAverageTime(users).level})
+                                        </DadinhoTypography>
+                                    </DadinhoStack>
+                                }
+                            />
+                            <ContentBox 
+                                title={<DataContentBoxTitle title="Menor média de tempo por nível" />}
+                                content={
+                                    <DadinhoStack direction="row" alignItems="flex-end">
+                                        <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
+                                            {getLowestAverageTime(users).averageTime}min
+                                        </DadinhoTypography>
+                                        <DadinhoTypography variant="h4">
+                                            (Nível {getLowestAverageTime(users).level})
+                                        </DadinhoTypography>
+                                    </DadinhoStack>
+                                }
+                            />
+                        </DadinhoStack>
+                    </DadinhoStack>
+                    <StudentsProgressContentTable contentTable={formatContentData(users)} />
                 </DadinhoStack>
-                <StudentsProgressContentTable contentTable={formatContentData(users)} />
-            </DadinhoStack>
+            }
         </>
     );
 }

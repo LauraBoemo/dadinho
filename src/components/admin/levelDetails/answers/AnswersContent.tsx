@@ -26,7 +26,7 @@ export const AnswersContent = ({ level }: AnswersContentProps) => {
                     </DadinhoTypography>
                 }
                 sideContent={
-                    <ContentBoxTableSideContent onButtonClick={() => setShowDialog(true)} buttonLabel="Adicionar Resposta" />
+                    <></>
                 }
             />
             {/* <AddElementDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} levelId={level?.id} /> */}

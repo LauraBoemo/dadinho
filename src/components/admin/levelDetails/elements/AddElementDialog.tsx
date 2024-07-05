@@ -14,7 +14,7 @@ export const AddElementDialog = ({ isOpen, levelId, handleCloseDialog }: AddElem
             maxWidth="sm"
             hasCloseIcon
             fullWidth
-            title={"Adicionar Professor"}
+            title={"Adicionar Elemento"}
             open={isOpen}
             onClose={handleCloseDialog}
         >

@@ -27,37 +27,37 @@ export const LevelsContentTable = () => {
 
     return (
         <>
-            {!levelsLoading && levelsError && 
-                <DadinhoTypography textAlign="center" color="error">
-                    Não foi possível carregar os níveis
-                </DadinhoTypography>
-            }
-            {levelsLoading && 
-                <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
-                    <DadinhoLoader />
-                </DadinhoBox>
-            }
-            {!levelsLoading && !levelsError &&
-                <>
-                    <ContentBox 
-                        title={
-                            <ContentBoxTableHeader title="Níveis Cadastrados" />
-                        } 
-                        content={
-                            <LevelsTable content={rows} />
+            <ContentBox 
+                title={
+                    <ContentBoxTableHeader title="Níveis Cadastrados" />
+                } 
+                content={
+                    <>
+                        {!levelsLoading && levelsError && 
+                            <DadinhoTypography textAlign="center" color="error">
+                                Não foi possível carregar os níveis
+                            </DadinhoTypography>
                         }
-                        sideContent={
-                            <ContentBoxTableSideContent 
-                                onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)}
-                                onButtonClick={() => setShowDialog(true)} 
-                                buttonLabel="Adicionar Nível" 
-                                searchPlaceholder="Nível"
-                            />
+                        {levelsLoading && 
+                            <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
+                                <DadinhoLoader />
+                            </DadinhoBox>
                         }
+                        {!levelsLoading && !levelsError &&
+                                        <LevelsTable content={rows} />
+                        }
+                    </>
+                }
+                sideContent={
+                    <ContentBoxTableSideContent 
+                        onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)}
+                        onButtonClick={() => setShowDialog(true)} 
+                        buttonLabel="Adicionar Nível" 
+                        searchPlaceholder="Nível"
                     />
-                    <AddLevelDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
-                </>
-             }
+                }
+            />
+            <AddLevelDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
         </>
     );
 }

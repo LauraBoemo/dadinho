@@ -89,7 +89,7 @@ export const Recipe = ({ recipe }: RecipeComponentProps) => {
                     height="10vh" 
                     textAlign="center"
                     bgcolor={theme.palette.primary.light}  
-                    border="1.5px solid" 
+                    border="2px solid" 
                     borderRadius="10px"
                     sx={{ 
                         [theme.breakpoints.down('sm')]: {
@@ -99,7 +99,7 @@ export const Recipe = ({ recipe }: RecipeComponentProps) => {
                 >
                     <DadinhoTypography variant="body1">Monte uma sequência de comandos que agrupe os seguintes itens...</DadinhoTypography>
                     <DadinhoBox sx={{ mt: 1, textAlign: "-webkit-center" }}>
-                        <Basket items={recipeToBasket} index={1} customHeight="90px" noTitle customBg={"white"} />
+                        <Basket items={recipeToBasket} index={1} customHeight="auto" noTitle customBg={"white"} />
                     </DadinhoBox>
                 </DadinhoBox>
             </DadinhoStack>

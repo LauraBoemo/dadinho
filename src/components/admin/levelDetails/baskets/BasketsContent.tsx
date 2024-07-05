@@ -3,6 +3,7 @@ import { ContentBox } from "../../contentBox";
 import { ContentBoxTableHeader, ContentBoxTableSideContent } from "../../users/contentBoxTableConfig";
 import { Baskets } from "../../../level";
 import AddBasketDialog from "./AddBasketDialog";
+import { DadinhoBox } from "../../../common";
 
 interface BasketsContentProps {
     level: any;
@@ -18,7 +19,9 @@ export const BasketsContent = ({ level }: BasketsContentProps) => {
                     <ContentBoxTableHeader title="Cestos Disponíveis" />
                 } 
                 content={
-                    <Baskets baskets={level?.baskets} />
+                    <DadinhoBox maxWidth="500px">
+                        <Baskets baskets={level?.baskets} />
+                    </DadinhoBox>
                 }
                 sideContent={
                     <ContentBoxTableSideContent onButtonClick={() => setShowDialog(true)} buttonLabel="Adicionar Cesto" />

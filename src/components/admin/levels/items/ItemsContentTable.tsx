@@ -25,37 +25,37 @@ export const ItemsContentTable = () => {
 
     return (
         <>
-            {!itemsLoading && itemsError && 
-                <DadinhoTypography textAlign="center" color="error">
-                    Não foi possível carregar os níveis
-                </DadinhoTypography>
-            }
-            {itemsLoading && 
-                <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
-                    <DadinhoLoader />
-                </DadinhoBox>
-            }
-            {!itemsLoading && !itemsError &&
-                <>
-                    <ContentBox 
-                        title={
-                            <ContentBoxTableHeader title="Itens Cadastrados" />
-                        } 
-                        content={
+            <ContentBox 
+                title={
+                    <ContentBoxTableHeader title="Itens Cadastrados" />
+                } 
+                content={
+                    <>
+                        {!itemsLoading && itemsError && 
+                            <DadinhoTypography textAlign="center" color="error">
+                                Não foi possível carregar os níveis
+                            </DadinhoTypography>
+                        }
+                        {itemsLoading && 
+                            <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
+                                <DadinhoLoader />
+                            </DadinhoBox>
+                        }
+                        {!itemsLoading && !itemsError &&
                             <ItemsTable content={rows} />
                         }
-                        sideContent={
-                            <ContentBoxTableSideContent
-                                onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)} 
-                                onButtonClick={() => setShowDialog(true)} 
-                                buttonLabel="Adicionar Item" 
-                                searchPlaceholder="Item" 
-                            />
-                        }
+                    </>
+                }
+                sideContent={
+                    <ContentBoxTableSideContent
+                        onSearchKeyUpdate={(searchKeyUpdate) => setSearchKey(searchKeyUpdate)} 
+                        onButtonClick={() => setShowDialog(true)} 
+                        buttonLabel="Adicionar Item" 
+                        searchPlaceholder="Item" 
                     />
-                    <AddItemDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
-                </>
-             }
+                }
+            />
+            <AddItemDialog isOpen={showDialog} handleCloseDialog={() => setShowDialog(false)} />
         </>
     );
 }
