@@ -6,7 +6,7 @@ const useLevelAttempt = () => {
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const api = async ({ userId, levelId, userAnswers }: LevelAttemptPayload) => {
+  const api = async ({ userId, levelId, userAnswers, totalTime }: LevelAttemptPayload) => {
     try {
       setLoading(true);
       setLevelAttemptData(null);
@@ -14,6 +14,7 @@ const useLevelAttempt = () => {
       const res = (await levelAttempt({
         userId,
         levelId,
+        totalTime,
         userAnswers
       })) as unknown as boolean;
       setLevelAttemptData(res);

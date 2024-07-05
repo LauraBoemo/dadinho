@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from 'react-toastify';
@@ -19,14 +20,34 @@ export const LevelPage = () => {
     const theme = useTheme();
     const navigate = useNavigate();
 
+    const [seconds, setSeconds] = useState(0);
+    const intervalId = useRef<NodeJS.Timeout | null>(null);
+    const secondsRef = useRef(0);
+
     const [getLevel, level, levelProgress, levelError] = useLevel();
     const [postLevelAttempt, levelAttempt, levelAttemptProgress, levelAttemptError] = useLevelAttempt();
 
+    function startCounting() {
+        intervalId.current = setInterval(() => {
+            secondsRef.current++;
+            setSeconds(secondsRef.current);
+        }, 1000);
+    }
+
+    function stopCounting() {
+        if (intervalId.current) {
+            clearInterval(intervalId.current);
+            intervalId.current = null;
+        }
+    }
+
     const handleAttempt = (attempt: string[]) => {
+        stopCounting();
         postLevelAttempt({
             userId: userId,
             levelId: id,
             userAnswers: attempt,
+            totalTime: seconds,
         });
     }
 
@@ -34,11 +55,18 @@ export const LevelPage = () => {
         if(levelAttempt !== null) {
             navigate(`${PATHS.ANSWER}${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
         }
-    }, [levelAttempt])
+    }, [levelAttempt, navigate])
 
     useEffect(() => {
         getLevel({ id: id })
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        if (level) {
+            startCounting();
+        }
+        return () => stopCounting();
+    }, [level]);
 
     useEffect(() => {
         if(levelAttemptError) {

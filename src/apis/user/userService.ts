@@ -13,6 +13,7 @@ export interface GetUsersResponse {
   email: string;
   password: string;
   role: string;
+  concludedLevels: any;
 }
 
 const addUser = (payload: AddUserPayload, config?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> => {

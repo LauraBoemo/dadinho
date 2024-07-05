@@ -34,6 +34,7 @@ export interface LevelResponse {
 export interface LevelAttemptPayload {
   userId: number,
 	levelId: number,
+  totalTime: number,
 	userAnswers: string[]
 }
 
