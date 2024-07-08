@@ -4,7 +4,6 @@ import { DadinhoStack } from "../../common";
 
 export const DadinhoBarChart = (data: any) => {
   const theme = useTheme();
-  console.log(data);
 
   return (
     <DadinhoStack marginLeft={-4} alignItems="center">

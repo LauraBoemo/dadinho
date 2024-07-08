@@ -8,7 +8,6 @@ import { DadinhoBox, DadinhoDivider, DadinhoFooter, DadinhoHeader, DadinhoLink, 
 import { adminVerify, setStorage } from "../../apis/utilsStorage";
 import { LoginResponse } from "../../apis/login/loginService";
 import { useTheme } from "../../theme";
-import AddStudentForm from "../../components/admin/users/students/AddStudentForm";
 
 
 const svgStringUFSM = `<svg width="1993" height="1993" viewBox="0 0 1993 1993" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

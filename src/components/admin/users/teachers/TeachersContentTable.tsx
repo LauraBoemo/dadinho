@@ -14,14 +14,13 @@ export const TeachersContentTable = () => {
         getUsers({ role: "TEACHER" })
     }, []);
 
-
     const rows = useMemo(() => {
         if (!searchKey || searchKey === "") return users;
-      
-        return users?.filter((level: { name: string; }) => 
-          level.name.toLowerCase().includes(searchKey.toLowerCase())
+        
+        return users?.filter(({ user }: any) =>
+            user.name.toLowerCase().includes(searchKey.toLowerCase())
         );
-      }, [users, searchKey]);
+    }, [users, searchKey]);
 
     return (
         <>

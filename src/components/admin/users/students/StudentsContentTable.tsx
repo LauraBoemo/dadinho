@@ -16,13 +16,13 @@ export const StudentsContentTable = () => {
     }, []);
 
     const rows = useMemo(() => {
-        if (!searchKey || searchKey === "") return users;
-      
-        return users?.filter((level: { name: string; }) => 
-          level.name.toLowerCase().includes(searchKey.toLowerCase())
-        );
+    if (!searchKey || searchKey === "") return users;
+
+    return users?.filter(({ user }: any) =>
+        user.name.toLowerCase().includes(searchKey.toLowerCase())
+    );
     }, [users, searchKey]);
-    
+
     return (
         <>
             <ContentBox 

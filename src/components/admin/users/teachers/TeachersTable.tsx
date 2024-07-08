@@ -40,13 +40,13 @@ export default function TeachersTable({ content }: TeachersTableProps) {
           <TableBody>
             {cappedRows?.map((row) => (
               <TableRow
-                key={row.id}
+                key={row.user.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }  }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.user.name}
                 </TableCell>
-                <TableCell align="right">{row.email}</TableCell>
+                <TableCell align="right">{row.user.email}</TableCell>
               </TableRow>
             ))}
           </TableBody>

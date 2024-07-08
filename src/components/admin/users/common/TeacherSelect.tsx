@@ -43,8 +43,8 @@ export function TeacherSelect({ form, field, ...props }: TeacherSelectProps) {
   const options: Array<UserOption> = useMemo(() => {
     if (!users) return [];
     return (users as any[])
-      ?.filter(({ name }) => !searchKey || name.match(new RegExp(searchKey, "i")))
-      .map(({ id, name }: any) => ({ id, name }));
+      ?.filter(({ user }) => !searchKey || user.name.match(new RegExp(searchKey, "i")))
+      .map(({ user }) => ({ id: user.id, name: user.name }));
   }, [users, searchKey]);
 
   return (

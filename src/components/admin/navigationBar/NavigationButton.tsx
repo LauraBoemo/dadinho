@@ -27,7 +27,7 @@ const NavigationButton = ({ name, icon, navigationPath }: NavigationButtonProps)
         >
             <DadinhoStack width="100%" direction="row" gap={1} alignContent="left">
                 {icon}
-                <DadinhoTypography>{name}</DadinhoTypography>
+                <DadinhoTypography alignSelf="center">{name}</DadinhoTypography>
             </DadinhoStack>
         </DadinhoIconButton>
     )

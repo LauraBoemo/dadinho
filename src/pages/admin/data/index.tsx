@@ -26,8 +26,6 @@ export const DataPage = () => {
         getUsers({ role: "STUDENT" })
     }, []);
 
-    console.log(users);
-
     return (
         <>
             {!usersLoading && usersError && 

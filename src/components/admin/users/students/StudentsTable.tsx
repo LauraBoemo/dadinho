@@ -35,18 +35,24 @@ export default function StudentsTable({ content }: StudentsTableProps) {
             <TableRow>
               <TableCell>Nome</TableCell>
               <TableCell align="right">Email</TableCell>
+              <TableCell align="right">Turma</TableCell>
+              <TableCell align="right">Professor Responsável</TableCell>
+              <TableCell align="right">Série</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {cappedRows?.map((row) => (
               <TableRow
-                key={row.id}
+                key={row.user.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }  }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.user.name}
                 </TableCell>
-                <TableCell align="right">{row.email}</TableCell>
+                <TableCell align="right">{row.user.email}</TableCell>
+                <TableCell align="right">{row.className}</TableCell>
+                <TableCell align="right">{row.classTeacher.name}</TableCell>
+                <TableCell align="right">{row.classGrade}</TableCell>
               </TableRow>
             ))}
           </TableBody>
