@@ -125,13 +125,12 @@ export const ConfigPage = () => {
                         zIndex: -1, 
                     }}
                 />
-            <DadinhoStack direction="column" spacing={2}>
-                {/* TODO: Complete this mock with real info */}
+            {/* <DadinhoStack direction="column" spacing={2}>
                 <ConfigContent title="Seu Nome" content="Laura Boemo" />
                 <ConfigContent title="Seu Email" content="lauraboemo@gmail.com" />
                 <ConfigContent title="Sua Turma" content="Turma 04" />
                 <ConfigContent title="Seu Professor" content="Paulo Pizzutti" />
-            </DadinhoStack>
+            </DadinhoStack> */}
             <DadinhoButton variant="outlined" size="medium" onClick={goToLogin}>Sair</DadinhoButton>
             <DadinhoFooter />
         </DadinhoStack>

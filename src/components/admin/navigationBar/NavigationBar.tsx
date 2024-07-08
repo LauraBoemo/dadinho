@@ -40,8 +40,8 @@ export const NavigationBar = () => {
                     <DadinhoLogo displayName />
                 </DadinhoBox>
                 <NavigationButton name="Dados" icon={<MultilineChartIcon />} navigationPath={PATHS.DATA} />
-                <NavigationButton name="Usuários" icon={<PeopleAltIcon />} navigationPath={PATHS.USERS} />
-                <NavigationButton name="Níveis" icon={<FlagIcon />} navigationPath={PATHS.LEVELS_CONFIG} />
+                {sessionStorage.getItem("role") === "ADMIN" && <NavigationButton name="Usuários" icon={<PeopleAltIcon />} navigationPath={PATHS.USERS} />}
+                {sessionStorage.getItem("role") === "ADMIN" && <NavigationButton name="Níveis" icon={<FlagIcon />} navigationPath={PATHS.LEVELS_CONFIG} />}
             </DadinhoStack>
             <DadinhoBox display="flex" justifyContent="left">
                 <DadinhoIconButton onClick={goToConfig}>

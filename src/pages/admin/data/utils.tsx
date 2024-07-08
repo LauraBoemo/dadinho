@@ -4,14 +4,14 @@ export const getTotalStudents = (students: any[]) => {
 
 export const getCountStudentsPassedLevel1 = (students: any[]) => {
     return students?.filter((student) => 
-        student?.concludedLevels?.some((level: { level: { id: number; }; }) => level.level.id > 1)
+        student?.user?.concludedLevels?.some((level: { level: { id: number; }; }) => level.level.id > 1)
     )?.length;
 };
 
 export const getMaxLevelReached = (students: any[]) => {
     let maxLevel = 0;
     students?.forEach((student) => {
-        student?.concludedLevels?.forEach((level: { level: { title: string; }; }) => {
+        student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; }) => {
             const levelNumber = parseInt(level.level.title, 10);
             if (levelNumber > maxLevel) {
                 maxLevel = levelNumber;
@@ -24,8 +24,8 @@ export const getMaxLevelReached = (students: any[]) => {
 export const getHighestAverageTime = (students: any[]) => {
     const levelTimes = {};
 
-    students?.forEach((student: { concludedLevels: any[]; }) => {
-        student?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: any; }) => {
+    students?.forEach((student: any) => {
+        student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: any; }) => {
             const levelNumber = parseInt(level.level.title, 10);
             // @ts-ignore
             if (!levelTimes[levelNumber]) {
@@ -57,8 +57,8 @@ export const getHighestAverageTime = (students: any[]) => {
 export const getLowestAverageTime = (students: any[]) => {
     const levelTimes = {};
 
-    students?.forEach((student: { concludedLevels: any[]; }) => {
-        student?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: any; }) => {
+    students?.forEach((student: any) => {
+        student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: any; }) => {
             const levelNumber = parseInt(level.level.title, 10);
             // @ts-ignore
             if (!levelTimes[levelNumber]) {
@@ -93,7 +93,7 @@ export const formatStudentData = (students: any[]) => {
     students?.forEach((student) => {
         const levelsCompleted = new Set();
 
-        student?.concludedLevels?.forEach((level: { level: { title: string; }; }) => {
+        student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; }) => {
             const levelNumber = parseInt(level.level.title, 10);
             levelsCompleted.add(levelNumber);
         });
@@ -123,20 +123,20 @@ export const formatContentData = (students: any[]) => {
     return students?.map((student) => {
         let highestLevel = 0;
         let totalTime = 0;
-        student?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: number; }) => {
+        student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: number; }) => {
             const levelNumber = parseInt(level.level.title, 10);
             if (levelNumber > highestLevel) {
                 highestLevel = levelNumber;
             }
             totalTime += level.totalTime;
         });
-        const averageTime = student.concludedLevels?.length > 0 ? (totalTime / student.concludedLevels?.length / 60).toFixed(2) : 0;
+        const averageTime = student.user?.concludedLevels?.length > 0 ? (totalTime / student.user?.concludedLevels?.length / 60).toFixed(2) : 0;
 
         return {
             name: student.user.name,
-            teacher: student.classTeacher.name,
-            class: student.className,
-            serie: student.classGrade,
+            class: student?.className,
+            teacher: student?.classTeacher?.name,
+            serie: student?.classGrade,
             highestLevel: highestLevel.toString(),
             averageTime: averageTime.toString()
         };

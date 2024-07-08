@@ -26,7 +26,7 @@ const handleLogout = () => {
 
 const adminVerify = () => {
   try {
-    return sessionStorage.getItem("role") === "ADMIN";
+    return sessionStorage.getItem("role") === "ADMIN" || sessionStorage.getItem("role") === "TEACHER";
   } catch (exception) {
     console.error(`Dadinho Error: sessionStorage error. Unable to read role value!`);
   }
