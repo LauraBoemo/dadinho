@@ -15,7 +15,7 @@ import NavigationButton from "./NavigationButton";
 export const NavigationBar = () => {
     const theme = useTheme();
     const navigate = useNavigate();
-
+    
     const goToConfig = () => {
         navigate(`${PATHS.ADMIN}/${PATHS.CONFIG}`);
     }

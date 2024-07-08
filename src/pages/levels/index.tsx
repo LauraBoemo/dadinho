@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
 import { getStorage } from "../../apis/utilsStorage";
 import { useLevels } from "../../apis/levels/useLevels";
@@ -21,6 +22,10 @@ export const LevelsPage = () => {
 
     const goToConfig = () => {
         navigate(PATHS.CONFIG);
+    }
+
+    const goToGameInstructions = () => {
+        navigate(PATHS.GAME_INSTRUCTIONS);
     }
     
     useEffect(() => {
@@ -90,10 +95,15 @@ export const LevelsPage = () => {
                 )
             }
             {/* @ts-ignore */}
-            <DadinhoBox  position="fixed" right="27vw" bottom="25px">
-                <DadinhoIconButton onClick={goToConfig}>
-                    <SettingsOutlinedIcon />
-                </DadinhoIconButton>
+            <DadinhoBox position="fixed" right="27vw" bottom="25px">
+                <DadinhoStack direction="column" gap={1}>
+                    <DadinhoIconButton onClick={goToGameInstructions}>
+                        <QuestionMarkIcon />
+                    </DadinhoIconButton>
+                    <DadinhoIconButton onClick={goToConfig}>
+                        <SettingsOutlinedIcon />
+                    </DadinhoIconButton>
+                </DadinhoStack>
             </DadinhoBox>
         </DadinhoStack>
     );

@@ -5,7 +5,7 @@ import { PATHS } from "../../constants/Path";
 
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
-import { DadinhoButton, DadinhoStack, DadinhoFooter, DadinhoHeader, DadinhoTypography, DadinhoBox } from "../../components";
+import { DadinhoButton, DadinhoStack, DadinhoFooter, DadinhoHeader, DadinhoBox } from "../../components";
 import { handleLogout } from "../../apis/utilsStorage";
 
 
@@ -74,21 +74,6 @@ const settingsIcon = `<svg width="360" height="360" viewBox="0 0 360 360" fill="
 
 const base64Svg = `data:image/svg+xml;base64,${btoa(settingsIcon)}`;
 
-interface ConfigContentProps {
-    title: string,
-    content: string,
-}
-
-const ConfigContent = ({ title, content }: ConfigContentProps) => {
-    const theme = useTheme();
-
-    return (
-        <DadinhoStack direction="column" spacing={0.5} textAlign="left">
-            <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightRegular}>{title}</DadinhoTypography>
-            <DadinhoTypography variant="h2" fontWeight={theme.typography.fontWeightLight}>{content}</DadinhoTypography>
-        </DadinhoStack>
-    )
-}
 
 export const ConfigPage = () => {
     const theme = useTheme();
@@ -125,12 +110,6 @@ export const ConfigPage = () => {
                         zIndex: -1, 
                     }}
                 />
-            {/* <DadinhoStack direction="column" spacing={2}>
-                <ConfigContent title="Seu Nome" content="Laura Boemo" />
-                <ConfigContent title="Seu Email" content="lauraboemo@gmail.com" />
-                <ConfigContent title="Sua Turma" content="Turma 04" />
-                <ConfigContent title="Seu Professor" content="Paulo Pizzutti" />
-            </DadinhoStack> */}
             <DadinhoButton variant="outlined" size="medium" onClick={goToLogin}>Sair</DadinhoButton>
             <DadinhoFooter />
         </DadinhoStack>

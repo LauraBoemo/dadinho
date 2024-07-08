@@ -4,7 +4,7 @@ import AppLayout from "./layouts/app";
 import { PATHS } from "./constants/Path";
 import { adminVerify } from "./apis/utilsStorage";
 
-import { LoginPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage } from "./pages";
+import { LoginPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage, GameInstructionsPage } from "./pages";
 import { DataPage, LevelDetailsConfigPage, LevelsPage as AdminLevelsPage, UsersPage, AdminConfigPage } from "./pages/admin";
 import AccessInstructionsPage from "./pages/accessInstructions";
 import { MapLayout } from "./layouts/map";
@@ -27,6 +27,7 @@ const AppRoutes = () => {
                 <Route path={PATHS.LOGIN} element={<LoginPage />} />
                 <Route path={PATHS.ACCESS_INSTRUCTIONS} element={<AccessInstructionsPage />} />
                 <Route path={PATHS.CONFIG} element={<ConfigPage />} /> 
+                <Route path={PATHS.GAME_INSTRUCTIONS} element={<GameInstructionsPage />} /> 
               </>
             </Route>
             <Route element={<MapLayout />}>
@@ -34,7 +35,6 @@ const AppRoutes = () => {
                   <Route path={PATHS.LEVELS} element={<LevelsPage />} />
                 )}
             </Route>
-            {/* <Route path="*" element={<Error errorCode={ERROR_CODES.PAGE_NOT_FOUND} />} /> */}
           </Route>
           {isAdmin && (
             <Route element={<AdminLayout />}>
