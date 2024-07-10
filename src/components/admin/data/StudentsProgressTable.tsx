@@ -53,7 +53,7 @@ export default function StudentsProgressTable({ content }: StudentsProgressTable
                 <TableCell align="right">{row.teacher}</TableCell>
                 <TableCell align="right">{row.class}</TableCell>
                 <TableCell align="right">{row.serie}</TableCell>
-                <TableCell align="right">{row.highestLevel}</TableCell>
+                <TableCell align="right">{`Nível ${row.highestLevel}`}</TableCell>
                 <TableCell align="right">{row.averageTime}min</TableCell>
               </TableRow>
             ))}
