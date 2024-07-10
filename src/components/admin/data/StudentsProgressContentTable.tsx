@@ -6,8 +6,6 @@ import StudentsProgressTable from "./StudentsProgressTable";
 export const StudentsProgressContentTable = (contentTable: any) => {
     const [searchKey, setSearchKey] = useState<string>();
 
-    console.log(contentTable);
-
     const rows = useMemo(() => {
         if (!searchKey || searchKey === "") return contentTable.contentTable;
       
