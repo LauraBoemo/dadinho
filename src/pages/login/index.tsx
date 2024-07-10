@@ -57,6 +57,13 @@ export const LoginPage = () => {
         location.reload();
     };
 
+    const handleGameInstructions = () => {
+        navigate(`${PATHS.GAME_INSTRUCTIONS}`);
+
+        // eslint-disable-next-line no-restricted-globals
+        location.reload();
+    };
+
     return (
         <DadinhoStack p={1} maxWidth="500px" minWidth="500px" height="100vh" justifyContent={"space-between"} sx={{ 
             [theme.breakpoints.down('md')]: {
@@ -66,7 +73,11 @@ export const LoginPage = () => {
             <DadinhoHeader isMainPage displayLogoName />
             <DadinhoStack direction="column" spacing={2}>
                 <Login onLoginSuccess={handleLogin} />
-                <DadinhoLink onClick={handleAccessInstructions} underline="none" textAlign="center">Como conseguir acesso?</DadinhoLink>
+                <DadinhoStack direction="row" justifyContent="center" gap={1}>
+                    <DadinhoLink onClick={handleAccessInstructions} underline="none" textAlign="center">Como conseguir acesso?</DadinhoLink>
+                    <DadinhoDivider orientation="vertical" />
+                    <DadinhoLink onClick={handleGameInstructions} underline="none" color={`${theme.palette.warning.main} !important`} mt={"0 !important"} textAlign="center">Como jogar?</DadinhoLink>
+                </DadinhoStack>
             </DadinhoStack>
             <DadinhoBox border="2px solid" borderRadius="10px" p={1.5} sx={{ 
                     [theme.breakpoints.down('md')]: {

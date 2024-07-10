@@ -8,7 +8,7 @@ export const GameInstructionsPage = () => {
     const theme = useTheme();
     
     return (
-        <DadinhoStack maxWidth="500px" overflow="auto">
+        <DadinhoStack maxWidth="500px" overflow="overlay">
             <DadinhoHeader pageTitle="Como Jogar?" backButtonCustomIcon={<QuestionMarkIcon />} backButton />
             <DadinhoStack direction="column" textAlign="left" my={2}>
                 <DadinhoTypography variant="h2" textAlign="center">
@@ -25,7 +25,7 @@ export const GameInstructionsPage = () => {
                     <DadinhoBox 
                         p={1.5}
                         mt={2} 
-                        width="450px" 
+                        width="440px" 
                         height="10vh" 
                         textAlign="center"
                         bgcolor={theme.palette.primary.light}  

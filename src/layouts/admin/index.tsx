@@ -14,7 +14,7 @@ export const AdminLayout = () => {
           maxWidth="1400px" 
           marginRight="auto" 
           maxHeight="90vh" 
-          overflow="scroll"
+          overflow="overlay"
         >
           <Outlet />
         </DadinhoBox>

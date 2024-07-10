@@ -11,8 +11,10 @@ export const StudentsProgressContentTable = (contentTable: any) => {
     const rows = useMemo(() => {
         if (!searchKey || searchKey === "") return contentTable.contentTable;
       
-        return contentTable.contentTable?.filter((level: { name: string; }) => 
-          level.name.toLowerCase().includes(searchKey.toLowerCase())
+        return contentTable.contentTable?.filter((level: any) => 
+          level.name.toLowerCase().includes(searchKey.toLowerCase()) || 
+          level.teacher.toLowerCase().includes(searchKey.toLowerCase()) || 
+          level.class.toLowerCase().includes(searchKey.toLowerCase())
         );
       }, [contentTable.contentTable, searchKey]);
 

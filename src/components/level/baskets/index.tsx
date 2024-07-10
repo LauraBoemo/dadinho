@@ -28,14 +28,13 @@ export const Baskets = ({ baskets }: BasketsProps) => {
                     >
                         <DadinhoTypography>Cestos de Itens</DadinhoTypography>
                     </DadinhoBox>
-                <DadinhoBox border="2px solid" borderRadius="10px" overflow="scroll" p={2}>
+                <DadinhoBox border="2px solid" borderRadius="10px" overflow="overlay" p={2}>
                     <DadinhoStack 
                         spacing={1} 
                         pt={1}
                         direction="row" 
-                        paddingBottom={1}
                         sx={{ 
-                            width: "590px", 
+                            width: "580px", 
                             overflow: "auto", 
                             whiteSpace: "nowrap", 
                             

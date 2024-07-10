@@ -23,7 +23,7 @@ export const AnswersInput = ({ onAnswerUpdate }: InsertAnswersProps ) => {
     };
 
     const handleRemoveClick = (index: number) => {
-        const newValues = values.filter((_, i) => i !== index); 
+        const newValues = values?.filter((_, i) => i !== index); 
         setValues(newValues);
     };
 
