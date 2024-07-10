@@ -12,9 +12,9 @@ export const StudentsProgressContentTable = (contentTable: any) => {
         if (!searchKey || searchKey === "") return contentTable.contentTable;
       
         return contentTable.contentTable?.filter((level: any) => 
-          level.name.toLowerCase().includes(searchKey.toLowerCase()) || 
-          level.teacher.toLowerCase().includes(searchKey.toLowerCase()) || 
-          level.class.toLowerCase().includes(searchKey.toLowerCase())
+          level?.name.toLowerCase().includes(searchKey.toLowerCase()) || 
+          level?.teacher.toLowerCase().includes(searchKey.toLowerCase()) || 
+          level?.class.toLowerCase().includes(searchKey.toLowerCase())
         );
       }, [contentTable.contentTable, searchKey]);
 
