@@ -2,7 +2,7 @@ import axios from "axios";
 import { responseSuccessCallback, responseFailCallback, requestSuccessCallback, requestFailCallback } from "./utilService";
 
 const baseService = axios.create({
-    baseURL: "https://dadinho.ngrok.io",
+    baseURL: "https://dadinho-api.onrender.com",
 });
 
 baseService.defaults.headers.common["Content-Type"] = "application/json";
