@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import baseService from "../base";
+import baseService from "@apis/base";
 
 export interface ItemPayload {
   icon: string;
