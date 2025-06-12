@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Recipe, Baskets, Attempt } from "../../components/level";
+import { Recipe, Baskets, Attempt, getRandomOptions } from "../../components/level";
 import { DadinhoBox, DadinhoHeader, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
 
 import { PATHS } from "../../constants/Path";
@@ -13,7 +13,7 @@ import { useTheme } from "../../theme";
 
 import { getStorage } from "../../apis/utilsStorage";
 import { useGameSetup } from "../../apis/game/useGameSetup";
-import { useLevelAttempt } from "../../apis/level/useLevelAttempt";
+import { useGameSubmit } from "../../apis/game/useGameSubmit";
 
 export const LevelPage = () => {
     const userId = getStorage("id");
@@ -26,7 +26,9 @@ export const LevelPage = () => {
     const secondsRef = useRef(0);
 
     const [getGame, game, gameProgress, gameError] = useGameSetup();
-    const [postLevelAttempt, levelAttempt, levelAttemptProgress, levelAttemptError] = useLevelAttempt();
+    const [postGameSubmit, gameSubmit, gameSubmitProgress, gameSubmitError] = useGameSubmit();
+
+    const options = useMemo(() => getRandomOptions(game?.recipe, game?.baskets), [game]);
 
     function startCounting() {
         intervalId.current = setInterval(() => {
@@ -44,7 +46,7 @@ export const LevelPage = () => {
 
     const handleAttempt = (attempt: string[]) => {
         stopCounting();
-        postLevelAttempt({
+        postGameSubmit({
             userId: userId,
             levelId: id,
             userAnswers: attempt,
@@ -53,10 +55,11 @@ export const LevelPage = () => {
     }
 
     useEffect(() => {
-        if(levelAttempt !== null) {
-            navigate(`${PATHS.ANSWER}${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
-        }
-    }, [levelAttempt, navigate])
+        console.log(gameSubmit)
+        // if (gameSubmit !== null) {
+        //     navigate(`${PATHS.ANSWER}${gameSubmit ? PATHS.CORRECT : PATHS.WRONG}`)
+        // }
+    }, [gameSubmit, navigate])
 
     useEffect(() => {
         getGame({ id: id })
@@ -70,7 +73,7 @@ export const LevelPage = () => {
     }, [game]);
 
     useEffect(() => {
-        if(levelAttemptError) {
+        if(gameSubmitError) {
             toast.error('Não foi possível enviar tentativa, tente novamente mais tarde!', {
                 position: "top-right",
                 autoClose: 2000,
@@ -82,7 +85,7 @@ export const LevelPage = () => {
                 theme: "colored",
             });
         }
-    }, [levelAttemptError])
+    }, [gameSubmitError])
 
     return (
         <DadinhoStack height="100vh" minWidth="100vw" sx={{ overflowX: "hidden" }}>
@@ -96,7 +99,7 @@ export const LevelPage = () => {
                 }}
             >
                 {!gameProgress && gameError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
-                {gameProgress || levelAttemptProgress ? <DadinhoLoader /> : game && (
+                {gameProgress || gameSubmitProgress ? <DadinhoLoader /> : game && (
                     <DadinhoStack px={0.5} spacing={3}>
                         <DadinhoHeader 
                             backButton 
@@ -108,7 +111,7 @@ export const LevelPage = () => {
                             <Recipe recipe={game?.recipe} />
                             <Baskets baskets={game?.baskets} />
                         </DadinhoStack>
-                        <Attempt options={game?.options} handleAttempt={handleAttempt} />
+                        <Attempt options={options} handleAttempt={handleAttempt} />
                     </DadinhoStack>
                 )}
             </DadinhoBox>
