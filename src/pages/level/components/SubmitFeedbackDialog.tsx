@@ -1,4 +1,4 @@
-import { DadinhoBox, Basket, DadinhoTypography } from "../../../components";
+import { DadinhoBox, Basket, DadinhoTypography, DadinhoStack } from "../../../components";
 import DadinhoDialog, { DadinhoDialogContent } from "../../../components/common/DadinhoDialog";
 
 import { GameSubmitResponse, GameSubmitStatus } from "../../../apis/game/gameService";
@@ -7,49 +7,50 @@ import SubmitCorrectContent from "./SubmitCorrectContent";
 import SubmitIncorrectContent from "./SubmitIncorrectContent";
 
 import { countsToBasketItems, getSubmitImage } from "../utils";
-import SubmitIncorrectDetailsDialog from "./SubmitIncorrectDetailsDialog";
 
-interface SubmitFeedbackDialogProps extends GameSubmitResponse {}
+interface SubmitFeedbackDialogProps extends GameSubmitResponse {
+  isOpen: boolean;
+  onClose: () => void;
+  onContinue: () => void;
+  onViewErrors: () => void;
+}
 
-export const SubmitFeedbackDialog = ({ errorDetail, expected, finalBasket, status }: SubmitFeedbackDialogProps) => {
+export const SubmitFeedbackDialog = ({ errorDetail, expected, finalBasket, status, isOpen, onClose, onContinue, onViewErrors }: SubmitFeedbackDialogProps) => {
     return (
-      <>
         <DadinhoDialog
             disablePortal
-            maxWidth="sm"
+            maxWidth="xs"
             fullWidth
-            open={true}
-            onClose={() => console.log("close")}
+            open={isOpen}
+            onClose={onClose}
         >
+            <DadinhoBox
+                sx={{
+                    height: '220px',
+                    backgroundImage: `url(${getSubmitImage()})`,
+                    backgroundSize: 'auto',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    mb: -7,
+                    position: "relative",
+                    zIndex: 10,
+                }}
+            />
             <DadinhoDialogContent>
-              <DadinhoBox
-                  sx={{
-                      height: '220px',
-                      backgroundImage: `url(${getSubmitImage()})`,
-                      backgroundSize: 'auto',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: 'center',
-                      mb: -7,
-                      position: "relative",
-                      zIndex: 10,
-                  }}
-              />
-              <DadinhoBox>   
+              <DadinhoStack textAlign={"center"} gap={"10px"}>   
                 <DadinhoTypography>Seus comandos criaram...</DadinhoTypography>
-                <DadinhoBox border="2px solid" borderRadius="10px" overflow="overlay" p={2}>
+                <DadinhoBox border="2px solid" borderRadius="10px" overflow="overlay" p={2} justifyItems={"center"}>
                   <Basket index={1} items={countsToBasketItems(finalBasket)} title={"Seu Cesto"} />
                 </DadinhoBox>
                 <DadinhoTypography>e Seu Cesto está...</DadinhoTypography>
                 {
-                  status === GameSubmitStatus.CORRECT 
-                    && <SubmitCorrectContent /> 
-                    || <SubmitIncorrectContent />
+                  status === GameSubmitStatus.CORRECT
+                    ? <SubmitCorrectContent onContinue={onContinue} />
+                    : <SubmitIncorrectContent onViewErrors={onViewErrors} />
                 }
-              </DadinhoBox>
+              </DadinhoStack>
             </DadinhoDialogContent>
         </DadinhoDialog>
-        <SubmitIncorrectDetailsDialog errorDetail={errorDetail} expected={expected} finalBasket={finalBasket} />
-      </>
     );
 
 }

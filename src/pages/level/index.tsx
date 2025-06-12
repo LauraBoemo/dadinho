@@ -7,12 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Recipe, Baskets, Attempt, getRandomOptions } from "../../components/level";
 import { DadinhoBox, DadinhoHeader, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
+import { SubmitFeedbackDialog, SubmitIncorrectDetailsDialog } from "./components";
 
 import { useTheme } from "../../theme";
 
 import { getStorage } from "../../apis/utilsStorage";
 import { useGameSetup } from "../../apis/game/useGameSetup";
 import { useGameSubmit } from "../../apis/game/useGameSubmit";
+import { PATHS } from "../../constants/Path";
 
 export const LevelPage = () => {
     const userId = getStorage("id");
@@ -26,6 +28,8 @@ export const LevelPage = () => {
 
     const [getGame, game, gameProgress, gameError] = useGameSetup();
     const [postGameSubmit, gameSubmit, gameSubmitProgress, gameSubmitError] = useGameSubmit();
+    const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
+    const [showIncorrectDialog, setShowIncorrectDialog] = useState(false);
 
     const options = useMemo(() => getRandomOptions(game?.recipe, game?.baskets), [game]);
 
@@ -53,12 +57,32 @@ export const LevelPage = () => {
         });
     }
 
+    const closeFeedbackDialog = () => {
+        setShowFeedbackDialog(false);
+    }
+
+    const handleContinue = () => {
+        navigate(PATHS.LEVELS);
+    }
+
+    const handleViewErrors = () => {
+        setShowFeedbackDialog(false);
+        setShowIncorrectDialog(true);
+    }
+
+    const handleTryAgain = () => {
+        navigate(PATHS.LEVELS);
+    }
+
+    const closeIncorrectDialog = () => {
+        setShowIncorrectDialog(false);
+    }
+
     useEffect(() => {
-        console.log(gameSubmit)
-        // if (gameSubmit !== null) {
-        //     navigate(`${PATHS.ANSWER}${gameSubmit ? PATHS.CORRECT : PATHS.WRONG}`)
-        // }
-    }, [gameSubmit, navigate])
+        if (gameSubmit) {
+            setShowFeedbackDialog(true);
+        }
+    }, [gameSubmit]);
 
     useEffect(() => {
         getGame({ id: id })
@@ -114,6 +138,28 @@ export const LevelPage = () => {
                     </DadinhoStack>
                 )}
             </DadinhoBox>
+            {gameSubmit && (
+                <SubmitFeedbackDialog
+                    isOpen={showFeedbackDialog}
+                    onClose={closeFeedbackDialog}
+                    onContinue={handleContinue}
+                    onViewErrors={handleViewErrors}
+                    errorDetail={gameSubmit.data?.errorDetail || ""}
+                    expected={gameSubmit.data?.expected || {}}
+                    finalBasket={gameSubmit.data?.finalBasket || {}}
+                    status={gameSubmit.data?.status || ""}
+                />
+            )}
+            {gameSubmit && (
+                <SubmitIncorrectDetailsDialog
+                    isOpen={showIncorrectDialog}
+                    handleClose={closeIncorrectDialog}
+                    onTryAgain={handleTryAgain}
+                    errorDetail={gameSubmit.data?.errorDetail || ""}
+                    expected={gameSubmit.data?.expected || {}}
+                    finalBasket={gameSubmit.data?.finalBasket || {}}
+                />
+            )}
         </DadinhoStack>
     );
 }
