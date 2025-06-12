@@ -49,7 +49,7 @@ function transformString(input: string) {
   
     const segments = inputWithPlaceholders.split(placeholder);
   
-    const transformedSegments = segments.map(segment => 
+    const transformedSegments = segments?.map(segment => 
         segment.trim().replace(/\|$/, '')
     ).filter(segment => segment !== ''); 
   
@@ -59,7 +59,7 @@ function transformString(input: string) {
 
 export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
     const theme = useTheme();
-    const optionsWithIds = useMemo(() => options.map((option: string, index: number) => ({ id: index, text: option })), []);
+    const optionsWithIds = useMemo(() => options?.map((option: string, index: number) => ({ id: index, text: option })), []);
 
     const [selectedOptionIds, setSelectedOptionIds] = useState<number[]>([]);
 
@@ -72,7 +72,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
     }
 
     const finalResult = () => {
-        const selectedOptionsString = selectedOptionIds.map((id) => optionsWithIds.find(option => option.id === id)?.text).join('|');
+        const selectedOptionsString = selectedOptionIds?.map((id) => optionsWithIds.find(option => option.id === id)?.text).join('|');
         return transformString(selectedOptionsString);
     }
 
@@ -101,7 +101,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                                 },
                             }}
                         >
-                            {optionsWithIds.map((option) => {
+                            {optionsWithIds?.map((option) => {
                                 return (
                                     <DadinhoButton
                                         size="medium"
@@ -138,7 +138,7 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                                     Selecione as palavras acima e forme as frases de comandos necessárias!
                                 </DadinhoTypography>
                             }
-                            {selectedOptionIds.map((id) => {
+                            {selectedOptionIds?.map((id) => {
                                 const option = optionsWithIds.find(option => option.id === id);
                                 return (
                                     <DadinhoButton sx={{ bgcolor: theme.palette.primary.contrastText }} key={id} size="medium" onClick={() => handleSelectAttempt(id)}>

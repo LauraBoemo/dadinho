@@ -45,7 +45,7 @@ export const Baskets = ({ baskets }: BasketsProps) => {
                     >
                         {baskets?.map((product, index) => {
                             return (
-                                <Basket items={product.items} index={index + 1} />
+                                <Basket items={product.items} index={index + 1} key={index + 1} />
                             )
                         })}
                     </DadinhoStack>

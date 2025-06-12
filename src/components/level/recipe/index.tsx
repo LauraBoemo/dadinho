@@ -1,13 +1,14 @@
 import { Basket, DadinhoBox, DadinhoStack, DadinhoTypography } from "../..";
+import { GameSetupRecipe } from "../../../apis/game/gameService";
 import { RecipeProps } from "../../../apis/level/levelService";
 import { useTheme } from "../../../theme";
 
 interface RecipeComponentProps {
-    recipe: RecipeProps[];
+    recipe: GameSetupRecipe[];
 }
 
 interface TransformRecipeToBasketProps {
-    recipe: RecipeProps[];
+    recipe: GameSetupRecipe[];
 }
 
 const svgStringMobile = `<svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -9,10 +9,11 @@ import { Recipe, Baskets, Attempt } from "../../components/level";
 import { DadinhoBox, DadinhoHeader, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
 
 import { PATHS } from "../../constants/Path";
-import { useLevel } from "../../apis/level/useLevel";
-import { getStorage } from "../../apis/utilsStorage";
-import { useLevelAttempt } from "../../apis/level/useLevelAttempt";
 import { useTheme } from "../../theme";
+
+import { getStorage } from "../../apis/utilsStorage";
+import { useGameSetup } from "../../apis/game/useGameSetup";
+import { useLevelAttempt } from "../../apis/level/useLevelAttempt";
 
 export const LevelPage = () => {
     const userId = getStorage("id");
@@ -24,7 +25,7 @@ export const LevelPage = () => {
     const intervalId = useRef<NodeJS.Timeout | null>(null);
     const secondsRef = useRef(0);
 
-    const [getLevel, level, levelProgress, levelError] = useLevel();
+    const [getGame, game, gameProgress, gameError] = useGameSetup();
     const [postLevelAttempt, levelAttempt, levelAttemptProgress, levelAttemptError] = useLevelAttempt();
 
     function startCounting() {
@@ -58,15 +59,15 @@ export const LevelPage = () => {
     }, [levelAttempt, navigate])
 
     useEffect(() => {
-        getLevel({ id: id })
+        getGame({ id: id })
     }, [id]);
 
     useEffect(() => {
-        if (level) {
+        if (game) {
             startCounting();
         }
         return () => stopCounting();
-    }, [level]);
+    }, [game]);
 
     useEffect(() => {
         if(levelAttemptError) {
@@ -94,20 +95,20 @@ export const LevelPage = () => {
                     },
                 }}
             >
-                {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
-                {levelProgress || levelAttemptProgress ? <DadinhoLoader /> : level && (
+                {!gameProgress && gameError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
+                {gameProgress || levelAttemptProgress ? <DadinhoLoader /> : game && (
                     <DadinhoStack px={0.5} spacing={3}>
                         <DadinhoHeader 
                             backButton 
                             backButtonCustomIcon={     
-                                <DadinhoTypography variant="h1">Nível 0{level?.icon}</DadinhoTypography>
+                                <DadinhoTypography variant="h1">Nível 0{game?.icon}</DadinhoTypography>
                             } 
                         />
                         <DadinhoStack direction="column" spacing={3}>
-                            <Recipe recipe={level?.recipe} />
-                            <Baskets baskets={level?.baskets} />
+                            <Recipe recipe={game?.recipe} />
+                            <Baskets baskets={game?.baskets} />
                         </DadinhoStack>
-                        <Attempt options={level?.options} handleAttempt={handleAttempt} />
+                        <Attempt options={game?.options} handleAttempt={handleAttempt} />
                     </DadinhoStack>
                 )}
             </DadinhoBox>

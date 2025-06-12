@@ -16,12 +16,12 @@ export interface AllLevelsResponse {
   icon: string;
 }
 
-const levels = (id: string, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelsResponse[]>> => {
-  return baseService.get(`level/user/${id}`, config);
-};
+// const levels = (id: string, config?: AxiosRequestConfig): Promise<AxiosResponse<LevelsResponse[]>> => {
+//   return baseService.get(`level/user/${id}`, config);
+// };
 
 const allLevels = (): Promise<AxiosResponse<AllLevelsResponse[]>> => {
   return baseService.get(`level`);
 };
 
-export { levels, allLevels };
+export { allLevels };
