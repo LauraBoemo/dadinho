@@ -1,10 +1,10 @@
 import { Basket } from "..";
 import { DadinhoBox, DadinhoStack, DadinhoTypography } from "../..";
-import { BasquetProps } from "../../../apis/level/levelService";
+import { GameSetupBasket } from "../../../apis/game/gameService";
 import { useTheme } from "../../../theme";
 
 interface BasketsProps {
-    baskets: BasquetProps[];
+    baskets: GameSetupBasket[];
 }
 
 export const Baskets = ({ baskets }: BasketsProps) => {

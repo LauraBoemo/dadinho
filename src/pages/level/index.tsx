@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Recipe, Baskets, Attempt, getRandomOptions } from "../../components/level";
 import { DadinhoBox, DadinhoHeader, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
 
-import { PATHS } from "../../constants/Path";
 import { useTheme } from "../../theme";
 
 import { getStorage } from "../../apis/utilsStorage";

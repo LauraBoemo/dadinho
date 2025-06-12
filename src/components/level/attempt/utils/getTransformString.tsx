@@ -9,10 +9,16 @@ export const getTransformString = (input: string) => {
   
     const segments = inputWithPlaceholders.split(placeholder);
   
-    const transformedSegments = segments?.map(segment => 
-        segment.trim().replace(/\|$/, '')
-    ).filter(segment => segment !== ''); 
-  
+    const transformedSegments = segments
+        ?.map(segment =>
+            segment
+                .trim()
+                .replace(/\|/g, ' ')
+                .replace(/\s+/g, ' ')
+                .replace(/\s+$/, '')
+        )
+        .filter(segment => segment !== '');
+    
     return transformedSegments;
 }
 

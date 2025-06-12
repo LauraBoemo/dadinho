@@ -17,8 +17,8 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
         setSelectedOptionIds([...selectedOptionIds, id]);
     }
 
-    const handleUnselectAttempt = (id: number) => {
-        setSelectedOptionIds(selectedOptionIds.filter(optionId => optionId !== id));
+    const handleUnselectAttempt = (index: number) => {
+        setSelectedOptionIds(selectedOptionIds.filter((_, i) => i !== index));
     }
 
     const finalResult = () => {
@@ -87,10 +87,10 @@ export const Attempt = ({ options, handleAttempt }: AttemptProps) => {
                                     Selecione as palavras acima e forme as frases de comandos necessárias!
                                 </DadinhoTypography>
                             }
-                            {selectedOptionIds?.map((id) => {
+                            {selectedOptionIds?.map((id, index) => {
                                 const option = optionsWithIds.find(option => option.id === id);
                                 return (
-                                    <DadinhoButton sx={{ bgcolor: theme.palette.primary.contrastText }} key={id} size="medium" onClick={() => handleUnselectAttempt(id)}>
+                                    <DadinhoButton sx={{ bgcolor: theme.palette.primary.contrastText }} key={`${id}-${index}`} size="medium" onClick={() => handleUnselectAttempt(index)}>
                                         <DadinhoTypography variant="body1" py={0.5}>
                                             {option?.text}
                                         </DadinhoTypography>
