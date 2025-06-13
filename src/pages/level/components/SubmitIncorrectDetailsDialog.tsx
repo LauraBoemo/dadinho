@@ -2,15 +2,26 @@ import { formatBasketDiff } from "../utils";
 import { GameSubmitResponse } from "../../../apis/game/gameService";
 import DadinhoDialog, { DadinhoDialogContent } from "../../../components/common/DadinhoDialog";
 import { DadinhoBox, DadinhoStack, DadinhoTypography, DadinhoButton } from "../../../components";
+import getStatusError from "../utils/getStatusError";
+import { useNavigate } from "react-router-dom";
+import { PATHS } from "../../../constants/Path";
+import getErrorImage from "../utils/getErrorImage";
 
-interface SubmitIncorrectDetailsDialogProps extends Pick<GameSubmitResponse, "errorDetail" | "expected" | "finalBasket"> {
+interface SubmitIncorrectDetailsDialogProps extends Pick<GameSubmitResponse, "status" | "expected" | "finalBasket"> {
   isOpen: boolean;
   handleClose: () => void;
   onTryAgain: () => void;
 }
 
-export const SubmitIncorrectDetailsDialog = ({ errorDetail, expected, finalBasket, isOpen, handleClose, onTryAgain }: SubmitIncorrectDetailsDialogProps) => {
+export const SubmitIncorrectDetailsDialog = ({ status, expected, finalBasket, isOpen, handleClose, onTryAgain }: SubmitIncorrectDetailsDialogProps) => {
+  const navigate = useNavigate();
+  
   const basketDiff = formatBasketDiff({ expected: expected, finalBasket: finalBasket});
+  const statusError = getStatusError({ status: status })
+
+  const handleViewInstructions = () => {
+      navigate(PATHS.GAME_INSTRUCTIONS);
+  }
 
   return (
     <DadinhoDialog
@@ -19,17 +30,41 @@ export const SubmitIncorrectDetailsDialog = ({ errorDetail, expected, finalBaske
       fullWidth
       open={isOpen}
       onClose={handleClose}
+            sx={{
+              border: "2px solid black",
+              "> .MuiDialog-paper": {
+                border: "2px solid black"
+              }
+            }}
     >
+      <DadinhoBox
+          sx={{
+              height: '220px',
+              backgroundImage: `url(${getErrorImage()})`,
+              backgroundSize: 'auto',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              position: "relative",
+              zIndex: 10,
+          }}
+      />
       <DadinhoDialogContent>
         <DadinhoStack textAlign={"center"} gap={"10px"}>   
           <DadinhoTypography>
             Os erros foram...
           </DadinhoTypography>
-          <DadinhoBox border="2px solid" borderRadius="10px" overflow="overlay" p={2}>
-            {basketDiff}
+          <DadinhoBox border="2px solid" borderRadius="10px" overflow="overlay" p={2} mb={2}>
+            {!!basketDiff ? basketDiff : (
+              <DadinhoStack gap={2}>
+                <DadinhoTypography>{statusError}</DadinhoTypography>
+                <DadinhoButton variant="contained" onClick={handleViewInstructions}>
+                  Conferir Instruções
+                </DadinhoButton>
+              </DadinhoStack>
+            )}
           </DadinhoBox>
         </DadinhoStack>
-        <DadinhoButton variant="contained" onClick={onTryAgain}>Tentar novamente</DadinhoButton>
+        <DadinhoButton fullWidth variant="contained" onClick={onTryAgain}>Tentar novamente</DadinhoButton>
       </DadinhoDialogContent>
     </DadinhoDialog>
   )

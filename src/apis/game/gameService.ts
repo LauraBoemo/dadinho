@@ -49,7 +49,6 @@ export enum GameSubmitStatus {
 }
 
 export interface GameSubmitResponse {
-  errorDetail?: string;
   expected: { [key: string]: number };
   finalBasket: { [key: string]: number };
   status: GameSubmitStatus

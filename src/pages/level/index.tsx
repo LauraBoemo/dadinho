@@ -144,7 +144,6 @@ export const LevelPage = () => {
                     onClose={closeFeedbackDialog}
                     onContinue={handleContinue}
                     onViewErrors={handleViewErrors}
-                    errorDetail={gameSubmit.data?.errorDetail || ""}
                     expected={gameSubmit.data?.expected || {}}
                     finalBasket={gameSubmit.data?.finalBasket || {}}
                     status={gameSubmit.data?.status || ""}
@@ -153,9 +152,9 @@ export const LevelPage = () => {
             {gameSubmit && (
                 <SubmitIncorrectDetailsDialog
                     isOpen={showIncorrectDialog}
+                    status={gameSubmit.data?.status || {}}
                     handleClose={closeIncorrectDialog}
                     onTryAgain={handleTryAgain}
-                    errorDetail={gameSubmit.data?.errorDetail || ""}
                     expected={gameSubmit.data?.expected || {}}
                     finalBasket={gameSubmit.data?.finalBasket || {}}
                 />

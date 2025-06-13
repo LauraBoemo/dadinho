@@ -41,7 +41,7 @@ const DialogWithTitle: React.FC<DadinhoDialogProps> = ({ title, hasCloseIcon, ch
 );
 
 export const DadinhoDialog = styled(DialogWithTitle)(({ theme }) => ({
-  border: "2px solid black"
+  border: "2px solid black !important"
 }));
 export const DadinhoDialogTitle = styled(DialogTitle)(({ theme }) => ({
   ...theme.typography.h3,

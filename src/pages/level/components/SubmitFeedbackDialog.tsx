@@ -15,7 +15,7 @@ interface SubmitFeedbackDialogProps extends GameSubmitResponse {
   onViewErrors: () => void;
 }
 
-export const SubmitFeedbackDialog = ({ errorDetail, expected, finalBasket, status, isOpen, onClose, onContinue, onViewErrors }: SubmitFeedbackDialogProps) => {
+export const SubmitFeedbackDialog = ({ finalBasket, status, isOpen, onClose, onContinue, onViewErrors }: SubmitFeedbackDialogProps) => {
     return (
         <DadinhoDialog
             disablePortal
@@ -23,6 +23,11 @@ export const SubmitFeedbackDialog = ({ errorDetail, expected, finalBasket, statu
             fullWidth
             open={isOpen}
             onClose={onClose}
+            sx={{
+              "> .MuiDialog-paper": {
+                border: "2px solid blacks"
+              }
+            }}
         >
             <DadinhoBox
                 sx={{
