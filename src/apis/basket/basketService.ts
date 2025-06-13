@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import baseService from "@apis/base";
+import baseService from "../../apis/base";
 
 export interface BasketPayload {
 	itemsIds: number[],

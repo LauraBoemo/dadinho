@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 
-import AppLayout from "@layouts/app";
-import { PATHS } from "@constants/Path";
-import { adminVerify } from "@apis/utilsStorage";
+import AppLayout from "./layouts/app";
+import { PATHS } from "./constants/Path";
+import { adminVerify } from "./apis/utilsStorage";
 
-import { LoginPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage, GameInstructionsPage } from "@pages";
-import { DataPage, LevelDetailsConfigPage, LevelsPage as AdminLevelsPage, UsersPage, AdminConfigPage } from "@pages/admin";
-import AccessInstructionsPage from "@pages/accessInstructions";
-import { MapLayout } from "@layouts/map";
-import CommonLayout from "@layouts/common";
-import AdminLayout from "@layouts/admin";
-import UserLayout from "@layouts/user/UserLayout";
+import { LoginPage, LevelsPage, LevelPage as UserLevelsPage, AnswerPage, ConfigPage, GameInstructionsPage } from "./pages";
+import { DataPage, LevelDetailsConfigPage, LevelsPage as AdminLevelsPage, UsersPage, AdminConfigPage } from "./pages/admin";
+import AccessInstructionsPage from "./pages/accessInstructions";
+import AdminLayout from "./layouts/admin";
+import CommonLayout from "./layouts/common";
+import MapLayout from "./layouts/map";
+import UserLayout from "./layouts/user";
 
 const AppRoutes = () => {
   const isAdmin = adminVerify();

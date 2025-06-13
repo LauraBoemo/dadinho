@@ -29,7 +29,7 @@
       "@layouts/*": ["layouts/*"],
       "@constants/*": ["constants/*"],
       "@icons/*": ["icons/*"],
-      "@apis/*": ["apis/*"]
+      "./apis/*": ["apis/*"]
     }
   },
   "include": [
