@@ -20,13 +20,14 @@ export const SubmitIncorrectDetailsDialog = ({ status, expected, finalBasket, is
   const statusError = getStatusError({ status: status })
 
   const handleViewInstructions = () => {
-      navigate(PATHS.GAME_INSTRUCTIONS);
+    navigate(PATHS.GAME_INSTRUCTIONS);
   }
 
   const dialogClose = (_event: object, reason?: string) => {
     if (reason === "backdropClick") return;
     handleClose();
   };
+
   return (
     <DadinhoDialog
       disablePortal
@@ -34,24 +35,18 @@ export const SubmitIncorrectDetailsDialog = ({ status, expected, finalBasket, is
       fullWidth
       open={isOpen}
       onClose={dialogClose}
-            sx={{
-              border: "2px solid black",
-              "> .MuiDialog-paper": {
-                border: "2px solid black"
-              }
-            }}
     >
       <DadinhoBox
-          sx={{
-              height: '220px',
-              backgroundImage: `url(${getErrorImage()})`,
-              backgroundSize: 'auto',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              mt: -2,
-              position: "relative",
-              zIndex: 10,
-          }}
+        sx={{
+          height: '220px',
+          backgroundImage: `url(${getErrorImage()})`,
+          backgroundSize: 'auto',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          position: "relative",
+          mt: 1,
+          zIndex: 10,
+        }}
       />
       <DadinhoDialogContent>
         <DadinhoStack textAlign={"center"} gap={"10px"}>   
@@ -59,14 +54,20 @@ export const SubmitIncorrectDetailsDialog = ({ status, expected, finalBasket, is
             Os erros foram...
           </DadinhoTypography>
           <DadinhoBox border="2px solid" borderRadius="10px" overflow="overlay" p={2} mb={2}>
-            {!!basketDiff ? basketDiff : (
-              <DadinhoStack gap={2}>
-                <DadinhoTypography>{statusError}</DadinhoTypography>
-                <DadinhoButton variant="contained" onClick={handleViewInstructions}>
-                  Conferir Instruções
-                </DadinhoButton>
-              </DadinhoStack>
-            )}
+            {statusError 
+              ? (
+                <DadinhoStack gap={2}>
+                  <DadinhoTypography>{statusError}</DadinhoTypography>
+                  <DadinhoButton variant="contained" onClick={handleViewInstructions}>
+                    Conferir Instruções
+                  </DadinhoButton>
+                </DadinhoStack>
+              ) : (
+                <DadinhoTypography>
+                  {basketDiff}
+                </DadinhoTypography>
+              ) 
+              }
           </DadinhoBox>
         </DadinhoStack>
         <DadinhoButton fullWidth variant="contained" onClick={onTryAgain}>Tentar novamente</DadinhoButton>

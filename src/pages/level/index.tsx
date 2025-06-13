@@ -144,19 +144,19 @@ export const LevelPage = () => {
                     onClose={closeFeedbackDialog}
                     onContinue={handleContinue}
                     onViewErrors={handleViewErrors}
-                    expected={gameSubmit.data?.expected || {}}
-                    finalBasket={gameSubmit.data?.finalBasket || {}}
-                    status={gameSubmit.data?.status || ""}
+                    expected={gameSubmit?.expected || {}}
+                    finalBasket={gameSubmit?.finalBasket || {}}
+                    status={gameSubmit?.status || ""}
                 />
             )}
             {gameSubmit && (
                 <SubmitIncorrectDetailsDialog
                     isOpen={showIncorrectDialog}
-                    status={gameSubmit.data?.status || {}}
+                    status={gameSubmit?.status || {}}
                     handleClose={closeIncorrectDialog}
                     onTryAgain={handleTryAgain}
-                    expected={gameSubmit.data?.expected || {}}
-                    finalBasket={gameSubmit.data?.finalBasket || {}}
+                    expected={gameSubmit?.expected || {}}
+                    finalBasket={gameSubmit?.finalBasket || {}}
                 />
             )}
         </DadinhoStack>

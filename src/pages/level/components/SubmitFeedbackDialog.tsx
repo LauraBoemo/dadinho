@@ -27,11 +27,6 @@ interface SubmitFeedbackDialogProps extends GameSubmitResponse {
             fullWidth
             open={isOpen}
             onClose={handleClose}
-            sx={{
-              "> .MuiDialog-paper": {
-                border: "2px solid blacks"
-              }
-            }}
         >
             <DadinhoBox
                 sx={{
@@ -40,8 +35,6 @@ interface SubmitFeedbackDialogProps extends GameSubmitResponse {
                     backgroundSize: 'auto',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
-                    mt: -2,
-                    mb: -7,
                     position: "relative",
                     zIndex: 10,
                 }}

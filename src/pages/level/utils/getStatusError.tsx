@@ -2,19 +2,13 @@ import { GameSubmitResponse, GameSubmitStatus } from "../../../apis/game/gameSer
 
 export interface FormatBasketDiffProps extends Pick<GameSubmitResponse, "status"> {}
 
-const getStatusErrorDescription = (status: GameSubmitStatus) => {
+export const getStatusError = ({ status }: FormatBasketDiffProps) => {
   switch(status) {
     case GameSubmitStatus.SYNYAX_ERROR:
       return "A ordem dos comandos está incorreta"
     default:
       return ""
   }
-}
-
-export const getStatusError = ({ status }: FormatBasketDiffProps) => {
-  const errorDescription = getStatusErrorDescription(status)
-
-  return "A ordem dos comandos está incorreta"
 }
 
 export default getStatusError;
