@@ -1,10 +1,10 @@
 import { Basket } from "..";
 import { DadinhoBox, DadinhoStack, DadinhoTypography } from "../..";
-import { BasquetProps } from "../../../apis/level/levelService";
+import { GameSetupBasket } from "../../../apis/game/gameService";
 import { useTheme } from "../../../theme";
 
 interface BasketsProps {
-    baskets: BasquetProps[];
+    baskets: GameSetupBasket[];
 }
 
 export const Baskets = ({ baskets }: BasketsProps) => {
@@ -45,7 +45,7 @@ export const Baskets = ({ baskets }: BasketsProps) => {
                     >
                         {baskets?.map((product, index) => {
                             return (
-                                <Basket items={product.items} index={index + 1} />
+                                <Basket items={product.items} index={index + 1} key={index + 1} />
                             )
                         })}
                     </DadinhoStack>

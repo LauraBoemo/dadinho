@@ -5,20 +5,20 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
 import { getStorage } from "../../apis/utilsStorage";
-import { useLevels } from "../../apis/levels/useLevels";
 
 import { PATHS } from "../../constants/Path";
 import { LevelsView } from "../../components/levels";
 import { DadinhoBox, DadinhoHeader, DadinhoIconButton, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
 
 import { useTheme } from "../../theme";
+import { useGameProgress } from "../../apis/game/useGameProgress";
 
 export const LevelsPage = () => {
     const theme = useTheme();
     const navigate = useNavigate();
 
     const userId = useMemo(() => getStorage("id"), [])
-    const [getLevels, levels, levelsLoading, levelsError] = useLevels();
+    const [getGame, game, gameLoading, gameError] = useGameProgress();
 
     const goToConfig = () => {
         navigate(PATHS.CONFIG);
@@ -29,7 +29,7 @@ export const LevelsPage = () => {
     }
     
     useEffect(() => {
-        getLevels({ id: userId })
+        getGame({ id: userId })
     }, []);
 
     return (
@@ -77,14 +77,14 @@ export const LevelsPage = () => {
                     <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightLight} display="flex" gap="5px">Role pra baixo e explore! ▼</DadinhoTypography>
                 </DadinhoStack>
             </DadinhoBox>
-            {!levelsLoading && levelsError && <DadinhoTypography textAlign="center" color="error">Não foi possível carregar os níveis</DadinhoTypography>}
-            {levelsLoading ? (
+            {!gameLoading && gameError && <DadinhoTypography textAlign="center" color="error">Não foi possível carregar os níveis</DadinhoTypography>}
+            {gameLoading ? (
                     <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
                         <DadinhoLoader />
                     </DadinhoBox>
                 )  : (
                     <>
-                        <LevelsView levels={levels} />
+                        <LevelsView levels={game} />
                         <DadinhoBox bgcolor="white" border="2px solid black" borderRadius="15px" maxWidth="500px" margin="auto" px={1} py={2} mt={40}>
                             <DadinhoStack>
                                 <DadinhoTypography textAlign="center" variant="h2" fontWeight={theme.typography.fontWeightMedium}>Muito obrigada por jogar!</DadinhoTypography>

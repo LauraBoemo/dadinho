@@ -1,18 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Recipe, Baskets, Attempt } from "../../components/level";
+import { Recipe, Baskets, Attempt, getRandomOptions } from "../../components/level";
 import { DadinhoBox, DadinhoHeader, DadinhoLoader, DadinhoStack, DadinhoTypography } from "../../components";
+import { SubmitFeedbackDialog, SubmitIncorrectDetailsDialog } from "./components";
 
-import { PATHS } from "../../constants/Path";
-import { useLevel } from "../../apis/level/useLevel";
-import { getStorage } from "../../apis/utilsStorage";
-import { useLevelAttempt } from "../../apis/level/useLevelAttempt";
 import { useTheme } from "../../theme";
+
+import { getStorage } from "../../apis/utilsStorage";
+import { useGameSetup } from "../../apis/game/useGameSetup";
+import { useGameSubmit } from "../../apis/game/useGameSubmit";
+import { PATHS } from "../../constants/Path";
 
 export const LevelPage = () => {
     const userId = getStorage("id");
@@ -24,8 +26,12 @@ export const LevelPage = () => {
     const intervalId = useRef<NodeJS.Timeout | null>(null);
     const secondsRef = useRef(0);
 
-    const [getLevel, level, levelProgress, levelError] = useLevel();
-    const [postLevelAttempt, levelAttempt, levelAttemptProgress, levelAttemptError] = useLevelAttempt();
+    const [getGame, game, gameProgress, gameError] = useGameSetup();
+    const [postGameSubmit, gameSubmit, gameSubmitProgress, gameSubmitError] = useGameSubmit();
+    const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
+    const [showIncorrectDialog, setShowIncorrectDialog] = useState(false);
+
+    const options = useMemo(() => getRandomOptions(game?.recipe, game?.baskets), [game]);
 
     function startCounting() {
         intervalId.current = setInterval(() => {
@@ -43,7 +49,7 @@ export const LevelPage = () => {
 
     const handleAttempt = (attempt: string[]) => {
         stopCounting();
-        postLevelAttempt({
+        postGameSubmit({
             userId: userId,
             levelId: id,
             userAnswers: attempt,
@@ -51,25 +57,46 @@ export const LevelPage = () => {
         });
     }
 
-    useEffect(() => {
-        if(levelAttempt !== null) {
-            navigate(`${PATHS.ANSWER}${levelAttempt ? PATHS.CORRECT : PATHS.WRONG}`)
-        }
-    }, [levelAttempt, navigate])
+    const closeFeedbackDialog = () => {
+        setShowFeedbackDialog(false);
+    }
+
+    const handleContinue = () => {
+        navigate(PATHS.LEVELS);
+    }
+
+    const handleViewErrors = () => {
+        setShowFeedbackDialog(false);
+        setShowIncorrectDialog(true);
+    }
+
+    const handleTryAgain = () => {
+        navigate(PATHS.LEVELS);
+    }
+
+    const closeIncorrectDialog = () => {
+        setShowIncorrectDialog(false);
+    }
 
     useEffect(() => {
-        getLevel({ id: id })
+        if (gameSubmit) {
+            setShowFeedbackDialog(true);
+        }
+    }, [gameSubmit]);
+
+    useEffect(() => {
+        getGame({ id: id })
     }, [id]);
 
     useEffect(() => {
-        if (level) {
+        if (game) {
             startCounting();
         }
         return () => stopCounting();
-    }, [level]);
+    }, [game]);
 
     useEffect(() => {
-        if(levelAttemptError) {
+        if(gameSubmitError) {
             toast.error('Não foi possível enviar tentativa, tente novamente mais tarde!', {
                 position: "top-right",
                 autoClose: 2000,
@@ -81,7 +108,7 @@ export const LevelPage = () => {
                 theme: "colored",
             });
         }
-    }, [levelAttemptError])
+    }, [gameSubmitError])
 
     return (
         <DadinhoStack height="100vh" minWidth="100vw" sx={{ overflowX: "hidden" }}>
@@ -94,23 +121,44 @@ export const LevelPage = () => {
                     },
                 }}
             >
-                {!levelProgress && levelError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
-                {levelProgress || levelAttemptProgress ? <DadinhoLoader /> : level && (
+                {!gameProgress && gameError && <DadinhoTypography variant="h3" color="error">Não foi possível carregar o nível</DadinhoTypography>}
+                {gameProgress || gameSubmitProgress ? <DadinhoLoader /> : game && (
                     <DadinhoStack px={0.5} spacing={3}>
                         <DadinhoHeader 
                             backButton 
                             backButtonCustomIcon={     
-                                <DadinhoTypography variant="h1">Nível 0{level?.icon}</DadinhoTypography>
+                                <DadinhoTypography variant="h1">Nível 0{game?.icon}</DadinhoTypography>
                             } 
                         />
                         <DadinhoStack direction="column" spacing={3}>
-                            <Recipe recipe={level?.recipe} />
-                            <Baskets baskets={level?.baskets} />
+                            <Recipe recipe={game?.recipe} />
+                            <Baskets baskets={game?.baskets} />
                         </DadinhoStack>
-                        <Attempt options={level?.options} handleAttempt={handleAttempt} />
+                        <Attempt options={options} handleAttempt={handleAttempt} />
                     </DadinhoStack>
                 )}
             </DadinhoBox>
+            {gameSubmit && (
+                <SubmitFeedbackDialog
+                    isOpen={showFeedbackDialog}
+                    onClose={closeFeedbackDialog}
+                    onContinue={handleContinue}
+                    onViewErrors={handleViewErrors}
+                    expected={gameSubmit?.expected || {}}
+                    finalBasket={gameSubmit?.finalBasket || {}}
+                    status={gameSubmit?.status || ""}
+                />
+            )}
+            {gameSubmit && (
+                <SubmitIncorrectDetailsDialog
+                    isOpen={showIncorrectDialog}
+                    status={gameSubmit?.status || {}}
+                    handleClose={closeIncorrectDialog}
+                    onTryAgain={handleTryAgain}
+                    expected={gameSubmit?.expected || {}}
+                    finalBasket={gameSubmit?.finalBasket || {}}
+                />
+            )}
         </DadinhoStack>
     );
 }

@@ -18,9 +18,9 @@ export const Basket = ({ items, index, title, customWidth, noTitle, customBg, cu
     return (
         <DadinhoBox border="2px solid" borderRadius="10px" width={customWidth ? customWidth : "150px"} height={customHeight ? customHeight : "120px"}>
             <DadinhoStack height="40px" direction="row" borderRadius="10px" flexWrap="wrap" bgcolor={customBg ? customBg : theme.palette.primary.light} padding={2} alignItems="center" justifyContent="center">
-                {items?.map((product) => {
+                {items?.map((product, index) => {
                     return (
-                        <DadinhoTypography variant="h1" px={1}>
+                        <DadinhoTypography key={index + 1} variant="h1" px={1}>
                             {product.icon}
                         </DadinhoTypography>
                     )

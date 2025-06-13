@@ -3,7 +3,7 @@ import { ContentBox, DadinhoBox, DadinhoLoader, DadinhoTypography } from "../../
 import { ContentBoxTableHeader, ContentBoxTableSideContent } from "../../users/contentBoxTableConfig";
 import AddLevelDialog from "./AddLevelDialog";
 import { getStorage } from "../../../../apis/utilsStorage";
-import { useAllLevels } from "../../../../apis/levels/useAllLevels";
+import { useGameProgress } from "../../../../apis/game/useGameProgress";
 import LevelsTable from "./LevelsTable";
 
 export const LevelsContentTable = () => {
@@ -11,19 +11,19 @@ export const LevelsContentTable = () => {
     const [searchKey, setSearchKey] = useState<string>();
 
     const userId = useMemo(() => getStorage("id"), [])
-    const [getLevels, levels, levelsLoading, levelsError] = useAllLevels();
+    const [getGame, game, gameLoading, gameError] = useGameProgress();
 
     useEffect(() => {
-        getLevels({ id: userId })
+        getGame({ id: userId })
     }, []);
 
     const rows = useMemo(() => {
-        if (!searchKey || searchKey === "") return levels;
+        if (!searchKey || searchKey === "") return game;
       
-        return levels?.filter((level: { title: string; }) => 
+        return game?.filter((level: { title: string; }) => 
           level.title.toLowerCase().includes(searchKey.toLowerCase())
         );
-      }, [levels, searchKey]);
+      }, [game, searchKey]);
 
     return (
         <>
@@ -33,18 +33,18 @@ export const LevelsContentTable = () => {
                 } 
                 content={
                     <>
-                        {!levelsLoading && levelsError && 
+                        {!gameLoading && gameError && 
                             <DadinhoTypography textAlign="center" color="error">
                                 Não foi possível carregar os níveis
                             </DadinhoTypography>
                         }
-                        {levelsLoading && 
+                        {gameLoading && 
                             <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
                                 <DadinhoLoader />
                             </DadinhoBox>
                         }
-                        {!levelsLoading && !levelsError &&
-                                        <LevelsTable content={rows} />
+                        {!gameLoading && !gameError &&
+                            <LevelsTable content={rows} />
                         }
                     </>
                 }
