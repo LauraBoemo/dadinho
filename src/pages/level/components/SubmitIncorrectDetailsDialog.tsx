@@ -23,13 +23,17 @@ export const SubmitIncorrectDetailsDialog = ({ status, expected, finalBasket, is
       navigate(PATHS.GAME_INSTRUCTIONS);
   }
 
+  const dialogClose = (_event: object, reason?: string) => {
+    if (reason === "backdropClick") return;
+    handleClose();
+  };
   return (
     <DadinhoDialog
       disablePortal
       maxWidth="xs"
       fullWidth
       open={isOpen}
-      onClose={handleClose}
+      onClose={dialogClose}
             sx={{
               border: "2px solid black",
               "> .MuiDialog-paper": {
@@ -44,6 +48,7 @@ export const SubmitIncorrectDetailsDialog = ({ status, expected, finalBasket, is
               backgroundSize: 'auto',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
+              mt: -2,
               position: "relative",
               zIndex: 10,
           }}
