@@ -4,6 +4,10 @@ export interface FormatBasketDiffProps extends Pick<GameSubmitResponse, "expecte
 
 export const formatBasketDiff = ({ expected, finalBasket }: FormatBasketDiffProps): string => {
   return Object.entries(expected)
+    .filter(([emoji, qtyExpected]) => {
+      const qtyHave = finalBasket[emoji] ?? 0;
+      return qtyHave !== qtyExpected;
+    })
     .map(([emoji, qtyExpected]) => {
       const qtyHave = finalBasket[emoji] ?? 0;
       return `O seu cesto tinha ${qtyHave} ${emoji}, mas precisava de ${qtyExpected} ${emoji}.`;

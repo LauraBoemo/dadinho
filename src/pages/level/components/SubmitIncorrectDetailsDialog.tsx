@@ -6,6 +6,7 @@ import getStatusError from "../utils/getStatusError";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../../constants/Path";
 import getErrorImage from "../utils/getErrorImage";
+import BasketDiffDisplay from "../utils/BasketDiffDisplay";
 
 interface SubmitIncorrectDetailsDialogProps extends Pick<GameSubmitResponse, "status" | "expected" | "finalBasket"> {
   isOpen: boolean;
@@ -64,7 +65,7 @@ export const SubmitIncorrectDetailsDialog = ({ status, expected, finalBasket, is
                 </DadinhoStack>
               ) : (
                 <DadinhoTypography>
-                  {basketDiff}
+                  <BasketDiffDisplay expected={expected} finalBasket={finalBasket} />
                 </DadinhoTypography>
               ) 
               }
