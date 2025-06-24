@@ -1,170 +1,172 @@
-export const getTotalStudents = (students: any[]) => {
-    return students?.length;
+export interface StudentProgress {
+  id: number;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    role: 'STUDENT' | 'TEACHER' | string;
+  };
+  level: {
+    id: number;
+    icon: string;
+    title: string;              // ex: "Nível 01"
+    recipe: Array<{
+      id: number;
+      item: {
+        id: number;
+        icon: string;
+        name: string;
+      };
+      quantity: number;
+    }>;
+    baskets: Array<{
+      id: number;
+      name: string;
+      items: Array<{
+        id: number;
+        icon: string;
+        name: string;
+      }>;
+    }>;
+  };
+  attempts: number;
+  totalTime: number;            // em segundos
+  concluded: boolean;
 }
 
-export const getCountStudentsPassedLevel1 = (students: any[]) => {
-    if (students) {
-        return students?.filter((student) => 
-            student?.user?.concludedLevels?.some((level: { level: { id: number; }; }) => level.level.id > 1)
-        )?.length;
-    }
+// 1. Total de registros (cada registro agora representa um progresso de nível)
+export const getTotalStudents = (students: StudentProgress[]) => {
+  return students?.length ?? 0;
+}
 
-    return 0;
+// 2. Quantos já passaram de (isto é, concluíram) o Nível 1
+export const getCountStudentsPassedLevel1 = (students: StudentProgress[]) => {
+  if (!students) return 0;
+  return students
+    .filter(s => s.concluded && s.level.id > 1)
+    .length;
 };
 
-export const getMaxLevelReached = (students: any[]) => {
-    if (students) {
-        let maxLevel = 0;
-        students?.forEach((student) => {
-            student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; }) => {
-                const levelNumber = parseInt(level.level.title, 10);
-                if (levelNumber > maxLevel) {
-                    maxLevel = levelNumber;
-                }
-            });
-        });
-        return maxLevel;
-    }
-
-    return 0;
+// 3. Maior nível alcançado (entre todos os registros, considerando apenas os concluídos)
+export const getMaxLevelReached = (students: StudentProgress[]) => {
+  if (!students) return 0;
+  return students
+    .filter(s => s.concluded)
+    .reduce((max, s) => Math.max(max, s.level.id), 0);
 };
 
-export const getHighestAverageTime = (students: any[]) => {
-    if (students) {
-        const levelTimes = {};
-    
-        students?.forEach((student: any) => {
-            student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: any; }) => {
-                const levelNumber = parseInt(level.level.title, 10);
-                // @ts-ignore
-                if (!levelTimes[levelNumber]) {
-                    // @ts-ignore
-                    levelTimes[levelNumber] = [];
-                }
-                // @ts-ignore
-                levelTimes[levelNumber].push(level.totalTime);
-            });
-        });
-    
-        let highestAvg = 0;
-        let highestLevel = null;
-    
-        Object.keys(levelTimes)?.forEach((level) => {
-            // @ts-ignore
-            const times = levelTimes[level];
-            const avgTime = times.reduce((a: any, b: any) => a + b, 0) / times?.length;
-            const avgTimeInMinutes = avgTime / 60;
-            if (avgTimeInMinutes > highestAvg) {
-                highestAvg = avgTimeInMinutes;
-                highestLevel = level;
-            }
-        });
-    
-        return { level: highestLevel, averageTime: highestAvg.toFixed(2) };
-    }
+// 4. Nível com maior tempo médio (média de totalTime) — retorna { level, averageTimeEmMinutos }
+export const getHighestAverageTime = (students: StudentProgress[]) => {
+  if (!students) return { level: 0, averageTime: '0.00' };
 
-    return { level: 0, averageTime: 0 };
+  // Agrupa totalTime por level.id
+  const levelTimes: Record<number, number[]> = {};
+  students
+    .filter(s => s.concluded)
+    .forEach(s => {
+      levelTimes[s.level.id] = levelTimes[s.level.id] || [];
+      levelTimes[s.level.id].push(s.totalTime);
+    });
+
+  let highestAvg = 0;
+  let highestLevel = 0;
+  for (const [lvl, times] of Object.entries(levelTimes)) {
+    const avgSec = times.reduce((a, b) => a + b, 0) / times.length;
+    const avgMin = avgSec / 60;
+    if (avgMin > highestAvg) {
+      highestAvg = avgMin;
+      highestLevel = Number(lvl);
+    }
+  }
+
+  return {
+    level: highestLevel,
+    averageTime: highestAvg.toFixed(2)
+  };
 };
 
-export const getLowestAverageTime = (students: any[]) => {
-    if (students) {
+// 5. Nível com menor tempo médio
+export const getLowestAverageTime = (students: StudentProgress[]) => {
+  if (!students) return { level: 0, averageTime: '0.00' };
 
-        const levelTimes = {};
-    
-        students?.forEach((student: any) => {
-            student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: any; }) => {
-                const levelNumber = parseInt(level.level.title, 10);
-                // @ts-ignore
-                if (!levelTimes[levelNumber]) {
-                    // @ts-ignore
-                    levelTimes[levelNumber] = [];
-                }
-                // @ts-ignore
-                levelTimes[levelNumber].push(level.totalTime);
-            });
-        });
-    
-        let lowestAvg = Infinity;
-        let lowestLevel = null;
-    
-        Object.keys(levelTimes)?.forEach((level) => {
-            // @ts-ignore
-            const times = levelTimes[level];
-            const avgTime = times.reduce((a: any, b: any) => a + b, 0) / times?.length;
-            const avgTimeInMinutes = avgTime / 60;
-            if (avgTimeInMinutes < lowestAvg) {
-                lowestAvg = avgTimeInMinutes;
-                lowestLevel = level;
-            }
-        });
-        
-        return { level: lowestLevel, averageTime: lowestAvg === Infinity ? 0 : lowestAvg.toFixed(2) };
+  const levelTimes: Record<number, number[]> = {};
+  students
+    .filter(s => s.concluded)
+    .forEach(s => {
+      levelTimes[s.level.id] = levelTimes[s.level.id] || [];
+      levelTimes[s.level.id].push(s.totalTime);
+    });
+
+  let lowestAvg = Infinity;
+  let lowestLevel = 0;
+  for (const [lvl, times] of Object.entries(levelTimes)) {
+    const avgSec = times.reduce((a, b) => a + b, 0) / times.length;
+    const avgMin = avgSec / 60;
+    if (avgMin < lowestAvg) {
+      lowestAvg = avgMin;
+      lowestLevel = Number(lvl);
     }
+  }
 
-    return { level: 0, averageTime: 0 }
+  return {
+    level: lowestLevel,
+    averageTime: isFinite(lowestAvg) ? lowestAvg.toFixed(2) : '0.00'
+  };
 };
 
-export const formatStudentData = (students: any[]) => {
-    if (students) {
+// 6. Quantidade de alunos (registros) por nível concluído — formata para gráfico/tabela
+export const formatStudentData = (students: StudentProgress[]) => {
+  if (!students) return [];
 
-        const levelCounts = {};
-    
-        students?.forEach((student) => {
-            const levelsCompleted = new Set();
-    
-            student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; }) => {
-                const levelNumber = parseInt(level.level.title, 10);
-                levelsCompleted.add(levelNumber);
-            });
-    
-            levelsCompleted.forEach((levelNumber) => {
-                const levelTitle = `Nível ${levelNumber}`;
-                // @ts-ignore
-                if (!levelCounts[levelTitle]) {
-                    // @ts-ignore
-                    levelCounts[levelTitle] = 0;
-                }
-                // @ts-ignore
-                levelCounts[levelTitle]++;
-            });
-        });
-    
-        const formattedData = Object.keys(levelCounts).map((level) => ({
-            "Nível": level,
-            // @ts-ignore
-            "Alunos": levelCounts[level]
-        }));
-    
-        return formattedData;
-    }
+  // Conta quantos registros concluíram cada nível
+  const counts: Record<string, number> = {};
+  students
+    .filter(s => s.concluded)
+    .forEach(s => {
+      const key = s.level.title; // ex: "Nível 01"
+      counts[key] = (counts[key] || 0) + 1;
+    });
 
-    return [];
+  // Converte em array de { Nível, Alunos }
+  return Object.entries(counts).map(([levelTitle, qtde]) => ({
+    Nível: levelTitle,
+    Alunos: qtde
+  }));
 };
+// 7. Dados detalhados por registro para exibição em tabela
+// 7. Dados detalhados por aluno, combinando o array antigo e o novo array de progresso
+export const formatContentData = (
+  students: any[],
+  progressList: StudentProgress[]
+) => {
+  if (!students || students.length === 0) return [];
 
-export const formatContentData = (students: any[]) => {
-    if (students) {
-        return students?.map((student) => {
-            let highestLevel = 0;
-            let totalTime = 0;
-            student?.user?.concludedLevels?.forEach((level: { level: { title: string; }; totalTime: number; }) => {
-                const levelNumber = parseInt(level.level.title, 10);
-                if (levelNumber > highestLevel) {
-                    highestLevel = levelNumber;
-                }
-                totalTime += level.totalTime;
-            });
-            const averageTime = student.user?.concludedLevels?.length > 0 ? (totalTime / student.user?.concludedLevels?.length / 60).toFixed(2) : 0;
-    
-            return {
-                name: student.user.name,
-                class: student?.className,
-                teacher: student?.classTeacher?.name,
-                serie: student?.classGrade,
-                highestLevel: highestLevel.toString(),
-                averageTime: averageTime.toString()
-            };
-        });
-    }
+  return students.map(st => {
+    // filtra apenas registros de progresso concluídos deste aluno
+    const recs = progressList?.filter(
+      pr => pr.user.id === st.user.id && pr.concluded
+    );
 
-    return [];
+    // maior nível alcançado
+    const highestLevelNum = recs?.reduce(
+      (max, r) => Math.max(max, r.level.id),
+      0
+    );
+
+    // tempo médio em minutos
+    const avgMin =
+      recs?.length > 0
+        ? (recs.reduce((sum, r) => sum + r.totalTime, 0) / recs.length / 60)
+            .toFixed(2)
+        : '0.00';
+
+    return {
+      name: st.user.name,
+      class: st.className,
+      teacher: st.classTeacher.name,
+      serie: st.classGrade,
+      highestLevel: highestLevelNum?.toString(),
+      averageTime: avgMin
+    };
+  });
 };

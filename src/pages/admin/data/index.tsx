@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useTheme } from "../../../theme";
-import { useGetUsers } from "../../../apis/user/useGetUsers";
+import { useGameMetrics } from "../../../apis/game/useGameMetrics";
 import { ContentBox, DadinhoBarChart, DadinhoBox, DadinhoLoader, DadinhoStack, DadinhoTypography, StudentsProgressContentTable } from "../../../components";
 import { getTotalStudents, getCountStudentsPassedLevel1, getMaxLevelReached, getHighestAverageTime, getLowestAverageTime, formatStudentData, formatContentData } from "./utils";
+import { useGetUsers } from "../../../apis/user/useGetUsers";
 
 interface DataContentBoxTitleProps {
     title: string;
@@ -21,24 +22,26 @@ const DataContentBoxTitle = ({ title }: DataContentBoxTitleProps) => {
 export const DataPage = () => {
     const theme = useTheme();
     const [getUsers, users, usersLoading, usersError] = useGetUsers();
+    const [getMetrics, metrics, metricsLoading, metricsError] = useGameMetrics();
     
     useEffect(() => {
+        getMetrics();
         getUsers({ role: "STUDENT" })
     }, []);
 
     return (
         <>
-            {!usersLoading && usersError && 
+            {!metricsLoading && metricsError && 
                 <DadinhoTypography textAlign="center" color="error">
                     Não foi possível carregar os níveis
                 </DadinhoTypography>
             }
-            {usersLoading && 
+            {metricsLoading && 
                 <DadinhoBox display="flex" sx={{ placeContent: "center" }}>
                     <DadinhoLoader />
                 </DadinhoBox>
             }
-            {!usersLoading && !usersError && 
+            {(!metricsLoading || !usersLoading) && (!metricsError || !usersError) && 
                 <DadinhoStack direction="column" spacing={1} ml={2} sx={{ overflow: "auto" }}>
                     <DadinhoStack direction="row" gap={1}>
                         <ContentBox 
@@ -46,7 +49,7 @@ export const DataPage = () => {
                             subtitle="Total de alunos cadastrados." 
                             content={
                                 <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                    {getTotalStudents(users)}
+                                    {getTotalStudents(metrics)}
                                 </DadinhoTypography>
                             }
                         />
@@ -56,10 +59,10 @@ export const DataPage = () => {
                             content={
                                 <DadinhoStack direction="row" alignItems="flex-end">
                                     <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                        {getCountStudentsPassedLevel1(users)}
+                                        {getCountStudentsPassedLevel1(metrics)}
                                     </DadinhoTypography>
                                     <DadinhoTypography variant="h4">
-                                        ({((getCountStudentsPassedLevel1(users)/getTotalStudents(users))*100).toFixed(2)}% do total de alunos)
+                                        ({((getCountStudentsPassedLevel1(metrics)/getTotalStudents(metrics))*100).toFixed(2)}% do total de alunos)
                                     </DadinhoTypography>
                                 </DadinhoStack>
                             }
@@ -69,7 +72,7 @@ export const DataPage = () => {
                             subtitle="Ao menos 1 aluno atingiu este nível." 
                             content={
                                 <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                    {getMaxLevelReached(users)}/7
+                                    {getMaxLevelReached(metrics)}/7
                                 </DadinhoTypography>
                             }
                         />
@@ -78,7 +81,7 @@ export const DataPage = () => {
                         <ContentBox 
                             title={<DataContentBoxTitle title="Quantidade de alunos em níveis" />}
                             content={
-                                <DadinhoBarChart data={formatStudentData(users)} />
+                                <DadinhoBarChart data={formatStudentData(metrics)} />
                             }
                         />
                         <DadinhoStack direction="column" gap={1}>
@@ -87,10 +90,10 @@ export const DataPage = () => {
                                 content={
                                     <DadinhoStack direction="row" alignItems="flex-end">
                                         <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                            {getHighestAverageTime(users).averageTime}min
+                                            {getHighestAverageTime(metrics).averageTime}min
                                         </DadinhoTypography>
                                         <DadinhoTypography variant="h4">
-                                            (Nível {getHighestAverageTime(users).level})
+                                            (Nível {getHighestAverageTime(metrics).level})
                                         </DadinhoTypography>
                                     </DadinhoStack>
                                 }
@@ -100,17 +103,17 @@ export const DataPage = () => {
                                 content={
                                     <DadinhoStack direction="row" alignItems="flex-end">
                                         <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                            {getLowestAverageTime(users).averageTime}min
+                                            {getLowestAverageTime(metrics).averageTime}min
                                         </DadinhoTypography>
                                         <DadinhoTypography variant="h4">
-                                            (Nível {getLowestAverageTime(users).level})
+                                            (Nível {getLowestAverageTime(metrics).level})
                                         </DadinhoTypography>
                                     </DadinhoStack>
                                 }
                             />
                         </DadinhoStack>
                     </DadinhoStack>
-                    <StudentsProgressContentTable contentTable={formatContentData(users)} />
+                    <StudentsProgressContentTable contentTable={formatContentData(users, metrics)} />
                 </DadinhoStack>
             }
         </>

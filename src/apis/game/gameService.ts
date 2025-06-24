@@ -66,4 +66,8 @@ const gameSubmit = (payload: GameSubmitPayload, config?: AxiosRequestConfig): Pr
   return baseService.post(`game/submit`, payload, config);
 };
 
-export { gameProgress, gameSetup, gameSubmit };
+const gameMetrics = (config?: AxiosRequestConfig): Promise<AxiosResponse<GameSetupResponse>> => {
+  return baseService.get(`game/metrics`, config);
+};
+
+export { gameProgress, gameSetup, gameSubmit, gameMetrics };
