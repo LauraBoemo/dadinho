@@ -49,7 +49,7 @@ export const DataPage = () => {
                             subtitle="Total de alunos cadastrados." 
                             content={
                                 <DadinhoTypography variant="h1" fontWeight={theme.typography.fontWeightMedium}>
-                                    {getTotalStudents(metrics)}
+                                    {getTotalStudents(users)}
                                 </DadinhoTypography>
                             }
                         />
@@ -62,7 +62,7 @@ export const DataPage = () => {
                                         {getCountStudentsPassedLevel1(metrics)}
                                     </DadinhoTypography>
                                     <DadinhoTypography variant="h4">
-                                        ({((getCountStudentsPassedLevel1(metrics)/getTotalStudents(metrics))*100).toFixed(2)}% do total de alunos)
+                                        ({((getCountStudentsPassedLevel1(metrics)/getTotalStudents(users))*100).toFixed(2)}% do total de alunos)
                                     </DadinhoTypography>
                                 </DadinhoStack>
                             }

@@ -40,11 +40,18 @@ export const getTotalStudents = (students: StudentProgress[]) => {
 }
 
 // 2. Quantos já passaram de (isto é, concluíram) o Nível 1
-export const getCountStudentsPassedLevel1 = (students: StudentProgress[]) => {
+export const getCountStudentsPassedLevel1 = (students: StudentProgress[]): number => {
   if (!students) return 0;
-  return students
-    .filter(s => s.concluded && s.level.id > 1)
-    .length;
+
+  const passedUserIds = new Set<number>();
+
+  students.forEach(s => {
+    if (s.concluded && s.level.id > 1) {
+      passedUserIds.add(s.user.id);
+    }
+  });
+
+  return passedUserIds.size;
 };
 
 // 3. Maior nível alcançado (entre todos os registros, considerando apenas os concluídos)
