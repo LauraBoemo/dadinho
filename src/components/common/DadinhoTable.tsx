@@ -27,15 +27,15 @@ export default function BasicTable() {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.nome}
+              key={row?.nome}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.nome}
+                {row?.nome}
               </TableCell>
-              <TableCell align="right">{row.turma}</TableCell>
-              <TableCell align="right">{row.nivelAtual}</TableCell>
-              <TableCell align="right">{row.tempoMedio} min</TableCell>
+              <TableCell align="right">{row?.turma}</TableCell>
+              <TableCell align="right">{row?.nivelAtual}</TableCell>
+              <TableCell align="right">{row?.tempoMedio} min</TableCell>
             </TableRow>
           ))}
         </TableBody>
