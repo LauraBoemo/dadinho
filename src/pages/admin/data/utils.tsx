@@ -168,10 +168,10 @@ export const formatContentData = (
         : '0.00';
 
     return {
-      name: st.user.name,
-      class: st.className,
-      teacher: st.classTeacher.name,
-      serie: st.classGrade,
+      name: st?.user?.name,
+      class: st?.className,
+      teacher: st?.classTeacher?.name,
+      serie: st?.classGrade,
       highestLevel: highestLevelNum?.toString(),
       averageTime: avgMin
     };
